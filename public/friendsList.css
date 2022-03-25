@@ -1,0 +1,38 @@
+.container {
+    margin: 1px solid black;
+    display: grid;
+    margin-bottom: 2rem;
+    grid-template-rows: 8fr 2fr;
+}
+
+.friendsList {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    margin: 2rem;
+}
+
+.friend-container {
+    display: grid;
+    width: 47%;
+    grid-template-columns: 1fr 1fr;
+    background: rgb(211, 206, 206);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.friend-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.friend-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 3rem;
+}
