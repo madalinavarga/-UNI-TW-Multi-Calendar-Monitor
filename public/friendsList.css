@@ -1,22 +1,32 @@
 .container {
-    margin: 1px solid black;
+    border: 1px solid black;
     display: grid;
-    margin-bottom: 2rem;
-    grid-template-rows: 8fr 2fr;
+    grid-template-rows: 100px auto;
 }
 
-.friendsList {
+.nav-friends {
+    border: 1px solid black;
     display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
+    justify-content: flex-end;
+    background-color: #4dbd9b;
+    column-gap: 2rem;
+    padding-right: 5rem;
+}
+
+
+/* FRIENDS -> 1 container : details + buttons*/
+
+.friends {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
     row-gap: 2rem;
-    margin: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }
 
 .friend-container {
-    display: grid;
-    width: 47%;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     background: rgb(211, 206, 206);
     padding: 2rem;
     border-radius: 0.5rem;
