@@ -7,6 +7,15 @@
     list-style-type: none;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*BUTOANE*/
+
 .btn {
     border-bottom: 3px solid #494444;
     border-right: 3px solid #494444;
@@ -14,10 +23,38 @@
     background-color: #746969;
     padding: 10px;
     border-radius: 16px;
+    color: rgb(214, 202, 202);
+}
+
+.btn-danger {
+    background-color: #d81010;
+    padding: 10px;
+    border-radius: 16px;
+    color: rgb(214, 202, 202);
+}
+
+.btn-primary {
+    background-color: #108fd8;
+    padding: 10px;
+    border-radius: 16px;
+    color: rgb(214, 202, 202);
+}
+
+.btn-add {
+    background-color: #10d82b;
+    padding: 10px;
+    border-radius: 16px;
+    color: rgb(29, 26, 26);
 }
 
 .btn:hover {
     background-color: #665b5b;
+}
+
+.avatar {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
 }
 
 body {
@@ -59,8 +96,5 @@ body {
 
 .footer {
     background-color: #4dbd9b;
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    height: 2.5rem;
 }

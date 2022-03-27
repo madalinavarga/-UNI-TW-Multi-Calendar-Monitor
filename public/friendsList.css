@@ -1,0 +1,48 @@
+.container {
+    border: 1px solid black;
+    display: grid;
+    grid-template-rows: 100px auto;
+}
+
+.nav-friends {
+    border: 1px solid black;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #4dbd9b;
+    column-gap: 2rem;
+    padding-right: 5rem;
+}
+
+
+/* FRIENDS -> 1 container : details + buttons*/
+
+.friends {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    row-gap: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.friend-container {
+    display: flex;
+    background: rgb(211, 206, 206);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.friend-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.friend-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 3rem;
+}
