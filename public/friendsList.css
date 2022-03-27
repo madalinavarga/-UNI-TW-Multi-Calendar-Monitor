@@ -1,14 +1,12 @@
 .container {
-    border: 1px solid black;
     display: grid;
-    grid-template-rows: 100px auto;
+    grid-template-rows: 50px auto;
 }
 
 .nav-friends {
-    border: 1px solid black;
     display: flex;
     justify-content: flex-end;
-    background-color: #4dbd9b;
+    background-color: #303333;
     column-gap: 2rem;
     padding-right: 5rem;
 }
