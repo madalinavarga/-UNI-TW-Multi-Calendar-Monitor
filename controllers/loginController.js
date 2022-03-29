@@ -6,6 +6,11 @@ function getView(req, res) {
     res.write(fs.readFileSync('./views/login.html'));
 }
 
+// function getView(req, res) {
+//     res.write(fs.readFileSync('./views/login.html'));
+// }
+
+
 //POST
 
 

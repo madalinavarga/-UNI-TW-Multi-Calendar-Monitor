@@ -3,20 +3,23 @@
 var http = require('http'); //import 
 var fs = require('fs');
 var { login } = require('./routes/loginRoutes');
+var { register } = require('./routes/registerRoutes');
 
 //create a server object:
 http.createServer((req, res) => {
     console.log(req.method, req.url);
     switch (req.url) {
         case "/login":
-        case "/public/layout1.css":
+        case "/public/layout.css":
         case "/public/login.css":
             login(req, res);
             break;
 
         case "/register":
-            res.write('page not found!');
+        case "/public/register.js":
+            register(req, res);
             break;
+
         default:
             res.write('page not found!'); //write a response to the client
     }

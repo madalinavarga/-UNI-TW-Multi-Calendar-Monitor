@@ -1,27 +1,26 @@
 var fs = require('fs');
-var { getView } = require('../controllers/loginController')
+var { getView } = require('../controllers/registerController');
 
-function login(req, res) {
+
+function register(req, res) {
     switch (req.url) {
-        case "/login":
+        case "/register":
             switch (req.method) {
                 case "GET":
                     getView(req, res);
-                    break;
-                case "POST":
-                    res.write('verific cont ');
-                    res.writeHeader(200, { "Content-Type": "text/html" });
-                    res.write(html);
                     break;
                 default:
                     res.write('method not allowed');
             }
             break;
+        case "/public/register.js":
+            res.write(fs.readFileSync('./public/register.js'));
+            break;
         case "/public/layout.css":
             res.write(fs.readFileSync('./public/layout.css'));
             break;
-        case "/public/login.css":
-            res.write(fs.readFileSync('./public/login.css'));
+        case "/public/register.css":
+            res.write(fs.readFileSync('./public/register.css'));
             break;
         default:
             res.write('page not found!'); //write a response to the client
@@ -30,5 +29,5 @@ function login(req, res) {
 }
 
 module.exports = {
-    login: login
+    register: register
 }
