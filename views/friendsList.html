@@ -1,68 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/layout.css">
-    <link rel="stylesheet" href="../public/friendsList.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/layout.css" />
+    <link rel="stylesheet" href="../public/friendsList.css" />
     <title>NumeAplicatie</title>
-</head>
+  </head>
 
-<body>
-    <div class="nav-bar">
-        <div class="logo">LOGO</div>
-        <div class="nav-items">
-            <li class="btn"><a href="#">Home</a></li>
-            <li class="btn"><a href="../views/friendsList.html">Friends</a></li>
-            <li class="btn"><a href="#">Calendar</a></li>
-            <li class="btn"><a href="#">Requests</a></li>
-            <li class="btn"><a href="#">Profile</a></li>
-        </div>
-
+  <body>
+    <div class="navbar">
+      <img src="../images/logo.png" alt="Menu logo" />
+      <div class="navbar-items-container">
+        <a class="navbar-items" href="#">Home</a>
+        <a class="navbar-items" href="#">Friends</a>
+        <a class="navbar-items" href="#">Calendar</a>
+        <a class="navbar-items" href="#">Requests</a>
+        <a class="navbar-items" href="#">Profile</a>
+      </div>
     </div>
     <div class="container">
-
-        <div class="nav-friends">
-            <li><a href="#">Requests</a></li>
-            <li><a href="#">Your List</a></li>
-            <div class="search-container">
-                <form action="#">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit" class="btn">Search</button>
-                </form>
-            </div>
+      <div class="nav-friends">
+        <li><a href="#">Requests</a></li>
+        <li><a href="#">Your List</a></li>
+        <div class="search-container">
+          <form action="#">
+            <input type="text" placeholder="Search.." name="search" />
+            <button type="submit" class="btn">Search</button>
+          </form>
         </div>
-        <div class="friends">
-            <div class="friend-container">
-                <div class="friend-details">
-                    <img class="avatar" src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar">
-                    <p>Nume utilizator</p>
-                </div>
-                <div class="friend-buttons">
-                    <button class="btn-add"> See options</button>
-                    <button class="btn-danger">Delete</button>
-                </div>
-            </div>
-            <div class="friend-container">
-                <div class="friend-details">
-                    <img class="avatar" src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar">
-                    <p>Nume utilizator</p>
-                </div>
-                <div class="friend-buttons">
-                    <button class="btn-primary"> See options</button>
-                    <button class="btn-danger">Delete</button>
-                </div>
-
-            </div>
+      </div>
+      <div class="friends">
+        <div class="friend-container">
+          <div class="friend-details">
+            <img
+              class="avatar"
+              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png"
+              alt="avatar"
+            />
+            <p>Nume utilizator</p>
+          </div>
+          <div class="friend-buttons">
+            <button class="btn-add">See options</button>
+            <button class="btn-danger">Delete</button>
+          </div>
         </div>
-
+        <div class="friend-container">
+          <div class="friend-details">
+            <img
+              class="avatar"
+              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png"
+              alt="avatar"
+            />
+            <p>Nume utilizator</p>
+          </div>
+          <div class="friend-buttons">
+            <button class="btn-primary">See options</button>
+            <button class="btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="footer">
-        <p>footer</p>
+      <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
+      <div class="icons-container">
+        <a href="https://www.google.com/">
+          <img src="../images/facebook-icon.png" alt="facebook-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../images/instagram-icon.png" alt="instagram-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../images/twitter-icon.png" alt="instagram-icon" />
+        </a>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>

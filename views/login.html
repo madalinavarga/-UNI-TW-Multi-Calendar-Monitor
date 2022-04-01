@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/layout.css">
-    <link rel="stylesheet" href="../public/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/layout.css" />
+    <link rel="stylesheet" href="../public/login.css" />
     <title>NumeAplicatie</title>
-</head>
+  </head>
 
-<body>
-    <div class="nav-bar">
-        <div class="logo">LOGO</div>
-        <div class="nav-items">
-            <li class="btn"><a href="#">Home</a></li>
-            <li class="btn"><a href="#">Log in</a></li>
-            <li class="btn"><a href="#">Sign up</a></li>
-        </div>
-
+  <body>
+    <div class="navbar">
+      <img src="../images/logo.png" alt="Menu logo" />
+      <div class="navbar-items-container">
+        <a class="navbar-items" href="#">Home</a>
+        <a class="navbar-items" href="#">Log in</a>
+        <a class="navbar-items" href="#">Sign up</a>
+      </div>
     </div>
     <div class="container">
-        <form action="#">
-            <h2>Log in</h2>
-            <input type="text" required placeholder="User Name">
-            <input type="password" class="pass-key" required placeholder="Password">
-            <div class="container-btn">
-                <button class="btn login-btn">Log in</button>
-                <button class="btn">Create New Account</button>
-                <hr>
-                <div class="google-btn btn">
-                    <div class="google-icon-wrapper">
-                        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-                    </div>
-                    <div class="btn-text">Sign in with google</div>
-                </div>
+      <form action="#">
+        <h2>Log in</h2>
+        <input type="text" required placeholder="User Name" />
+        <input
+          type="password"
+          class="pass-key"
+          required
+          placeholder="Password"
+        />
+        <div class="container-btn">
+          <button class="btn login-btn">Log in</button>
+          <button class="btn">Create New Account</button>
+          <hr />
+          <div class="google-btn btn">
+            <div class="google-icon-wrapper">
+              <img
+                class="google-icon"
+                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              />
             </div>
-        </form>
+            <div class="btn-text">Sign in with google</div>
+          </div>
+        </div>
+      </form>
     </div>
     <div class="footer">
-        <p>footer</p>
+      <p>footer</p>
     </div>
-
-</body>
-
+  </body>
 </html>

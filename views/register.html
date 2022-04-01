@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/layout.css">
-    <link rel="stylesheet" href="../public/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/layout.css" />
+    <link rel="stylesheet" href="../public/login.css" />
     <script src="../public/register.js"></script>
     <title>NumeAplicatie</title>
-</head>
+  </head>
 
-<body>
-    <div class="nav-bar">
-        <div class="logo">LOGO</div>
-        <div class="nav-items">
-            <li class="btn"><a href="#">Home</a></li>
-            <li class="btn"><a href="#">Log in</a></li>
-            <li class="btn"><a href="#">Sign up</a></li>
-        </div>
-
+  <body>
+    <div class="navbar">
+      <img src="../images/logo.png" alt="Menu logo" />
+      <div class="navbar-items-container">
+        <a class="navbar-items" href="#">Home</a>
+        <a class="navbar-items" href="#">Log in</a>
+        <a class="navbar-items" href="#">Sign up</a>
+      </div>
     </div>
     <div class="container">
-        <div class="form action">
-            <div id="error-msg">.</div>
-            <h2>Register</h2>
-            <input id="firstName" type="text" placeholder="First Name">
-            <input id="lastName" type="text" placeholder="Last Name">
-            <input id="email" type="email" placeholder="Email">
-            <input id="password" type="password" class="pass-key" placeholder="Password">
-            <input type="password" class="pass-key" placeholder="Confirm Password">
-            <p><input type="checkbox" name="terms"> I accept the <u>Terms and Conditions</u></p>
-            <hr>
-            <button class="btn" onclick="onClick()">Register Now</button>
-
-        </div>
+      <div class="form action">
+        <div id="error-msg">.</div>
+        <h2>Register</h2>
+        <input id="firstName" type="text" placeholder="First Name" />
+        <input id="lastName" type="text" placeholder="Last Name" />
+        <input id="email" type="email" placeholder="Email" />
+        <input
+          id="password"
+          type="password"
+          class="pass-key"
+          placeholder="Password"
+        />
+        <input
+          type="password"
+          class="pass-key"
+          placeholder="Confirm Password"
+        />
+        <p>
+          <input type="checkbox" name="terms" /> I accept the
+          <u>Terms and Conditions</u>
+        </p>
+        <hr />
+        <button class="btn" onclick="onClick()">Register Now</button>
+      </div>
     </div>
     <div class="footer">
-        <p>footer</p>
+      <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
+      <div class="icons-container">
+        <a href="https://www.google.com/">
+          <img src="../images/facebook-icon.png" alt="facebook-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../images/instagram-icon.png" alt="instagram-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../images/twitter-icon.png" alt="instagram-icon" />
+        </a>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
