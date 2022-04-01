@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/layout.css">
+    <link rel="stylesheet" href="../public/userProfile.css">
     <link rel="stylesheet" href="../public/register.css">
-    <script src="../public/register.js"></script>
     <title>NumeAplicatie</title>
 </head>
 
@@ -16,28 +16,30 @@
         <div class="logo">LOGO</div>
         <div class="nav-items">
             <li class="btn"><a href="#">Home</a></li>
-            <li class="btn"><a href="#">Log in</a></li>
-            <li class="btn"><a href="#">Sign up</a></li>
+            <li class="btn"><a href="#">Friends</a></li>
+            <li class="btn"><a href="#">Calendar</a></li>
+            <li class="btn"><a href="#">Requests</a></li>
+            <li class="btn"><a href="#">Profile</a></li>
         </div>
 
     </div>
-    <div class="container">
-        <form action="#" id="form" method="post" class="form-general ">
-            <div id="error-msg">.</div>
-            <h2>Register</h2>
+    <div class="user-profile-container form-general ">
+        <div class="user-photo center">
+            <img class="avatar" src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar">
+        </div>
+        <div class="user-info">
+            <hr>
+            <h2>Your Profile</h2>
             <input id="firstName" type="text" placeholder="First Name" required>
             <input id="lastName" type="text" placeholder="Last Name" required>
             <input id="email" type="email" placeholder="Email" required>
             <input id="password" type="password" class="pass-key" placeholder="Password" required>
-            <input type="password" class="pass-key" placeholder="Confirm Password" required>
-            <p><input type="checkbox" required name="terms"> I accept the <u>Terms and Conditions</u></p>
-            <hr>
-            <button class="btn" type="submit">Register Now</button>
-        </form>
-    </div>
-    </div>
 
-    <p>footer</p>
+            <button class="btn-add" type="submit">Save</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>footer</p>
     </div>
 
 </body>

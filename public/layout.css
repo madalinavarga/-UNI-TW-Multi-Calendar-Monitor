@@ -52,6 +52,19 @@
     background-color: #665b5b;
 }
 
+
+/*FORMULARE */
+
+.form-general {
+    display: flex;
+    flex-direction: column;
+    background: rgb(211, 206, 206);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-bottom: 2rem;
+}
+
 .avatar {
     height: 7rem;
     width: 7rem;

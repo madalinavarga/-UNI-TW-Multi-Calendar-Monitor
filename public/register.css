@@ -7,7 +7,7 @@
     
     form {
         width: 530px;
-        height: 450px;
+        height: 490px;
     }
     
     form h2 {
@@ -39,17 +39,14 @@
     
     .google-btn {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 20% auto;
+        align-items: center;
+        justify-content: center;
     }
     
     .google-icon-wrapper {
         height: 1rem;
         display: flex;
         align-items: center;
-        justify-content: center;
-    }
-    
-    .btn-text {
         justify-content: flex-start;
-        align-items: flex-start;
     }
