@@ -1,4 +1,5 @@
 .container {
+  height: 80%;
   padding-top: 20px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
