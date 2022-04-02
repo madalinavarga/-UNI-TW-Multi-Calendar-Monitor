@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../public/layout.css" />
-    <link rel="stylesheet" href="../public/login.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/layout.css">
+    <link rel="stylesheet" href="../public/register.css">
     <script src="../public/register.js"></script>
     <title>NumeAplicatie</title>
 </head>
@@ -21,9 +21,10 @@
         </div>
     </div>
     <div class="container">
-        <div class="form action">
+        <form action="#" id="form" method="post" class="form-general ">
             <div id="error-msg">.</div>
             <h2>Register</h2>
+
             <input id="firstName" type="text" placeholder="First Name" />
             <input id="lastName" type="text" placeholder="Last Name" />
             <input id="email" type="email" placeholder="Email" />
@@ -35,7 +36,7 @@
             </p>
             <hr />
             <button class="btn" onclick="onClick()">Register Now</button>
-        </div>
+    </div>
     </div>
     <div class="footer">
         <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>

@@ -1,0 +1,115 @@
+/*variabile*/
+
+$color-primary:rgb(86, 86, 233);
+$color-danger:rgb(255, 0, 0);
+$color-add:rgb(25, 196, 25);
+$color-nav-bar:#6f9fd7d0;
+
+/*GENERAL*/
+
+@font-face {
+    font-family: myFirstFont;
+    src: url("../fonts/montserrat.ttf");
+}
+
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    /*NAV BAR*/
+    .navbar {
+        background-color: $color-nav-bar;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: myFirstFont;
+        font-weight: bold;
+        font-size: larger;
+        img {
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+        .navbar-items {
+            margin-right: 100px;
+            color: rgb(255, 255, 255);
+            position: relative;
+        }
+        .navbar-items::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 250ms ease-in;
+        }
+        .navbar-items:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+    /*FOOTER*/
+    .footer {
+        position: absolute;
+        width: 100%;
+        height: 60px;
+        bottom: 0;
+        border-top: 2px solid rgb(196, 193, 193);
+        display: flex;
+        align-items: center;
+        p {
+            color: #3b3b3b;
+            margin-left: 20px;
+        }
+        .icons-container {
+            width: 75%;
+            display: flex;
+            justify-content: end;
+            a {
+                margin-left: 10px;
+            }
+            img {
+                width: 30px;
+            }
+        }
+    }
+}
+
+
+/*BUTOANE*/
+
+.btn-danger {
+    background-color: $color-danger;
+    padding: 10px;
+    border-radius: 16px;
+    color: rgb(214, 202, 202);
+}
+
+.btn-primary {
+    background-color: $color-primary;
+    padding: 10px;
+    border-radius: 16px;
+    color: rgb(214, 202, 202);
+}
+
+.btn-add {
+    background-color: $color-add;
+    padding: 10px;
+    border-radius: 16px;
+    color: rgb(29, 26, 26);
+}
+
+.avatar {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+}

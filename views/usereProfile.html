@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../public/layout.css" />
-    <link rel="stylesheet" href="../public/login.scss" />
+    <link rel="stylesheet" href="../public/userProfile.css" />
     <title>NumeAplicatie</title>
 </head>
 
@@ -15,27 +15,28 @@
         <img src="../images/logo.svg" alt="Menu logo" />
         <div class="navbar-items-container">
             <a class="navbar-items" href="#">Home</a>
-            <a class="navbar-items" href="#">Log in</a>
-            <a class="navbar-items" href="#">Sign up</a>
+            <a class="navbar-items" href="#">Friends</a>
+            <a class="navbar-items" href="#">Calendar</a>
+            <a class="navbar-items" href="#">Requests</a>
+            <a class="navbar-items" href="#">Profile</a>
         </div>
     </div>
     <div class="container">
-        <form action="#" class="form-general">
-            <h2>Log in</h2>
-            <input type="text" required placeholder="User Name" />
-            <input type="password" class="pass-key" required placeholder="Password" />
-            <div class="container-btn">
-                <button class="btn login-btn">Log in</button>
-                <button class="btn">Create New Account</button>
-                <hr />
-                <div class="google-btn btn">
-                    <div class="google-icon-wrapper">
-                        <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-                    </div>
-                    <div class="btn-text">Sign in with google</div>
-                </div>
+        <div class="user-profile-container form-general ">
+            <div class="user-photo center">
+                <img class="avatar" src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar">
             </div>
-        </form>
+            <div class="user-info">
+                <hr>
+                <h2>Your Profile</h2>
+                <input id="firstName" type="text" placeholder="First Name" required>
+                <input id="lastName" type="text" placeholder="Last Name" required>
+                <input id="email" type="email" placeholder="Email" required>
+                <input id="password" type="password" class="pass-key" placeholder="Password" required>
+
+                <button class="btn-add" type="submit">Save</button>
+            </div>
+        </div>
     </div>
     <div class="footer">
         <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>

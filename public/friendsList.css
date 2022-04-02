@@ -1,46 +1,73 @@
 .container {
-    display: grid;
-    grid-template-rows: 50px auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 50px auto;
+      grid-template-rows: 50px auto;
+  /* FRIENDS -> 1 container : details + buttons*/
 }
 
-.nav-friends {
-    display: flex;
-    justify-content: flex-end;
-    background-color: #303333;
-    column-gap: 2rem;
-    padding-right: 5rem;
+.container .nav-friends {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background-color: #303333;
+  -webkit-column-gap: 2rem;
+          column-gap: 2rem;
+  padding-right: 5rem;
 }
 
-
-/* FRIENDS -> 1 container : details + buttons*/
-
-.friends {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    row-gap: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+.container .friends {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 2rem;
+  row-gap: 2rem;
+  border-radius: 0.5rem;
 }
 
-.friend-container {
-    display: flex;
-    background: rgb(211, 206, 206);
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+.container .friend-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #d3cece;
+  padding: 2rem;
+  border-radius: 0.5rem;
 }
 
-.friend-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.container .friend-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.friend-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: 3rem;
+.container .friend-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-column-gap: 3rem;
+          column-gap: 3rem;
 }
+/*# sourceMappingURL=friendsList.css.map */
