@@ -1,52 +1,76 @@
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-    
-    form {
-        width: 530px;
-        height: 490px;
-    }
-    
-    form h2 {
-        text-align: center;
-        margin-bottom: 1.8rem;
-    }
-    
-    form input {
-        outline: none;
-        padding: 0.5rem 0.8rem;
-        margin-bottom: 0.8rem;
-        font-size: 0.9rem;
-    }
-    
-    form hr {
-        background: #f7f7f7;
-        margin: 1rem;
-    }
-    
-    .container-btn {
-        display: flex;
-        flex-direction: column;
-        row-gap: 0.5rem;
-    }
-    
-    .login-btn {
-        margin-top: 2.5rem;
-    }
-    
-    .google-btn {
-        display: grid;
-        grid-template-columns: 20% auto;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .google-icon-wrapper {
-        height: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 2rem;
+}
+
+.container form {
+  width: 530px;
+  height: 490px;
+}
+
+.container form h2 {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+.container form input {
+  outline: none;
+  padding: 0.5rem 0.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.container form hr {
+  background: #f7f7f7;
+  margin: 1rem;
+}
+
+.container .container-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.container .login-btn {
+  margin-top: 2.5rem;
+}
+
+.container .google-btn {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20% auto;
+      grid-template-columns: 20% auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .google-icon-wrapper {
+  height: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+/*# sourceMappingURL=register.css.map */
