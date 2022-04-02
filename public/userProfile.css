@@ -1,10 +1,22 @@
 .user-profile-container {
-  background-color: rgba(56, 231, 129, 0.712);
   width: 600px;
-  height: 450px;
+  height: 530px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 530px;
+  height: 550px;
+  padding: 3rem;
+  margin-bottom: 2rem;
   margin-top: 2rem;
-  margin-left: 25rem;
-  margin-right: 25rem;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(44, 233, 107, 0.664);
+  border-radius: 0.2rem;
 }
 
 .user-profile-container .user-info {
@@ -18,5 +30,9 @@
   row-gap: 1rem;
   margin-top: 2rem;
   text-align: center;
+}
+
+.user-profile-container .btn {
+  margin-top: 3rem;
 }
 /*# sourceMappingURL=userProfile.css.map */
