@@ -1,0 +1,25 @@
+.container{
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    .achievements{
+        padding-left: 200px;
+        display: flex;
+        .tasks-completed{
+            display: flex;
+            img{
+                width: 5%;
+            }
+        }
+        .collaborators{
+            display: flex;
+            img{
+                width: 5%;
+            }
+        }
+
+    }
+}
