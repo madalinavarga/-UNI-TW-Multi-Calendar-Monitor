@@ -1,12 +1,20 @@
+$color-nav:grey;
 .container {
     display: grid;
     grid-template-rows: 50px auto;
     .nav-friends {
         display: flex;
-        justify-content: flex-end;
-        background-color: #303333;
-        column-gap: 2rem;
+        justify-content: end;
+        align-items: center;
+        background-color: $color-nav;
+        column-gap: 3rem;
         padding-right: 5rem;
+        li {
+            list-style-type: none;
+            a {
+                color: white;
+            }
+        }
     }
     /* FRIENDS -> 1 container : details + buttons*/
     .friends {
@@ -15,25 +23,26 @@
         padding: 2rem;
         row-gap: 2rem;
         border-radius: 0.5rem;
-        // box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    }
-    .friend-container {
-        display: flex;
-        background: rgb(211, 206, 206);
-        padding: 2rem;
-        border-radius: 0.5rem;
-        // box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+        .friend-container {
+            margin-left: 10rem;
+            margin-right: 10rem;
+            display: grid;
+            grid-template-columns: 3fr 6fr;
+            background: rgba(149, 221, 224, 0.705);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            .friend-buttons {
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                column-gap: 3rem;
+            }
+        }
     }
     .friend-details {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    }
-    .friend-buttons {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        column-gap: 3rem;
     }
 }

@@ -1,15 +1,25 @@
 .user-profile-container {
-    background-color: rgba(56, 231, 129, 0.712);
     width: 600px;
-    height: 450px;
+    height: 530px;
+    display: flex;
+    flex-direction: column;
+    width: 530px;
+    height: 550px;
+    padding: 3rem;
+    margin-bottom: 2rem;
     margin-top: 2rem;
-    margin-left: 25rem;
-    margin-right: 25rem;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(44, 233, 107, 0.664);
+    border-radius: 0.2rem;
     .user-info {
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
         margin-top: 2rem;
         text-align: center;
+    }
+    .btn {
+        margin-top: 3rem;
     }
 }

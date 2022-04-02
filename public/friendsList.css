@@ -12,11 +12,22 @@
   display: flex;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
-          justify-content: flex-end;
-  background-color: #303333;
-  -webkit-column-gap: 2rem;
-          column-gap: 2rem;
+          justify-content: end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: grey;
+  -webkit-column-gap: 3rem;
+          column-gap: 3rem;
   padding-right: 5rem;
+}
+
+.container .nav-friends li {
+  list-style-type: none;
+}
+
+.container .nav-friends li a {
+  color: white;
 }
 
 .container .friends {
@@ -32,13 +43,30 @@
   border-radius: 0.5rem;
 }
 
-.container .friend-container {
+.container .friends .friend-container {
+  margin-left: 10rem;
+  margin-right: 10rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 6fr;
+      grid-template-columns: 3fr 6fr;
+  background: rgba(149, 221, 224, 0.705);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.container .friends .friend-container .friend-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: #d3cece;
-  padding: 2rem;
-  border-radius: 0.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-column-gap: 3rem;
+          column-gap: 3rem;
 }
 
 .container .friend-details {
@@ -55,19 +83,5 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.container .friend-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-column-gap: 3rem;
-          column-gap: 3rem;
 }
 /*# sourceMappingURL=friendsList.css.map */
