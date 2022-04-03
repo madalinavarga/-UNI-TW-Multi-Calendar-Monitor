@@ -1,16 +1,3 @@
-.container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 2rem;
-}
-
 .container form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -88,4 +75,4 @@
           align-items: flex-start;
   font-size: 0.9rem;
 }
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=style.css.map */

@@ -1,11 +1,13 @@
 $color-nav:grey;
 .container {
-    display: grid;
-    grid-template-rows: 50px auto;
+    justify-content: flex-start;
+    padding-top:0px;
     .nav-friends {
+        width:100%;
+        padding:10px;
         display: flex;
-        justify-content: end;
         align-items: center;
+        justify-content: end;
         background-color: $color-nav;
         column-gap: 3rem;
         padding-right: 5rem;

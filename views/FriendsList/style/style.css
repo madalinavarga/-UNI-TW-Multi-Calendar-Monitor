@@ -1,21 +1,23 @@
 .container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 50px auto;
-      grid-template-rows: 50px auto;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-top: 0px;
   /* FRIENDS -> 1 container : details + buttons*/
 }
 
 .container .nav-friends {
+  width: 100%;
+  padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
   background-color: grey;
   -webkit-column-gap: 3rem;
           column-gap: 3rem;
@@ -84,4 +86,4 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
-/*# sourceMappingURL=friendsList.css.map */
+/*# sourceMappingURL=style.css.map */
