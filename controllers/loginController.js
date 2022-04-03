@@ -1,14 +1,15 @@
 var fs = require('fs');
 // functions for routes requests
 
-//GET 1 2 3
-function getView(req, res) {
+//GET 
+function getViewHTML(req, res) {
     res.write(fs.readFileSync('./views/login.html'));
 }
 
-// function getView(req, res) {
-//     res.write(fs.readFileSync('./views/login.html'));
-// }
+function getViewLogin(req, res) {
+    res.write(fs.readFileSync('./public/login.css'));
+}
+
 
 
 //POST
@@ -17,5 +18,6 @@ function getView(req, res) {
 
 
 module.exports = {
-    getView: getView
+    getViewHTML: getViewHTML,
+    getViewLogin: getViewLogin
 }
