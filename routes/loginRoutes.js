@@ -1,12 +1,12 @@
 var fs = require('fs');
-var { getView } = require('../controllers/loginController')
+var { getViewHTML, getViewLayout, getViewLogin } = require('../controllers/loginController')
 
 function login(req, res) {
     switch (req.url) {
         case "/login":
             switch (req.method) {
                 case "GET":
-                    getView(req, res);
+                    getViewHTML(req, res);
                     break;
                 case "POST":
                     res.write('verific cont ');
@@ -17,12 +17,15 @@ function login(req, res) {
                     res.write('method not allowed');
             }
             break;
-        case "/public/layout.css":
-            res.write(fs.readFileSync('./public/layout.css'));
-            break;
+
         case "/public/login.css":
-            res.write(fs.readFileSync('./public/login.css'));
-            break;
+            switch (req.method) {
+                case "GET":
+                    getViewLogin(req, res);
+                    break;
+                default:
+                    res.write('method not allowed');
+            }
         default:
             res.write('page not found!'); //write a response to the client
 

@@ -4,13 +4,14 @@ var http = require('http'); //import
 var fs = require('fs');
 var { login } = require('./routes/loginRoutes');
 var { register } = require('./routes/registerRoutes');
+var { common } = require('./routes/commonRoutes');
+
 
 //create a server object:
 http.createServer((req, res) => {
     console.log(req.method, req.url);
     switch (req.url) {
         case "/login":
-        case "/public/layout.css":
         case "/public/login.css":
             login(req, res);
             break;
@@ -18,6 +19,14 @@ http.createServer((req, res) => {
         case "/register":
         case "/public/register.js":
             register(req, res);
+            break;
+        case "/images/logo.svg":
+        case "/images/facebook-icon.png":
+        case "/images/instagram-icon.png":
+        case "/images/twitter-icon.png":
+        case "/public/layout.css":
+
+            common(req, res);
             break;
 
         default:

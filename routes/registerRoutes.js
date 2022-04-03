@@ -1,5 +1,5 @@
 var fs = require('fs');
-var { getView } = require('../controllers/registerController');
+var { getViewHTML } = require('../controllers/registerController');
 
 
 function register(req, res) {
@@ -7,7 +7,7 @@ function register(req, res) {
         case "/register":
             switch (req.method) {
                 case "GET":
-                    getView(req, res);
+                    getViewHTML(req, res);
                     break;
                 default:
                     res.write('method not allowed');
