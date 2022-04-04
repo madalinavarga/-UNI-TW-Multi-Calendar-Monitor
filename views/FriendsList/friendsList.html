@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
     <link rel="stylesheet" href="./style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>MyTime</title>
   </head>
 
@@ -19,12 +23,13 @@
           href="../FriendsList/friendsList.html"
           >Friends</a
         >
-        <a class="navbar-items" href="#">Calendar</a>
+        <a class="navbar-items" href="../Calendar/calendar.html">Calendar</a>
         <a class="navbar-items" href="#">Requests</a>
         <a class="navbar-items" href="../UserProfile/userProfile.html"
           >Profile</a
         >
       </div>
+      <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
     <div class="container">
       <div class="nav-friends">
@@ -84,5 +89,6 @@
         </a>
       </div>
     </div>
+    <script src="../../public/script/script.js"></script>
   </body>
 </html>
