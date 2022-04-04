@@ -1,0 +1,19 @@
+.container{
+    .achievements{
+        padding-left: 200px;
+        display: flex;
+        .tasks-completed{
+            display: flex;
+            img{
+                width: 5%;
+            }
+        }
+        .collaborators{
+            display: flex;
+            img{
+                width: 5%;
+            }
+        }
+
+    }
+}
