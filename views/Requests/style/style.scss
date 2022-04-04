@@ -1,0 +1,39 @@
+.requests-list{
+    display:flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    .request{
+        border-radius: 1rem;
+        background: rgba(149, 221, 224, 0.705);
+        display: grid;
+        grid-template-columns: 3fr 5fr 2fr;
+        margin-left: 15rem;
+        margin-right: 15rem;
+        padding-top: 2rem;
+        padding-right: 3rem;
+        padding-bottom: 2rem;
+        .from-whom{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            img{
+                width: 30%;
+            }
+        }
+
+        .request-details{
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            column-gap: 6rem;
+        }
+
+        .request-btns{
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            column-gap: 3rem;
+        }
+    }
+}

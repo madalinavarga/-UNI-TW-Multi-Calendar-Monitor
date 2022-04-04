@@ -1,0 +1,73 @@
+.requests-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 2rem;
+}
+
+.requests-list .request {
+  border-radius: 1rem;
+  background: rgba(149, 221, 224, 0.705);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 5fr 2fr;
+      grid-template-columns: 3fr 5fr 2fr;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  padding-top: 2rem;
+  padding-right: 3rem;
+  padding-bottom: 2rem;
+}
+
+.requests-list .request .from-whom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.requests-list .request .from-whom img {
+  width: 30%;
+}
+
+.requests-list .request .request-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-column-gap: 6rem;
+          column-gap: 6rem;
+}
+
+.requests-list .request .request-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-column-gap: 3rem;
+          column-gap: 3rem;
+}
+/*# sourceMappingURL=style.css.map */
