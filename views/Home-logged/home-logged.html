@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>NumeAplicatie</title>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <img src="../../images/logo.svg" alt="Menu logo" />
+      <div class="navbar-items-container">
+        <a class="navbar-items" href="./home-logged.html">Home</a>
+        <a class="navbar-items" href="../FriendsList/friendsList.html">Friends</a>
+        <a class="navbar-items" href="#">Calendar</a>
+        <a class="navbar-items" href="#">Requests</a>
+        <a class="navbar-items" href="../UserProfile/userProfile.html">Profile</a>
+    </div>
+      <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
+    </div>
+
+    <div class="container">
+      <h5 id="home-page-date"></h5>
+      <h2 id="home-page-greeting"></h2>
+
+      <div class="achievements">
+        <div class="tasks-completed">
+          <img src="../../images/check-mark.svg" />
+          <p>&nbsp 0</p>
+          <p>&nbsp tasks completed</p>
+        </div>
+        <div class="collaborators">
+          <img src="../../images/users.svg" />
+          <p>&nbsp 0</p>
+          <p>&nbsp collaborators</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
+      <div class="icons-container">
+        <a href="https://www.google.com/">
+          <img src="../../images/facebook-icon.png" alt="facebook-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../../images/instagram-icon.png" alt="instagram-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../../images/twitter-icon.png" alt="instagram-icon" />
+        </a>
+      </div>
+    </div>
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="./script/home-logged.js"
+    ></script>
+    <script src="../../public/script/script.js"></script>
+  </body>
+</html>
