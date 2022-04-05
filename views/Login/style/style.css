@@ -1,4 +1,35 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: rgba(149, 221, 224, 0.705);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .sub-container {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: #979999;
+  width: 200px;
+  height: 470px;
+  padding: 3rem;
+}
+
+.container .sub-container h3 {
+  color: #f7f7f7d5;
+  padding-bottom: 30px;
+  padding-top: 140px;
+}
+
 .container form {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6,14 +37,11 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 530px;
+  width: 480px;
   height: 470px;
   padding: 3rem;
-  margin-bottom: 1rem;
-  background: rgba(149, 221, 224, 0.705);
+  background: rgba(252, 248, 248, 0.952);
   border-radius: 0.2rem;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .container form h2 {
@@ -31,6 +59,10 @@
 .container form hr {
   background: #f7f7f7;
   margin: 1rem;
+}
+
+.container form .new-account {
+  visibility: hidden;
 }
 
 .container .container-btn {
@@ -74,5 +106,33 @@
       -ms-flex-align: start;
           align-items: flex-start;
   font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .container .sub-container {
+    visibility: hidden;
+  }
+  .container form {
+    padding-left: auto;
+    padding-right: auto;
+    width: 400px;
+  }
+  .container form .new-account {
+    visibility: visible;
+  }
+}
+
+@media (max-width: 600px) {
+  .container .sub-container {
+    visibility: hidden;
+  }
+  .container form {
+    padding-left: auto;
+    padding-right: auto;
+    width: 300px;
+  }
+  .container form .new-account {
+    visibility: visible;
+  }
 }
 /*# sourceMappingURL=style.css.map */

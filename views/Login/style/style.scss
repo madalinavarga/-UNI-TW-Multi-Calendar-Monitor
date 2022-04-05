@@ -1,16 +1,29 @@
 .container {
-
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 530px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(149, 221, 224, 0.705);
+    align-items: center;
+    .sub-container {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        background-color: rgb(151, 153, 153);
+        width: 200px;
         height: 470px;
         padding: 3rem;
-        margin-bottom: 1rem;
-        background: rgba(149, 221, 224, 0.705);
+        h3 {
+            color: #f7f7f7d5;
+            padding-bottom: 30px;
+            padding-top: 140px;
+        }
+    }
+    form {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        display: flex;
+        flex-direction: column;
+        width: 480px;
+        height: 470px;
+        padding: 3rem;
+        background: rgba(252, 248, 248, 0.952);
         border-radius: 0.2rem;
-        margin-left: auto;
-        margin-right: auto;
         h2 {
             text-align: center;
             margin-bottom: 1.8rem;
@@ -24,6 +37,9 @@
         hr {
             background: #f7f7f7;
             margin: 1rem;
+        }
+        .new-account {
+            visibility: hidden;
         }
     }
     .container-btn {
@@ -47,5 +63,37 @@
         justify-content: flex-start;
         align-items: flex-start;
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        .sub-container {
+            visibility: hidden;
+        }
+        form {
+            padding-left: auto;
+            padding-right: auto;
+            width: 400px;
+            .new-account {
+                visibility: visible;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        .sub-container {
+            visibility: hidden;
+        }
+        form {
+            padding-left: auto;
+            padding-right: auto;
+            width: 300px;
+            .new-account {
+                visibility: visible;
+            }
+        }
     }
 }
