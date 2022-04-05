@@ -1,34 +1,48 @@
-.container {
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: flex-start;
-    
+li {
+    list-style: none;
 }
-
-.calendar-time-container {
-    .month-year {
-        font-size: 25px;
-    }
-    .time-container {
-        height: 100%;
-        padding-left: 90px;
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-    }
-}
-
-.calendar-week {
+.calendar-container {
     width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 30px;
-    .calendar-day {
-        width: 100%;
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: auto;
+    gap: 1px 1px;
+
+    grid-template-areas: 
+        ".day-container"
+        "time-container main";
+        .day-week, .day-number {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
         
-        font-size: large;
-        font-weight: bold;
-        border: 1px solid black;
-    }
+        .day-container {
+            grid-area: day-container;
+        }
+
+        .time-container {
+            grid-area: time-container;
+            justify-content: left;
+            .time {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                li {
+                    padding-top: 50px;
+                    padding-bottom: 50px;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 10px;
+                        width: 100%;
+                        height: 1px;
+                        background-color: lightblue;
+                        
+                    }
+                }
+
+                
+            }
+        }
 }
+
