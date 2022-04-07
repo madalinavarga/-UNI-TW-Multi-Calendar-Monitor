@@ -1,5 +1,4 @@
 .container {
-<<<<<<< HEAD
     overflow-x: hidden;
     #calendar {
         width: 100%;
@@ -7,38 +6,5 @@
         padding-left: 20px;
         padding-bottom: 20px;
         padding-right: 20px;
-=======
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: flex-start;
-    
-}
-
-.calendar-time-container {
-    .month-year {
-        font-size: 25px;
-    }
-    .time-container {
-        height: 100%;
-        padding-left: 90px;
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-    }
-}
-
-.calendar-week {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 30px;
-    .calendar-day {
-        width: 100%;
-        
-        font-size: large;
-        font-weight: bold;
-        border: 1px solid black;
->>>>>>> c2e090dbd44e473802ae2ee6d197c57e74bfc5c7
     }
 }
