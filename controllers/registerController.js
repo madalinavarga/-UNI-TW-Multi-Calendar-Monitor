@@ -1,9 +1,9 @@
-var fs = require('fs');
+var fs = require("fs");
 
 function getViewHTML(req, res) {
-    res.write(fs.readFileSync('./views/register.html'));
+  res.write(fs.readFileSync("./views/Register/register.html"));
 }
 
 module.exports = {
-    getViewHTML: getViewHTML
-}
+  getViewHTML: getViewHTML,
+};
