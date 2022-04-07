@@ -10,6 +10,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+
     <title>MyTime</title>
   </head>
   <body>
@@ -23,14 +29,21 @@
         <a class="navbar-items active-navbar-item" href="./calendar.html"
           >Calendar</a
         >
-        <a class="navbar-items" href="#">Requests</a>
+        <a class="navbar-items" href="../Requests/requests.html">Requests</a>
         <a class="navbar-items" href="../UserProfile/userProfile.html"
           >Profile</a
         >
       </div>
       <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
-    <div class="container"></div>
+    <div class="container">
+      <div>
+        <input type="date" id="date-picker" name="trip-start" />
+      </div>
+
+      <div id="calendar"></div>
+    </div>
+
     <div class="footer">
       <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
       <div class="icons-container">
@@ -46,5 +59,6 @@
       </div>
     </div>
     <script src="../../public/script/script.js"></script>
+    <script src="./script/calendar.js"></script>
   </body>
 </html>
