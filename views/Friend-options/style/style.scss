@@ -1,0 +1,53 @@
+html,body{
+    height:100%;
+    width:100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+.suggestions-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    
+    h2{
+        padding-bottom: 1rem;
+    }
+    .suggestions-list{
+        display:flex;
+        flex-direction: column;
+        row-gap: 2rem;
+        padding-right: 15rem;
+        padding-left: 15rem;
+        .suggestion{
+            border-radius: 1rem;
+            background: rgba(149, 221, 224, 0.705);
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr 2fr;
+            column-gap: 10rem;
+            justify-content: space-between;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            padding-left: 5rem;
+            padding-right: 5rem;
+          
+        }
+    }
+
+    button.download{
+        background-color: #9FB4FF;
+        margin-top: 2rem;
+    }
+}
+
+.combination{
+    display: flex;
+    justify-content: space-around;
+    img{
+        width: 15%;
+        margin-top: 3rem;
+    }
+}

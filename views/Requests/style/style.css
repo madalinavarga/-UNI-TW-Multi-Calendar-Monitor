@@ -14,13 +14,11 @@
   background: rgba(149, 221, 224, 0.705);
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 3fr 5fr 2fr;
-      grid-template-columns: 3fr 5fr 2fr;
-  margin-left: 15rem;
-  margin-right: 15rem;
-  padding-top: 2rem;
-  padding-right: 3rem;
-  padding-bottom: 2rem;
+  -ms-grid-columns: 2fr 5fr 2fr;
+      grid-template-columns: 2fr 5fr 2fr;
+  margin-left: 15em;
+  margin-right: 15em;
+  padding: 2rem;
 }
 
 .requests-list .request .from-whom {
