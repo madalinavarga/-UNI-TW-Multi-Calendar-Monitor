@@ -7,7 +7,7 @@ function getViewHTML(req, res) {
 }
 
 function getViewLogin(req, res) {
-    res.write(fs.readFileSync("./public/Login/style/style.css"));
+    res.write(fs.readFileSync("./views/Login/style/style.css"));
 }
 
 

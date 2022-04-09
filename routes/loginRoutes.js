@@ -8,11 +8,6 @@ function login(req, res) {
                 case "GET":
                     getViewHTML(req, res);
                     break;
-                case "POST":
-                    res.write('verific cont ');
-                    res.writeHeader(200, { "Content-Type": "text/html" });
-                    res.write(html);
-                    break;
                 default:
                     res.write('method not allowed');
             }
