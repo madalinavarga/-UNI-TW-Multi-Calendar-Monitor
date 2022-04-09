@@ -43,7 +43,7 @@ function common(req, res) {
                     res.write('method not allowed');
             }
             break;
-        case "/public/layout.css":
+        case "/public/global/layoutStyle/style.css":
             switch (req.method) {
                 case "GET":
                     getViewLayout(req, res);
