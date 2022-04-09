@@ -114,6 +114,10 @@
   }
 }
 
+.subliniere {
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   .container-friends .nav-friends {
     padding: 0.7rem;

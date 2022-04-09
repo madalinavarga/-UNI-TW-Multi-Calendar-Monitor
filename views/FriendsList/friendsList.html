@@ -16,19 +16,17 @@
         <img src="../../images/logo.svg" alt="Menu logo" />
         <div class="navbar-items-container">
             <a class="navbar-items" href="../Home-logged/home-logged.html">Home</a>
-            <a class="navbar-items active-navbar-item" href="../FriendsList/friendsList.html">Friends</a
-        >
-        <a class="navbar-items" href="../Calendar/calendar.html">Calendar</a>
+            <a class="navbar-items active-navbar-item" href="../FriendsList/friendsList.html">Friends</a>
+            <a class="navbar-items" href="../Calendar/calendar.html">Calendar</a>
             <a class="navbar-items" href="../Requests/requests.html">Requests</a>
-            <a class="navbar-items" href="../UserProfile/userProfile.html">Profile</a
-        >
-      </div>
-      <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
+            <a class="navbar-items" href="../UserProfile/userProfile.html">Profile</a>
+        </div>
+        <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
-    <div class="container">
-      <div class="nav-friends">
-        <li><a href="#">Requests</a></li>
-            <li><a href="#">Your List</a></li>
+    <div class="container-friends">
+        <div class="nav-friends">
+            <li><a href="#">Friend Requests</a></li>
+            <li><a class="subliniere" href="../FriendsList/friendsList.html">Your Friends List</a></li>
             <div class="search-container">
                 <form action="#">
                     <input type="text" placeholder="Search..." name="search" />
@@ -44,9 +42,7 @@
                 </div>
                 <div class="friend-buttons">
                     <button class="btn-primary btn">Facebook</button>
-                    <a href="../Friend-options/friend-options.html">
-                        <button class="btn-primary btn">See options</button>
-                    </a>
+                    <button class="btn-primary btn">See options</button>
                     <button class="btn-danger btn">Delete</button>
                 </div>
             </div>
@@ -57,28 +53,27 @@
                 </div>
                 <div class="friend-buttons">
                     <button class="btn-primary btn">Facebook</button>
-                    <a href="../Friend-options/friend-options.html">
-                        <button class="btn-primary btn">See options</button>
-                    </a>
+                    <button class="btn-primary btn">See options</button>
                     <button class="btn-danger btn">Delete</button>
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
-            <div class="icons-container">
-                <a href="https://www.google.com/">
-                    <img src="../../images//facebook-icon.png" alt="facebook-icon" />
-                </a>
-                <a href="https://www.google.com/">
-                    <img src="../../images//instagram-icon.png" alt="instagram-icon" />
-                </a>
-                <a href="https://www.google.com/">
-                    <img src="../../images//twitter-icon.png" alt="instagram-icon" />
-                </a>
-            </div>
+    </div>
+    <div class="footer">
+        <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
+        <div class="icons-container">
+            <a href="https://www.google.com/">
+                <img src="../../images//facebook-icon.png" alt="facebook-icon" />
+            </a>
+            <a href="https://www.google.com/">
+                <img src="../../images//instagram-icon.png" alt="instagram-icon" />
+            </a>
+            <a href="https://www.google.com/">
+                <img src="../../images//twitter-icon.png" alt="instagram-icon" />
+            </a>
         </div>
-        <script src="../../public/script/script.js"></script>
+    </div>
+    <script src="../../public/script/script.js"></script>
 </body>
 
 </html>
