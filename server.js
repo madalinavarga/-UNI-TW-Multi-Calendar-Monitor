@@ -17,7 +17,7 @@ http.createServer((req, res) => {
             break;
 
         case "/register":
-        case "/public/register.js":
+        case "/script/register.js":
             register(req, res);
             break;
 
