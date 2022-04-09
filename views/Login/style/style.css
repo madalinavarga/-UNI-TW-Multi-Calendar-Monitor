@@ -16,15 +16,15 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
           box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: #979999;
-  width: 200px;
-  height: 470px;
+  width: 13rem;
+  height: 35rem;
   padding: 3rem;
 }
 
 .container .sub-container h3 {
   color: #f7f7f7d5;
-  padding-bottom: 30px;
-  padding-top: 140px;
+  padding-top: 12rem;
+  padding-bottom: 1rem;
 }
 
 .container form {
@@ -37,8 +37,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 480px;
-  height: 470px;
+  width: 30rem;
+  height: 35rem;
   padding: 3rem;
   background: rgba(252, 248, 248, 0.952);
   border-radius: 0.2rem;
@@ -77,10 +77,16 @@
 }
 
 .container .google-btn {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 2fr;
-      grid-template-columns: 1fr 2fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
   background-color: black;
 }
 
@@ -111,25 +117,27 @@
 @media (max-width: 900px) {
   .container .sub-container {
     visibility: hidden;
+    width: 0;
+    padding: 0;
   }
   .container form {
+    height: 60%;
+    width: 70%;
     padding-left: auto;
     padding-right: auto;
-    width: 400px;
   }
   .container form .new-account {
     visibility: visible;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .container .sub-container {
     visibility: hidden;
   }
   .container form {
-    padding-left: auto;
-    padding-right: auto;
-    width: 300px;
+    width: 100%;
+    height: 35rem;
   }
   .container form .new-account {
     visibility: visible;
