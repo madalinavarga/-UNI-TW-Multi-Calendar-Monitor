@@ -13,7 +13,7 @@ function login(req, res) {
             }
             break;
 
-        case "/style/style.css":
+        case "/style/login.css":
             switch (req.method) {
                 case "GET":
                     getViewLogin(req, res);

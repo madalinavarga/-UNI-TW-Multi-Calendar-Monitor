@@ -13,6 +13,7 @@ function common(req, res) {
                     res.write('method not allowed');
             }
             break;
+        case "/images//facebook-icon.png":
         case "/images/facebook-icon.png":
             switch (req.method) {
                 case "GET":
@@ -23,6 +24,7 @@ function common(req, res) {
                     res.write('method not allowed');
             }
             break;
+        case "/images//twitter-icon.png":
         case "/images/twitter-icon.png":
             switch (req.method) {
                 case "GET":
@@ -33,6 +35,7 @@ function common(req, res) {
                     res.write('method not allowed');
             }
             break;
+        case "/images//instagram-icon.png":
         case "/images/instagram-icon.png":
             switch (req.method) {
                 case "GET":
@@ -51,8 +54,7 @@ function common(req, res) {
                 default:
                     res.write('method not allowed');
             }
-        default:
-            res.write('page not found!'); //write a response to the client
+            //write a response to the client
 
     }
 }
