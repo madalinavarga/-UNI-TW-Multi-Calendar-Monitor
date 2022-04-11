@@ -40,10 +40,29 @@
       <div>
         <input type="date" id="date-picker" name="trip-start" />
       </div>
-
       <div id="calendar"></div>
+      <div class="popup-container">
+        <div class="popup-content">
+          <input type="text" placeholder="Add title" />
+          <textarea
+            type="text"
+            placeholder="Add description"
+            rows="5"
+          ></textarea>
+          <div class="date-time-container">
+            <p id="start-date-time"></p>
+            <p id="end-date-time"></p>
+          </div>
+          <div class="color-picker">
+            <label for="color-picker-input">Pick a color:</label>
+            <input type="color" id="color-picker-input" value="#53b653" />
+          </div>
+          <button id="add-event-btn" onClick="handleAddEvent()">
+            Add Event
+          </button>
+        </div>
+      </div>
     </div>
-
 
     <div class="footer">
       <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
