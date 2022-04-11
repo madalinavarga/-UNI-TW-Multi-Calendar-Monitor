@@ -1,16 +1,13 @@
 .user-profile-container {
-    width: 600px;
-    height: 530px;
+    width: 30rem;
+    height: 35rem;
     display: flex;
     flex-direction: column;
-    width: 530px;
-    height: 550px;
     padding: 3rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
-    background: rgba(44, 233, 107, 0.664);
+    margin-bottom: 1rem;
+    background-color: rgba(149, 221, 224, 0.705);
     border-radius: 0.2rem;
     .user-info {
         display: flex;
@@ -21,5 +18,11 @@
     }
     .btn {
         margin-top: 3rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .user-profile-container {
+        width: 90%;
     }
 }

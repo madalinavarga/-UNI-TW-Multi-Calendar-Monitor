@@ -19,7 +19,7 @@ function getImgInstagram(req, res) {
 }
 
 function getViewLayout(req, res) {
-    res.write(fs.readFileSync('./public/layout.css'));
+    res.write(fs.readFileSync('./public/global/layoutStyle/style.css'));
 }
 
 

@@ -1,4 +1,10 @@
+.container {
+  background-color: rgba(149, 221, 224, 0.705);
+}
+
 .container form {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6,11 +12,11 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 530px;
-  height: 550px;
+  width: 30rem;
+  height: 35rem;
   padding: 3rem;
   margin-bottom: 1rem;
-  background: rgba(149, 221, 224, 0.705);
+  background: #f7f7f7d5;
   border-radius: 0.2rem;
   margin-left: auto;
   margin-right: auto;
@@ -31,6 +37,10 @@
 .container form hr {
   background: #f7f7f7;
   margin: 1rem;
+}
+
+.container form .home {
+  margin-top: 0.5rem;
 }
 
 .container .container-btn {
@@ -72,5 +82,11 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+@media screen and (max-width: 550px) {
+  .container form {
+    width: 90%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

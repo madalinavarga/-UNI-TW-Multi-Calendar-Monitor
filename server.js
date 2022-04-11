@@ -12,7 +12,7 @@ http.createServer((req, res) => {
     console.log(req.method, req.url);
     switch (req.url) {
         case "/login":
-        case "/public/login.css":
+        case "/style/style.css":
             login(req, res);
             break;
 
@@ -20,12 +20,12 @@ http.createServer((req, res) => {
         case "/public/register.js":
             register(req, res);
             break;
+
         case "/images/logo.svg":
         case "/images/facebook-icon.png":
         case "/images/instagram-icon.png":
         case "/images/twitter-icon.png":
-        case "/public/layout.css":
-
+        case "/public/global/layoutStyle/style.css":
             common(req, res);
             break;
 
