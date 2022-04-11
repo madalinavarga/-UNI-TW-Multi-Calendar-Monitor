@@ -6,5 +6,56 @@
         padding-left: 20px;
         padding-bottom: 20px;
         padding-right: 20px;
+        position: relative;
+        .fc-highlight{
+            background-color: rgb(83, 182, 83);
+        }
+       
+    }
+    .popup-container{
+        display: none;
+        position:absolute;
+        background-color:#6f9fd7d0;
+        height: 440px;
+        padding:50px;
+        border-radius:20px ;
+        z-index:2;
+        .popup-content{
+            display: flex;
+            flex-direction: column;
+
+        }
+        textarea{
+            padding: 20px;
+            border-radius:10px;
+            border:2px solid white;
+        }
+        input{
+            border-radius:10px;
+            margin-bottom: 20px;
+            border:2px solid white;
+            padding:10px;
+        }
+        .date-time-container{
+            margin-top: 10px;
+            text-align: start;
+            border-radius: 10px;
+            color: white;
+        }
+        .color-picker{
+            margin-top:20px;
+            text-align: start;
+            label{
+                color:White;
+            }
+            #color-picker-input{
+                padding:0;
+            }
+        }
+
+        #add-event-btn{
+            padding:10px;
+            border-radius:20px;
+        }
     }
 }
