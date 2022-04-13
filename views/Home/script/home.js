@@ -51,11 +51,11 @@ dateEl.textContent += dayDigits;
 
 console.log(hour);
 if (hour < 12) {
-  greedingEl.textContent += "Good morning, ";
+  greedingEl.textContent += "Good morning!";
 } else if (hour < 19) {
-  greedingEl.textContent += "Good afternoon, ";
+  greedingEl.textContent += "Good afternoon!";
 } else {
-  greedingEl.textContent += "Good evening, ";
+  greedingEl.textContent += "Good evening!";
 }
 
-greedingEl.textContent += "username";
+//greedingEl.textContent += "username";

@@ -1,27 +1,47 @@
-.container .achievements {
-  padding-left: 200px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+body {
+  width: 100%;
 }
 
-.container .achievements .tasks-completed {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.container .description {
+  text-align: left;
+  padding-left: 1.5rem;
 }
 
-.container .achievements .tasks-completed img {
-  width: 5%;
+.container .description p {
+  padding-bottom: 1rem;
 }
 
-.container .achievements .collaborators {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.container .description h2 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
-.container .achievements .collaborators img {
-  width: 5%;
+.container .description iframe {
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .container .description {
+    text-align: left;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .container .description p {
+    padding-bottom: 1rem;
+  }
+  .container .description h2 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .container .description iframe {
+    padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container .description iframe {
+    padding-top: 1.5rem;
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=style.css.map */
