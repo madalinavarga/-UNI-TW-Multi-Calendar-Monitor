@@ -1,4 +1,20 @@
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 .requests-list {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -16,8 +32,8 @@
   display: grid;
   -ms-grid-columns: 2fr 5fr 2fr;
       grid-template-columns: 2fr 5fr 2fr;
-  margin-left: 15em;
-  margin-right: 15em;
+  margin-left: 15rem;
+  margin-right: 15rem;
   padding: 2rem;
 }
 
@@ -38,10 +54,12 @@
 }
 
 .requests-list .request .from-whom img {
-  width: 30%;
+  width: 3rem;
 }
 
 .requests-list .request .request-details {
+  padding-right: 3rem;
+  padding-left: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,5 +85,53 @@
           justify-content: start;
   -webkit-column-gap: 3rem;
           column-gap: 3rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .container .requests-list .request {
+    margin: 0.5rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-top: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 0.5rem;
+  }
+  .container .requests-list .request-details {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+  .container .requests-list .request .request-btns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */
