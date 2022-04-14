@@ -1,5 +1,5 @@
 var fs = require('fs');
-var { getViewHTML } = require('../controllers/registerController');
+var { getViewHTML, createUser, getViewRegister, getScriptRegister } = require('../controllers/registerController');
 
 
 function register(req, res) {
@@ -9,18 +9,19 @@ function register(req, res) {
                 case "GET":
                     getViewHTML(req, res);
                     break;
+                case "POST":
+                    createUser(req, res);
+                    break;
                 default:
                     res.write('method not allowed');
+
             }
             break;
-        case "/public/register.js":
-            res.write(fs.readFileSync('./public/register.js'));
+        case "/script/register.js":
+            getScriptRegister(req, res);
             break;
-        case "/public/layout.css":
-            res.write(fs.readFileSync('./public/layout.css'));
-            break;
-        case "/public/register.css":
-            res.write(fs.readFileSync('./public/register.css'));
+        case "/style/register.css":
+            getViewRegister(req, res);
             break;
         default:
             res.write('page not found!'); //write a response to the client

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
-    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/login.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MyTime</title>
 </head>
@@ -18,12 +18,12 @@
             <h3>New here?</h3>
             <button class="btn btn-primary">Sign in</button>
         </div>
-        <form action="#" class="form-general">
+        <form action="#" id="form" class="form-general">
             <h2>Log in</h2>
-            <input type="text" required placeholder="User Name" />
-            <input type="password" class="pass-key" required placeholder="Password" />
+            <input id="email" type="text" placeholder="Email" />
+            <input id="password" type="password" class="pass-key" placeholder="Password" />
             <div class="container-btn">
-                <button class="btn btn-primary">Log in</button>
+                <button class="btn btn-primary" onclick="onClick()">Log in</button>
                 <button class="btn btn-primary new-account">Create New Account</button>
                 <hr />
                 <div class="google-btn btn">
@@ -36,6 +36,8 @@
                 <div class="btn btn-primary">Home</div>
             </div>
         </form>
+        <script src="./script/login.js"></script>
+
     </div>
 
 </html>

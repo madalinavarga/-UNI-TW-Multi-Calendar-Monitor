@@ -1,1 +1,2 @@
-node server.js // pornire serevr
+npm install
+npm start  // pornire serevr
