@@ -4,6 +4,14 @@ function getViewHTML(req, res) {
     res.write(fs.readFileSync("./views/Register/register.html"));
 }
 
+function getViewRegister(req, res) {
+    res.write(fs.readFileSync("./views/Register/style/register.css"));
+}
+
+function getScriptRegister(req, res) {
+    res.write(fs.readFileSync('./views/Register/script/register.js'));
+}
+
 const users = []
 
 function createUser(req, res) {
@@ -21,6 +29,8 @@ function createUser(req, res) {
 }
 
 module.exports = {
-    getViewHTML: getViewHTML,
-    createUser: createUser
+    getViewHTML,
+    createUser,
+    getViewRegister,
+    getScriptRegister
 };

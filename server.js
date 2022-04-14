@@ -27,14 +27,17 @@ http.createServer((req, res) => {
             break;
         case "/login":
         case "/style/login.css":
+        case "/script/login.js":
             login(req, res);
             break;
 
         case "/register":
         case "/script/register.js":
+        case "/style/register.css":
             register(req, res);
             break;
         case "/friendsList":
+        case "/style/friendsList.css":
             getFriendsList(req, res);
             break;
         case "/userProfile":

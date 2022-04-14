@@ -8,6 +8,6 @@ function getViewUserProfile(req, res) {
     res.write(fs.readFileSync("./views/UserProfile/style/userProfile.css"));
 }
 module.exports = {
-    getViewHTML: getViewHTML,
-    getViewUserProfile: getViewUserProfile
+    getViewHTML,
+    getViewUserProfile
 }

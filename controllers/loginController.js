@@ -10,10 +10,28 @@ function getViewLogin(req, res) {
     res.write(fs.readFileSync("./views/Login/style/login.css"));
 }
 
+function getScriptLogin(req, res) {
+    res.write(fs.readFileSync('./views/Login/script/login.js'));
+}
 
 //POST
+const users = []
 
+function checkUser(req, res) {
+    var body = '';
+
+    req.on('data', function(data) {
+        body += data;
+    });
+
+    req.on('end', function() {
+        //verific aici?
+        res.writeHead(201)
+    });
+}
 module.exports = {
-    getViewHTML: getViewHTML,
-    getViewLogin: getViewLogin,
+    getViewHTML,
+    getViewLogin,
+    getScriptLogin,
+    checkUser
 };

@@ -1,5 +1,5 @@
 var fs = require('fs');
-var { getViewHTML, createUser } = require('../controllers/registerController');
+var { getViewHTML, createUser, getViewRegister, getScriptRegister } = require('../controllers/registerController');
 
 
 function register(req, res) {
@@ -18,13 +18,10 @@ function register(req, res) {
             }
             break;
         case "/script/register.js":
-            res.write(fs.readFileSync('./views/Register/script/register.js'));
+            getScriptRegister(req, res);
             break;
-        case "/public/layout.css":
-            res.write(fs.readFileSync('./public/layout.css'));
-            break;
-        case "/public/register.css":
-            res.write(fs.readFileSync('./public/register.css'));
+        case "/style/register.css":
+            getViewRegister(req, res);
             break;
         default:
             res.write('page not found!'); //write a response to the client

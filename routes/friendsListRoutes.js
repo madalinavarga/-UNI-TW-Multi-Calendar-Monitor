@@ -1,5 +1,5 @@
 var fs = require('fs');
-var { getViewHTML } = require("../controllers/friendsListController");
+var { getViewHTML, getViewFriendsList } = require("../controllers/friendsListController");
 
 function getFriendsList(req, res) {
     switch (req.url) {
@@ -13,7 +13,8 @@ function getFriendsList(req, res) {
 
             }
             break;
-
+        case "/style/friendsList.css":
+            getViewFriendsList(req, res);
         default:
             res.write('page not found');
 
