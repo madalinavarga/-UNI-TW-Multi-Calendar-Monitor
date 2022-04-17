@@ -48,7 +48,6 @@ const createCalendarEvent = (startH, endH) => {
   startP.textContent = startHour;
   endP.textContent = endHour;
 };
-
 const handleColorPicker = () => {
   console.log(colorPicker.value);
 };
