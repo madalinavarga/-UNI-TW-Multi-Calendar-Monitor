@@ -40,6 +40,9 @@
       <div>
         <input type="date" id="date-picker" name="trip-start" />
       </div>
+      <button id="create-event-btn" onClick="handleCreateEvent()">
+        Create Event
+      </button>
       <div id="calendar"></div>
       <div class="popup-container">
         <div class="popup-content">
@@ -53,6 +56,10 @@
             <p id="start-date-time"></p>
             <p id="end-date-time"></p>
           </div>
+          <div class="exact-date-time-container">
+            <input type="datetime-local" id="start-time" />
+            <input type="datetime-local" id="end-time" />
+          </div>
           <div class="color-picker">
             <label for="color-picker-input">Pick a color:</label>
             <input type="color" id="color-picker-input" value="#53b653" />
@@ -63,7 +70,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="footer">
       <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>

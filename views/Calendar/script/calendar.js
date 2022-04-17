@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const inputDate = document.getElementById("date-picker");
 const popUp = document.querySelector(".popup-container");
+const exactTime = document.querySelector(".exact-date-time-container");
 const colorPicker = document.getElementById("color-picker-input");
 
 inputDate.value = new Date().toISOString().split("T")[0];
@@ -35,6 +36,7 @@ const datePickerInput = (ev) => {
 };
 
 const createCalendarEvent = (startH, endH) => {
+  exactTime.style.display = "none";
   if (popUp.style.display === "" || popUp.style.display === "none") {
     popUp.style.display = "block";
   }
@@ -46,7 +48,6 @@ const createCalendarEvent = (startH, endH) => {
   startP.textContent = startHour;
   endP.textContent = endHour;
 };
-
 const handleColorPicker = () => {
   console.log(colorPicker.value);
 };
@@ -54,6 +55,15 @@ const handleColorPicker = () => {
 const handleAddEvent = () => {
   if (popUp.style.display === "block") {
     popUp.style.display = "none";
+  }
+};
+
+const handleCreateEvent = () => {
+  if (popUp.style.display === "block") {
+    popUp.style.display = "none";
+  } else {
+    popUp.style.display = "block";
+    exactTime.style.display === "block";
   }
 };
 
