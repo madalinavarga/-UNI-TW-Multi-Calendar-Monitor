@@ -69,7 +69,6 @@
   color: white;
 }
 
-
 .container .popup-container .exact-date-time-container {
   display: none;
   margin-top: 10px;
@@ -77,6 +76,7 @@
   border-radius: 10px;
   color: white;
 }
+
 .container .popup-container .color-picker {
   margin-top: 20px;
   text-align: start;

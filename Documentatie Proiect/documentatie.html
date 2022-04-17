@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> MyTime </title>
+
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1> Software Requirements Specification </h1>
+
+    <h1> MyTime </h1>
+
+    <section typeof="sa:AuthorsList">
+        <h2> Authors </h2>
+
+        <ul>
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+                    <meta property="schema:givenName" content="Delia">
+
+                    <meta property="schema:familyName" content="Manu">
+
+                    <span property="schema:name"> Manu Delia </span>
+                </span>
+            </li>
+
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+                    <meta property="schema:givenName" content="Nicoleta">
+
+                    <meta property="schema:familyName" content="Gologan">
+
+                    <span property="schema:name"> Gologan Nicoleta </span>
+                </span>
+            </li>
+
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+                    <meta property="schema:givenName" content="Madalina">
+
+                    <meta property="schema:familyName" content="Varga">
+
+                    <span property="schema:name"> Varga Madalina </span>
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2> Table of Contents </h2>
+
+        <ul>
+            <li>
+                <a href="#introduction"> Introduction </a>
+
+                <ul>
+                    <li>
+                        <a href="#purpose-and-usage"> 1.1 Purpose and Usage </a>
+                    </li>
+
+                    <li>
+                        <a href="#user-interface"> 1.2 User Interface </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#functionalities"> Functionalities </a>
+
+                <ul>
+                    <li>
+                        <a href="#front-end-functionalities"> 2.1 Front-end Functionalities </a>
+                    </li>
+
+                    <li>
+                        <a href="#back-end-functionalities"> 2.2 Back-end Functionalities </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#page-functionality-and-usage"> Page Functionality and Usage </a>
+
+                <ul>
+
+                    <li>
+                        <a href="#the-login-register-page"> 3.1 The Login Register Page </a>
+                    </li>
+
+                    <li>
+		<a href="#the-standard-home-page"> 3.2 The Standard Home Page </a>
+       </li>
+
+       <li>
+		<a href="#the-logged-home-page"> 3.3 The Logged Home Page </a>
+                  </li>
+
+
+                    <li>
+                        <a href="#the-calendar-page"> 3.4 The Calendar Page </a>
+                    </li>
+
+                    <li>
+                        <a href="#the-list-of-friends-page"> 354 List Of Friends Page</a>
+                    </li>
+                    <li>
+                        <a href="#suggestions-page"> 3.6 Suggestions Page</a>
+                    </li>
+                    <li>
+                        <a href="#requests-page"> 3.8 Requests Page</a>
+                    </li>
+                    <li>
+                        <a href="#user-profile-page"> 3.8 User Profile</a>
+                    </li>
+                    <li>
+                        <a href="#admin-page"> 3.9 Admin Page</a>
+                    </li>
+                   </ul>
+            </li>
+
+            <li>
+                <a href="#technologies"> Technologies </a>
+
+                <ul>
+                    <li>
+                        <a href="#front-end-technologies"> 4.1 Front-end Technologies </a>
+                    </li>
+
+                    <li>
+                        <a href="#back-end-technologies"> 4.2 Back-end Technologies </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#appendix"> Appendix </a>
+
+                <ul>
+                    <li>
+                        <a href="#references"> 5.1 References </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section id="introduction">
+        <h2> 1. Introduction </h2>
+    </section>
+
+    <section id="purpose-and-usage">
+        <h3> 1.1 Purpose and Usage </h3>
+
+        <p> The purpose of this website is to allow you to make appointments, plan your busy schedule and to be informed
+            about upcoming meetings.You can see every friend's schedule in one place.
+        </p>
+
+        <p> This document was written in order to help people understand the purpose of this website,
+            how it was made, what functionalities it has and what services it provides.
+        </p>
+    </section>
+
+    <section id="user-interface">
+        <h3> 1.2 User Interface </h3>
+        <img src="./images/TemplatePage.png" alt="Template Page Calendar app">
+
+        <p> This user interface was made with HTML, CSS and JavaScript. </p>
+
+        <p> The logos were made in Figma. </p>
+
+        <p>
+Color holds power. It can impact our moods, emotions, and behaviors.We used blue as a primary color in the app because it is a color that has long been associated with royalty, art, military, business, and nature. </p>
+
+<p>The primary color is the most common favorite color across cultures, genders, and ages and we used it also because we want to make the customer feel comfortable and at peace right away.
+
+Another reason is because blue seems particularly popular in tech and digital applications.</p>
+
+
+<p>For the secondary color we choose gray to provide more ways to accent and distinguish our app. In color psychology, gray represents neutrality and balance. Its color meaning likely comes from being the shade between white and black. 
+
+Gray and blue create a really versatile combo and will highlight the logo.</p>
+<p>The colors we apply to specific buttons and parts of our page can change the way a customer reacts to our app.</p>
+</p>
+    </section>
+
+    <section id="functionalities">
+        <h2> 2. Functionalities </h2>
+    </section>
+
+    <section id="front-end-functionalities">
+        <h3> 2.1 Front-end Functionalities </h3>
+
+        <p> Some of the functions this website provides are: </p>
+
+        <ul>
+            <li>How the application works</li>
+            <li> Login & Register </li>
+            <li>See your calendar and the upcoming events and you can delete or change future events</li>
+            <li>Edit your profile information</li>
+            <li>Automatically imports events from Google Calendar</li>
+            <li>See your friends list, when and where is possible to meet them</li>
+            <li>Helpful tools for finding workable meeting times and coordinating schedules with your friends</li>
+            <li>Accept or reject meeting invitations</li>
+
+        </ul>
+    </section>
+
+    <section id="back-end-functionalities">
+        <h3> 2.2 Back-end Functionalities </h3>
+        <p> Here we will have the back-end functionalities. </p>
+
+
+    </section>
+
+    <section id="page-functionality-and-usage">
+        <h2> 3. Page Functionality and Usage </h2>
+
+        <p> In this section, we cover exactly what each page contains, what it allows the user to do
+            and how it can be used.
+        </p>
+    </section>
+
+    <section id="the-login-register-page">
+        <h3> 3.1 The Login Register Page </h3>
+
+        <p> The login - page is divided in two main sides,the left side contains the website's logo, and a shortcut for
+            register page in order to
+            facilitate the creation of an account in case it does not have one.This section offers a more obvious
+            contrast to to make it easier to see.
+
+        </p>
+        <p> In the right side are two fields required, email and password. After completing the fields to login, the
+            login button must be clicked.
+        </p>
+        <p> To make the application even easier to use, we added the sign in with google button that has different
+            background color to highlight it.
+        </p>
+        <img src="./images/LoginPage.png" alt="Login page">
+
+
+        <p>The register page contains only the required fields for a new account,signin and home button</p>
+        <p> In order to make an account, the user must provide their first and last name,
+            an email address, a password that has at least 7 characters and a number.
+        </p>
+
+        <p> Before the register button there is a link to the terms & conditions page so before signing
+            up, the user should read the terms and the policy of our website in order to get familiarized
+            with the data we collect, what they aren't allowed to do on our website and so on.
+        </p>
+        <img src="./images/RegisterPage.png" alt="Register page">
+
+    </section>
+
+    <section id="the-standard-home-page">
+	<h3>3.2 The Standard Home Page</h3>
+<p>
+On this page, anyone who accesses the site can see information about the application and can watch a video showing the features of the application and how it can be used.
+ </p>
+
+<p>
+
+	Through the navbar of this page, a new user will be able to access the Signup page to create an account, and an existing user will be able to access the Login page to log in to his current account.
+
+</p>
+<img src="./images/HomePage.png" alt="Home page">
+
+    </section>
+
+
+<section id="the-logged-home-page">
+
+            <h3> 3.3 The Logged Home Page </h3>
+<p>
+After creating an account, each user will be able to see how many tasks he has completed that day and how many friends he has in the application.
+</p>
+
+<p>
+Also, through the navbar buttons the user will be able to access the other pages in the application
+</p>
+</section>
+
+
+    <section id="the-calendar-page">
+        <h3> 3.4 The Calendar Page </h3>
+
+        <p> This page allows users to see the calendar in weekday format that shows the hours for everyday in the week.
+            They can change the shown weekday by using the left and right arrows in
+            the upper left corner of the page, or they can use the date picker provided in the upper center above the
+            shown week that has a title with the month and the specific dates that fit the current week.
+        </p>
+        <p>
+            The calendar page contains a “today” button in the upper right corner of the page that will be activated
+            only if the user wants to go back to the week that contains the current day, if he moved to another week.
+        </p>
+        <p>
+            The user can add an event by selecting directly the hours on the calendar or using the “Create Event”
+            button. When the user wants to add an event he will specify a title, a description, choose a color and time
+            frame for that event.
+            The user can also select, update or delete an event.
+        </p>
+        <p>
+            Also, the user will also see events from Google Calendar as well, the events being imported automatically.
+            The shared events among users will be automatically added on every users calendar that will participate in
+            that event.
+        </p>
+        <img src="./images/CalendarPage.png" alt="Calendar page">
+
+    </section>
+    <section id="list-of-friends-page">
+        <h3> 3.5 List Of Friends Page </h3>
+
+        <p>This page shows all the friends in the application. Profile photography is used for easier identification.
+        </p>
+        <p>At the top of this page is the nav bar component where the user can search for a
+            friend by name.To highlight this component we used a color that provides contrast. Also in this component the user can see friends requests.</p>
+        <p>This page provides several features such as delete a friend, see facebook profile and suggestions when and where
+            you can meet.The colors of the buttons are different to highlight their action.</p>
+            <img src="./images/FriendsListPage.png" alt="List of friends page">
+        <section id="suggestions-page">
+            <h3> 3.6 Suggestions Page </h3>
+
+            <p> In this page, the user can mostly get acquainted with the purpose of this website (About us
+                button), our terms and conditions (About terms & conditions button) and our policy
+                (About our policy button).
+            </p>
+
+            <p> Just like on the other pages, this page also has a footer with the same functionalities
+                as the ones on the other pages. The logo and the avatar photo will also redirect the user
+                to the user settings page and the home button will redirect them to the home page.
+            </p>
+            <img src="./images/SugestionPage.png" alt="Suggestion page">
+        </section>
+        <section id="requests-page">
+            <h3> 3.7 Requests Page </h3>
+
+<p>
+	On this page, the user can see the possible encounters that he can have with a certain friend, automatically 
+	generated by the application.
+</p>
+
+<p>
+	The purpose, place and time of each meeting are specified and if the user agrees with the suggestion, he can 
+	also send a request to the friend whose photo is displayed at the bottom of the page.
+</p>
+
+<p>
+	Possible appointments will be stored in pdf files that the user will be able to save by pressing the download button.
+</p>
+
+<img src="./images/RequestPage.png" alt="Requests page">
+
+        </section>
+        <section id="user-profile-page">
+            <h3> 3.8 User Profile </h3>
+            <p>This page is a collection of settings and information associated with a user. It contains critical
+                information that is used to identify an individual, such as their name, age, email, portrait photograph
+            </p>
+            <p>All information can be edited using the edit button that appears centrally to be visible. By pressing the edit button, the fields are transformed into editable fields.After editing, the user has the option to save or not the changes. The two buttons have strong shades to mark the role of their action.</p>
+            <p>This page also contains the log out button</p>
+            <img src="./images/UserPage.png" alt="User profile page">
+        </section>
+        
+        <section id="admin-page">
+            <h3> 3.9 Admin Page </h3>
+	<p> The Admin page gives you access to user details and events. </p>
+            <p> The admin has a special account with a profile that will be verified at log in.</p>
+            <p> This page contains the user's profile pictures and for every user is a button for seeing the details, selecting an event, deleting an event and deleting the user.</p>
+            <img src="./images/AdminPage.png" alt="Admin page">
+        </section>
+        <section id="technologies">
+            <h2> 4. Technologies </h2>
+        </section>
+
+        <section id="front-end-technologies">
+            <h3> 4.1 Front-end Technologies </h3>
+
+            <p>HTML</p>
+            <p>CSS</p>
+            <p>JavaScript</p>
+        </section>
+
+        <section id="back-end-technologies">
+            <h3> 4.2 Back-end Technologies </h3>
+	<p> Node.js </p>
+	<p>PL/SQL</p>
+        <section id="appendix">
+            <h2> 5. Appendix </h2>
+        </section>
+
+        <section id="references">
+            <h3> 5.1 References </h3>
+
+            <ol>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"> HTML Documentation </a>
+                </li>
+
+                <li>
+                    <a href="https://www.w3schools.com/css/css_intro.asp"> CSS Guide </a>
+                </li>
+
+                <li>
+                    <a href="https://www.w3schools.com/js/js_intro.asp"> JavaScript Guide </a>
+                </li>
+            </ol>
+        </section>
+</body>
+
+
