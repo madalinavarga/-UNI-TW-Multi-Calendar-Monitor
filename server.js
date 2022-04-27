@@ -1,18 +1,22 @@
 //entry point to app
 
-//import 
-var http = require('http');
-var fs = require('fs');
+//imports 
+const http = require('http');
+const fs = require('fs');
+const { initDB } = require('./model');
 //requests for routes
-var { login } = require('./routes/loginRoutes');
-var { register } = require('./routes/registerRoutes');
-var { common } = require('./routes/commonRoutes');
-var { getFriendsList } = require('./routes/friendsListRoutes');
-var { getUserProfile } = require('./routes/userProfileRoutes');
+const { login } = require('./routes/loginRoutes');
+const { register } = require('./routes/registerRoutes');
+const { common } = require('./routes/commonRoutes');
+const { getFriendsList } = require('./routes/friendsListRoutes');
+const { getUserProfile } = require('./routes/userProfileRoutes');
+const { usersRoutes } = require('./routes/usersRoutes');
 
+//init db 
+initDB();
 
 //create a server object:
-http.createServer((req, res) => {
+http.createServer(async(req, res) => {
     console.log(req.method, req.url);
     switch (req.url) {
         case "/images/logo.svg":
@@ -43,6 +47,9 @@ http.createServer((req, res) => {
         case "/userProfile":
         case "/style/userProfile.css":
             getUserProfile(req, res);
+            break;
+        case "/users":
+            await usersRoutes(req, res);
             break;
         default:
             res.write('page not found!'); //write a response to the client
