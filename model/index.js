@@ -1,11 +1,13 @@
 const oracledb = require('oracledb');
 
-async function run() {
+function getConnectionDB() {
+    return oracledb.getConnection({ user: "student", password: "STUDENT", connectionString: "localhost" });
+}
 
-    let connection;
+async function initDB() {
     try {
 
-        connection = await oracledb.getConnection({ user: "student", password: "STUDENT", connectionString: "localhost" });
+        let connection = await getConnectionDB();
         console.log("Successfully connected to Oracle Database");
         const command_users = `BEGIN
         EXECUTE IMMEDIATE 'CREATE TABLE users
@@ -35,15 +37,9 @@ async function run() {
 
     } catch (err) {
         console.error(err);
-    } finally {
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                console.error(err);
-            }
-        }
     }
 }
-
-run();
+module.exports = {
+    getConnectionDB,
+    initDB
+}
