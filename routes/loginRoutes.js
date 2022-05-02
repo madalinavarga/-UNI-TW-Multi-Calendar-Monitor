@@ -1,5 +1,5 @@
-var fs = require('fs');
-var { getViewHTML, getViewLogin, getScriptLogin } = require('../controllers/loginController')
+const fs = require('fs');
+const { getViewHTML, getViewLogin, getScriptLogin } = require('../controllers/loginController')
 
 function login(req, res) {
     switch (req.url) {
@@ -22,9 +22,11 @@ function login(req, res) {
                     res.write('method not allowed');
             }
             break;
+
         case "/script/login.js":
             getScriptLogin(req, res);
             break;
+
         default:
             res.write('page not found!'); //write a response to the client
 

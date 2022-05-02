@@ -1,4 +1,6 @@
-var fs = require("fs");
+const fs = require("fs");
+const { UserRequest, createUser } = require("../model/user")
+
 //routes
 function getViewHTML(req, res) {
     res.write(fs.readFileSync("./views/Register/register.html"));
@@ -13,25 +15,36 @@ function getScriptRegister(req, res) {
 }
 
 //logic function
-const users = []
 
-function createUser(req, res) {
-    var body = '';
+async function registerUser(req, res) {
+    return await new Promise((resolve) => {
+        let body = '';
 
-    req.on('data', function(data) {
-        body += data;
-    });
+        req.on('data', function(data) {
+            body += data;
+        });
 
-    req.on('end', function() {
-        console.log(body, users)
-        users.push(JSON.parse(body))
-        res.writeHead(201)
-    });
+        req.on('end', async function() {
+            const data = JSON.parse(body)
+            const request = new UserRequest(data.firstName, data.lastName, data.email, data.password)
+            createUser(request)
+                .then(() => {
+                    res.writeHead(201)
+                })
+                .catch(() => {
+                    res.writeHead(500)
+                })
+                .finally(() => {
+                    resolve()
+                })
+        });
+    })
 }
+
 
 module.exports = {
     getViewHTML,
-    createUser,
+    registerUser,
     getViewRegister,
     getScriptRegister
 };

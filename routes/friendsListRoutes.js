@@ -1,7 +1,7 @@
-var fs = require('fs');
-var { getViewHTML, getViewFriendsList } = require("../controllers/friendsListController");
+const fs = require('fs');
+const { getViewHTML, getViewCSS } = require("../controllers/friendsListController");
 
-function getFriendsList(req, res) {
+function friendsList(req, res) {
     switch (req.url) {
         case "/friendsList":
             switch (req.method) {
@@ -14,7 +14,7 @@ function getFriendsList(req, res) {
             }
             break;
         case "/style/friendsList.css":
-            getViewFriendsList(req, res);
+            getViewCSS(req, res);
         default:
             res.write('page not found');
 
@@ -22,5 +22,5 @@ function getFriendsList(req, res) {
 }
 
 module.exports = {
-    getFriendsList: getFriendsList
+    friendsList: friendsList
 }

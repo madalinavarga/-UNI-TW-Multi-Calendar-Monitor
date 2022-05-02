@@ -1,8 +1,8 @@
-var fs = require('fs');
-var { getViewHTML, createUser, getViewRegister, getScriptRegister } = require('../controllers/registerController');
+const fs = require('fs');
+const { getViewHTML, registerUser, getViewRegister, getScriptRegister } = require('../controllers/registerController');
 
 
-function register(req, res) {
+async function register(req, res) {
     switch (req.url) {
         case "/register":
             switch (req.method) {
@@ -10,7 +10,7 @@ function register(req, res) {
                     getViewHTML(req, res);
                     break;
                 case "POST":
-                    createUser(req, res);
+                    await registerUser(req, res);
                     break;
                 default:
                     res.write('method not allowed');

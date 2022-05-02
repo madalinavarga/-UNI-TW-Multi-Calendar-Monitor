@@ -1,7 +1,7 @@
-var fs = require('fs');
-var { getViewHTML, getViewUserProfile } = require('../controllers/userProfileController');
+const fs = require('fs');
+const { getViewHTML, getViewCSS } = require('../controllers/userProfileController');
 
-function getUserProfile(req, res) {
+function userProfile(req, res) {
     switch (req.url) {
         case "/userProfile":
             switch (req.method) {
@@ -13,7 +13,7 @@ function getUserProfile(req, res) {
         case "/style/userProfile.css":
             switch (req.method) {
                 case "GET":
-                    getViewUserProfile(req, res);
+                    getViewCSS(req, res);
                     break;
             }
             break;
@@ -24,5 +24,5 @@ function getUserProfile(req, res) {
 }
 
 module.exports = {
-    getUserProfile: getUserProfile
+    userProfile: userProfile
 }

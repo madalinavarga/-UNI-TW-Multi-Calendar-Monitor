@@ -8,8 +8,8 @@ const { initDB } = require('./model');
 const { login } = require('./routes/loginRoutes');
 const { register } = require('./routes/registerRoutes');
 const { common } = require('./routes/commonRoutes');
-const { getFriendsList } = require('./routes/friendsListRoutes');
-const { getUserProfile } = require('./routes/userProfileRoutes');
+const { friendsList } = require('./routes/friendsListRoutes');
+const { userProfile } = require('./routes/userProfileRoutes');
 const { usersRoutes } = require('./routes/usersRoutes');
 
 //init db 
@@ -29,6 +29,7 @@ http.createServer(async(req, res) => {
         case "/public/global/layoutStyle/style.css":
             common(req, res);
             break;
+
         case "/login":
         case "/style/login.css":
         case "/script/login.js":
@@ -38,19 +39,23 @@ http.createServer(async(req, res) => {
         case "/register":
         case "/script/register.js":
         case "/style/register.css":
-            register(req, res);
+            await register(req, res);
             break;
+
         case "/friendsList":
         case "/style/friendsList.css":
-            getFriendsList(req, res);
+            friendsList(req, res);
             break;
+
         case "/userProfile":
         case "/style/userProfile.css":
-            getUserProfile(req, res);
+            userProfile(req, res);
             break;
+
         case "/users":
             await usersRoutes(req, res);
             break;
+
         default:
             res.write('page not found!'); //write a response to the client
     }
