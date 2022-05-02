@@ -1,4 +1,5 @@
 const { getConnectionDB } = require('../model')
+
 async function getAllUsers(req, res) {
     const connection = await getConnectionDB();
     const result = await connection.execute(`select * from users`, []);

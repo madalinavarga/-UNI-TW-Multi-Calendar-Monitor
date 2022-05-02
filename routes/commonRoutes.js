@@ -1,5 +1,5 @@
-var fs = require('fs');
-var { getLogo, getImgFacebook, getImgInstagram, getImgTwitter, getViewLayout } = require('../controllers/commonController')
+const fs = require('fs');
+const { getLogo, getImgFacebook, getImgInstagram, getImgTwitter, getViewLayout } = require('../controllers/commonController')
 
 function common(req, res) {
     switch (req.url) {

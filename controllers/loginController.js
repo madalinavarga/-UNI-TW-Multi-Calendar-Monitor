@@ -18,7 +18,7 @@ function getScriptLogin(req, res) {
 const users = []
 
 function checkUser(req, res) {
-    var body = '';
+    let body = '';
 
     req.on('data', function(data) {
         body += data;
