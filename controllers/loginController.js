@@ -1,4 +1,5 @@
 var fs = require("fs");
+var jwt = require('jsonwebtoken');
 var { checkUser, findUserByEmail } = require("../model/user")
 
 //GET
@@ -21,9 +22,10 @@ async function loginUser(req, res) {
                 const userExists = await checkUser(data.email, data.password)
                 if (userExists) {
                     const user = await findUserByEmail(data.email)
+                    const token = jwt.sign({ user }, 'student');
                     res.setHeader('Content-Type', 'application/json');
                     res.writeHead(200)
-                    res.write(JSON.stringify(user))
+                    res.write(token)
                 } else
                     res.writeHead(400)
             } catch (error) {
