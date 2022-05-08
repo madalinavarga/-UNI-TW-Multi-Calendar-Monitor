@@ -6,16 +6,6 @@ function getViewHTML(req, res) {
     res.write(fs.readFileSync("./views/Register/register.html"));
 }
 
-function getViewRegister(req, res) {
-    res.write(fs.readFileSync("./views/Register/style/register.css"));
-}
-
-function getScriptRegister(req, res) {
-    res.write(fs.readFileSync('./views/Register/script/register.js'));
-}
-
-//logic function
-
 async function registerUser(req, res) {
     return await new Promise((resolve) => {
         let body = '';
@@ -27,16 +17,14 @@ async function registerUser(req, res) {
         req.on('end', async function() {
             const data = JSON.parse(body)
             const request = new UserRequest(data.firstName, data.lastName, data.email, data.password)
-            createUser(request)
-                .then(() => {
-                    res.writeHead(201)
-                })
-                .catch(() => {
-                    res.writeHead(500)
-                })
-                .finally(() => {
-                    resolve()
-                })
+            try {
+                await createUser(request)
+                res.writeHead(201)
+            } catch {
+                res.writeHead(500)
+            } finally {
+                resolve() //continue, no more await
+            }
         });
     })
 }
@@ -45,6 +33,4 @@ async function registerUser(req, res) {
 module.exports = {
     getViewHTML,
     registerUser,
-    getViewRegister,
-    getScriptRegister
 };

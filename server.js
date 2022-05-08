@@ -7,57 +7,56 @@ const { initDB } = require('./model');
 //requests for routes
 const { login } = require('./routes/loginRoutes');
 const { register } = require('./routes/registerRoutes');
-const { common } = require('./routes/commonRoutes');
 const { friendsList } = require('./routes/friendsListRoutes');
 const { userProfile } = require('./routes/userProfileRoutes');
 const { usersRoutes } = require('./routes/usersRoutes');
+const { calendarRoutes } = require('./routes/calendarRoutes');
 
 //init db 
 initDB();
+
+function getContentTypeForFile(filename) { // exemple views/Register/register.html, images/test.png
+    if (filename.endsWith(".svg")) {
+        return "image/svg+xml"
+    }
+}
 
 //create a server object:
 http.createServer(async(req, res) => {
     console.log(req.method, req.url);
     switch (req.url) {
-        case "/images/logo.svg":
-        case "/images//facebook-icon.png":
-        case "/images//instagram-icon.png":
-        case "/images//twitter-icon.png":
-        case "/images/facebook-icon.png":
-        case "/images/instagram-icon.png":
-        case "/images/twitter-icon.png":
-        case "/public/global/layoutStyle/style.css":
-            common(req, res);
-            break;
-
         case "/login":
-        case "/style/login.css":
-        case "/script/login.js":
-            login(req, res);
+            await login(req, res);
             break;
 
         case "/register":
-        case "/script/register.js":
-        case "/style/register.css":
             await register(req, res);
             break;
 
         case "/friendsList":
-        case "/style/friendsList.css":
             friendsList(req, res);
             break;
 
         case "/userProfile":
-        case "/style/userProfile.css":
             userProfile(req, res);
             break;
 
         case "/users":
             await usersRoutes(req, res);
             break;
+        case "/calendar":
+            await calendarRoutes(req, res);
+            break;
+
 
         default:
-            res.write('page not found!'); //write a response to the client
+            try {
+                const contentType = getContentTypeForFile(req.url);
+                if (contentType) res.setHeader("Content-Type", contentType)
+                res.write(fs.readFileSync(`.${req.url}`));
+            } catch {
+                res.write('page not found!');
+            }
     }
     res.end(); //end the response
 }).listen(4000, () => { console.log("Server listens on port 4000...") }); //the server object listens on port 4000

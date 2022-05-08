@@ -27,14 +27,14 @@ function onClick() {
         alert("Only gmail allowed")
         return;
     }
-    if (password.length < 8) {
-        alert("Password length must be atleast 8 characters")
-        return;
-    }
-    if (password != passwordConfirm) {
-        alert("Passwords did not match")
-        return;
-    }
+    // if (password.length < 8) {
+    //     alert("Password length must be atleast 8 characters")
+    //     return;
+    // }
+    // if (password != passwordConfirm) {
+    //     alert("Passwords did not match")
+    //     return;
+    // }
 
     const payload = {
         firstName: firstName,
