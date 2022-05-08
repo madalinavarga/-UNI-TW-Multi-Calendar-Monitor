@@ -14,10 +14,11 @@ async function initDB() {
         (id NUMBER,
         firstName VARCHAR(20) NOT NULL,
         lastName VARCHAR(20) NOT NULL,
-        email VARCHAR(50) NOT NULL,
+        email VARCHAR(50) NOT NULL ,
         password VARCHAR(100) NOT NULL,
         role NUMBER NOT NULL,
-        CONSTRAINT users_pk PRIMARY KEY (id)
+        CONSTRAINT users_pk PRIMARY KEY (id),
+        CONSTRAINT unique_email UNIQUE(email)
         )';
         exception when others then
           if SQLCODE = -955 then null; else raise; end if;
