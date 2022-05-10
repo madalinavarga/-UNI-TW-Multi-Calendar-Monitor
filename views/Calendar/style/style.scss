@@ -1,29 +1,62 @@
 .container {
     overflow-x: hidden;
-    #date-picker{
-        margin-top: 50px;
+    .select {
+        display: inline-flex;
+        p {
+            margin-right: 10px;
+        }
+        input {
+            margin-left: 10px;
+        }
     }
     #create-event-btn {
-        margin-top: 10px;
-        margin-bottom: 20px;
+        cursor: pointer;
         border-radius:5px ;
         border-color: white;
-        background-color: #6f9fd7d0;
+        background-color: #254fdb;
         color: white;
+        font-size: 14px;
         padding: 5px;
+        margin-top: 10px;
     }
-    #calendar {
+    .calendar-container {
         width: 100%;
         height: 100%;
-        padding-left: 20px;
+        
         padding-bottom: 20px;
         padding-right: 20px;
         position: relative;
-        .fc-highlight{
-            background-color: rgb(83, 182, 83);
+        .calendar-header {
+            display: flex;
+            padding-left: 20px;
+            .calendar-header-chunk {
+                padding-right: 20px;
+                button {
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    color: rgb(46, 44, 44);
+                    background-color: #ffffff00;
+                }
+                button:hover {
+                    background-color: #dfe1e2a2;
+                }
+            }
         }
-       
-    }
+        #calendar-table {
+            #calendar-table-header {
+                padding-left: 90px;
+                padding-top: 40px;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                .day-date {
+                    border: 1px solid #dfe1e2a2;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }    
     .popup-container{
         display: none;
         position:absolute;
@@ -49,13 +82,7 @@
             padding:10px;
         }
         .date-time-container{
-            margin-top: 10px;
-            text-align: start;
-            border-radius: 10px;
-            color: white;
-        }
-        .exact-date-time-container {
-            display: none;
+            display: block;
             margin-top: 10px;
             text-align: start;
             border-radius: 10px;

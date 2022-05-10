@@ -37,13 +37,36 @@
       <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
     <div class="container">
-      <div>
-        <input type="date" id="date-picker" name="trip-start" />
+      <div class="select">
+        <p>Select calendar week:</p>
+        <input type="date" id="date-picker" />
       </div>
       <button id="create-event-btn" onClick="handleCreateEvent()">
-        Create Event
+        + New Event
       </button>
-      <div id="calendar"></div>
+
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <div class="calendar-header-chunk">
+            <h2 id="shown-week">May 8 - 14, 2022</h2>
+          </div>
+          <div class="calendar-header-chunk">
+            <button type="button" class="btn">
+              <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn">
+              <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="calendar-table">
+          <div id="calendar-table-header">
+            
+          </div>
+          
+      </div>
+
       <div class="popup-container">
         <div class="popup-content">
           <input type="text" placeholder="Add title" />
@@ -53,10 +76,6 @@
             rows="5"
           ></textarea>
           <div class="date-time-container">
-            <p id="start-date-time"></p>
-            <p id="end-date-time"></p>
-          </div>
-          <div class="exact-date-time-container">
             <input type="datetime-local" id="start-time" />
             <input type="datetime-local" id="end-time" />
           </div>

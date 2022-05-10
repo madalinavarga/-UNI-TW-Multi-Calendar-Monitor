@@ -2,31 +2,77 @@
   overflow-x: hidden;
 }
 
-.container #date-picker {
-  margin-top: 50px;
+.container .select {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.container .select p {
+  margin-right: 10px;
+}
+
+.container .select input {
+  margin-left: 10px;
 }
 
 .container #create-event-btn {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  cursor: pointer;
   border-radius: 5px;
   border-color: white;
-  background-color: #6f9fd7d0;
+  background-color: #254fdb;
   color: white;
+  font-size: 14px;
   padding: 5px;
+  margin-top: 10px;
 }
 
-.container #calendar {
+.container .calendar-container {
   width: 100%;
   height: 100%;
-  padding-left: 20px;
   padding-bottom: 20px;
   padding-right: 20px;
   position: relative;
 }
 
-.container #calendar .fc-highlight {
-  background-color: #53b653;
+.container .calendar-container .calendar-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 20px;
+}
+
+.container .calendar-container .calendar-header .calendar-header-chunk {
+  padding-right: 20px;
+}
+
+.container .calendar-container .calendar-header .calendar-header-chunk button {
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #2e2c2c;
+  background-color: #ffffff00;
+}
+
+.container .calendar-container .calendar-header .calendar-header-chunk button:hover {
+  background-color: #dfe1e2a2;
+}
+
+.container .calendar-container #calendar-table #calendar-table-header {
+  padding-left: 90px;
+  padding-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .calendar-container #calendar-table #calendar-table-header .day-date {
+  border: 1px solid #dfe1e2a2;
+  width: 100%;
+  height: 100%;
 }
 
 .container .popup-container {
@@ -63,14 +109,7 @@
 }
 
 .container .popup-container .date-time-container {
-  margin-top: 10px;
-  text-align: start;
-  border-radius: 10px;
-  color: white;
-}
-
-.container .popup-container .exact-date-time-container {
-  display: none;
+  display: block;
   margin-top: 10px;
   text-align: start;
   border-radius: 10px;
