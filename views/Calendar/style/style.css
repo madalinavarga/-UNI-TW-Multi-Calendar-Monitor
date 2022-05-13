@@ -72,17 +72,52 @@
 .container .calendar-container #calendar-table #calendar-table-header .day-date {
   border: 1px solid #dfe1e2a2;
   width: 100%;
-  height: 100%;
+}
+
+.container .calendar-container #calendar-table #calendar-table-header .day-date div {
+  width: 100%;
+  height: 61.2px;
+  border: 1px solid #dfe1e2a2;
+}
+
+.container .calendar-container #calendar-table #calendar-table-header #hour-cells {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: 100px;
+  left: 20px;
+  z-index: 0;
+}
+
+.container .calendar-container #calendar-table #calendar-table-header #hour-cells div {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  border: 1px solid #dfe1e2a2;
 }
 
 .container .popup-container {
   display: none;
-  position: absolute;
   background-color: #6f9fd7d0;
-  height: 440px;
+  height: 500px;
   padding: 50px;
   border-radius: 20px;
   z-index: 2;
+  position: absolute;
+  width: 400px;
+  top: 20px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container .popup-container .popup-content {
@@ -132,5 +167,13 @@
 .container .popup-container #add-event-btn {
   padding: 10px;
   border-radius: 20px;
+}
+
+.footer {
+  position: fixed;
+  background-color: #6f9fd7;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
 }
 /*# sourceMappingURL=style.css.map */

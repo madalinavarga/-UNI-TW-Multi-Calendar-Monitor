@@ -37,11 +37,11 @@
       <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
     <div class="container">
-      <div class="select">
+      <!-- <div class="select">
         <p>Select calendar week:</p>
         <input type="date" id="date-picker" />
-      </div>
-      <button id="create-event-btn" onClick="handleCreateEvent()">
+      </div> -->
+      <button id="create-event-btn" onclick="handleCreateEvent()">
         + New Event
       </button>
 
@@ -51,20 +51,20 @@
             <h2 id="shown-week">May 8 - 14, 2022</h2>
           </div>
           <div class="calendar-header-chunk">
-            <button type="button" class="btn">
+            <button type="button" class="btn" onclick="getPreviousWeek()">
               <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>
             </button>
-            <button type="button" class="btn">
+            <button type="button" class="btn" onclick="getNextWeek()">
               <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
             </button>
           </div>
         </div>
-
         <div id="calendar-table">
           <div id="calendar-table-header">
-            
-          </div>
-          
+            <div id="hour-cells">
+              
+            </div>
+          </div>          
       </div>
 
       <div class="popup-container">

@@ -19,6 +19,8 @@ const popUp = document.querySelector(".popup-container");
 const exactTime = document.querySelector(".date-time-container");
 const colorPicker = document.getElementById("color-picker-input");
 const shownWeek = document.getElementById("shown-week");
+const hour = document.getElementById("hour-cells");
+const createEvent = document.getElementById("create-event-btn");
 
 const handleColorPicker = () => {
   console.log(colorPicker.value);
@@ -40,24 +42,14 @@ const handleCreateEvent = () => {
 
 colorPicker.addEventListener("input", handleColorPicker);
 
-// Date.prototype.getWeek = function () {
-//   return [new Date(this.setDate(this.getDate() - this.getDay()))].concat(
-//     String(Array(6))
-//       .split(",")
-//       .map(function () {
-//         return new Date(this.setDate(this.getDate() + 1));
-//       }, this)
-//   );
-// };
-// // usage
-// console.log(new Date().getWeek()); //=> [07/10/2012, ... ,13/10/2012]
-
 let firstDayWeek;
 let lastDayWeek;
 let curr = new Date();
 let month = curr.getMonth();
 let secondMonth = month;
+let nextMonthchanged = false;
 let year = curr.getFullYear();
+
 const getWeek = () => {
   shownWeek.innerHTML = monthNames[month] + " " + year;
   let first = curr.getDate() - curr.getDay() + 1;
@@ -72,37 +64,185 @@ const getWeek = () => {
     let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
     calendarTableHeader.insertAdjacentHTML(
       "beforeend",
-      `<div class="day-date"><p>${dayName}</p><p>${dayNumber}</p></div>`
+      `<div class="day-date"><p class="day-name">${dayName}</p><p class="day-number">${dayNumber}</p></div>`
     );
   }
   firstDayWeek = last + 1;
   lastDayWeek = firstDayWeek + 6;
 };
-
+let mondayStartMonth = 0;
 const getNextWeek = () => {
-  console.log(typeof firstDayWeek);
-  for (let day = firstDayWeek; day <= lastDayWeek; day++) {
-    const date = new Date(year, month, day);
-    if (date.getMonth() != month) {
+  let dayNameParagraph = document.querySelectorAll(".day-name");
+  let dayNumberParagraph = document.querySelectorAll(".day-number");
+  let hourCell = document.querySelectorAll(".hour-cell");
+  let changedMonth = false;
+  let changedYear = false;
+
+  day = firstDayWeek;
+  let j = 0;
+  dayNameParagraph.forEach((element) => {
+    const date = new Date(curr.getFullYear(), curr.getMonth(), day);
+
+    if (date.getMonth() !== secondMonth && !changedMonth) {
       secondMonth = date.getMonth();
+      changedMonth = true;
+      if (day === firstDayWeek) {
+        mondayStartMonth = 1;
+      }
     }
-    const options = { weekday: "short", day: "numeric" };
-    console.log(new Intl.DateTimeFormat("en-US", options).format(date));
-  }
+
+    if (date.getFullYear() !== year && !changedYear) {
+      year = date.getFullYear();
+      changedYear = true;
+    }
+    const options1 = { weekday: "short" };
+
+    let dayName = new Intl.DateTimeFormat("en-US", options1).format(date);
+    element.innerHTML = dayName;
+    let hourCell = document.querySelectorAll(`.hour-cell-${j}`);
+    hourCell.forEach((element) => {
+      element.id = `${date.getDate()}-${date.getMonth()}-${year}`;
+    });
+    j++;
+    day++;
+  });
+
+  day = firstDayWeek;
+  dayNumberParagraph.forEach((element) => {
+    const date = new Date(curr.getFullYear(), curr.getMonth(), day);
+
+    const options2 = { day: "numeric" };
+
+    let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
+    element.innerHTML = dayNumber;
+
+    day++;
+  });
   firstDayWeek = lastDayWeek + 1;
   lastDayWeek = firstDayWeek + 6;
-  if (secondMonth != month) {
+  if (secondMonth !== month && mondayStartMonth === 0) {
     shownWeek.innerHTML =
       monthNames[month] + " - " + monthNames[secondMonth] + " " + year;
-    console.log(
-      monthNames[month] + " - " + monthNames[secondMonth] + " " + year
-    );
     month = secondMonth;
+    nextMonthchanged = true;
+  } else if (mondayStartMonth === 1) {
+    month = secondMonth;
+    mondayStartMonth = 0;
+    shownWeek.innerHTML = monthNames[month] + " " + year;
   } else {
     shownWeek.innerHTML = monthNames[month] + " " + year;
-    console.log(monthNames[month] + " " + year);
   }
 };
 
+const getPreviousWeek = () => {
+  let dayNameParagraph = document.querySelectorAll(".day-name");
+  let dayNumberParagraph = document.querySelectorAll(".day-number");
+
+  let changedMonth = false;
+  let changedYear = false;
+  firstDayWeek -= 14;
+  lastDayWeek = firstDayWeek - 7;
+
+  day = firstDayWeek;
+
+  if (nextMonthchanged) {
+    month--;
+    secondMonth--;
+    nextMonthchanged = false;
+  }
+  let j = 0;
+  dayNameParagraph.forEach((element) => {
+    const date = new Date(curr.getFullYear(), curr.getMonth(), day);
+
+    if (date.getMonth() !== secondMonth && !changedMonth) {
+      secondMonth = date.getMonth();
+      console.log(secondMonth);
+      changedMonth = true;
+      if (day === lastDayWeek) {
+        mondayStartMonth = 1;
+      }
+    }
+
+    if (date.getFullYear() !== year && !changedYear) {
+      year = date.getFullYear();
+      changedYear = true;
+    }
+    const options1 = { weekday: "short" };
+
+    let dayName = new Intl.DateTimeFormat("en-US", options1).format(date);
+    element.innerHTML = dayName;
+    let hourCell = document.querySelectorAll(`.hour-cell-${j}`);
+    hourCell.forEach((element) => {
+      element.id = `${date.getDate()}-${date.getMonth()}-${year}`;
+    });
+    day++;
+    j++;
+  });
+
+  day = firstDayWeek;
+  dayNumberParagraph.forEach((element) => {
+    const date = new Date(curr.getFullYear(), curr.getMonth(), day);
+
+    const options2 = { day: "numeric" };
+
+    let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
+    element.innerHTML = dayNumber;
+    day++;
+  });
+  firstDayWeek += 7;
+  lastDayWeek = firstDayWeek + 6;
+  if (secondMonth !== month && mondayStartMonth === 0) {
+    shownWeek.innerHTML =
+      monthNames[secondMonth] + " - " + monthNames[month] + " " + year;
+    month = secondMonth;
+  } else if (mondayStartMonth === 1) {
+    month = secondMonth;
+    mondayStartMonth = 0;
+    shownWeek.innerHTML = monthNames[month] + " " + year;
+  } else {
+    shownWeek.innerHTML = monthNames[month] + " " + year;
+  }
+};
+
+const getHours = () => {
+  for (let i = 8; i < 13; i++) {
+    hour.insertAdjacentHTML("beforeend", `<div class="${i}-am">${i} am</div>`);
+  }
+  for (let i = 1; i < 13; i++) {
+    hour.insertAdjacentHTML("beforeend", `<div class="${i}-pm">${i} pm</div>`);
+  }
+  for (let i = 1; i < 8; i++) {
+    hour.insertAdjacentHTML("beforeend", `<div class="${i}-am">${i} am</div>`);
+  }
+};
+
+const getHourCells = () => {
+  let dayDate = document.querySelectorAll(".day-date");
+  let dayNumberParagraph = document.querySelectorAll(".day-number");
+  let j = 0;
+  dayDate.forEach((element) => {
+    for (let i = 8; i < 13; i++) {
+      element.insertAdjacentHTML(
+        "beforeend",
+        `<div class ="hour-cell-${j} ${i}am" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}"></div>`
+      );
+    }
+    for (let i = 1; i < 13; i++) {
+      element.insertAdjacentHTML(
+        "beforeend",
+        `<div class ="hour-cell-${j} ${i}pm" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}"></div>`
+      );
+    }
+    for (let i = 1; i < 8; i++) {
+      element.insertAdjacentHTML(
+        "beforeend",
+        `<div class ="hour-cell-${j} ${i}am" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}"></div>`
+      );
+    }
+    j++;
+  });
+};
+
 getWeek();
-getNextWeek();
+getHours();
+getHourCells();
