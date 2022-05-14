@@ -16,18 +16,46 @@ const calendar = document.getElementById("calendar-table");
 const calendarTableHeader = document.getElementById("calendar-table-header");
 const inputDate = document.getElementById("date-picker");
 const popUp = document.querySelector(".popup-container");
-const exactTime = document.querySelector(".date-time-container");
 const colorPicker = document.getElementById("color-picker-input");
 const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
 const createEvent = document.getElementById("create-event-btn");
 
-const handleColorPicker = () => {
-  console.log(colorPicker.value);
-};
+const handleColorPicker = () => {};
 
 const handleAddEvent = () => {
-  if (popUp.style.display === "block") {
+  let startEvent = document.getElementById("start-time");
+  let endEvent = document.getElementById("end-time");
+  let dateEvent = document.getElementById("day-event");
+  let wrongInput = document.getElementById("wrong-input");
+  let ok = 1;
+  wrongInput.style.display = "none";
+  let start = startEvent.value.split(":");
+  let end = endEvent.value.split(":");
+  console.log(dateEvent.value + " " + startEvent.value + " " + endEvent.value);
+
+  if (!dateEvent.value || !startEvent.value || !endEvent.value) {
+    wrongInput.style.display = "block";
+    wrongInput.innerHTML = "Please enter the date and time";
+    ok = 0;
+  } else if (parseInt(start[0]) > parseInt(end[0])) {
+    wrongInput.style.display = "block";
+    wrongInput.innerHTML = "Check the time of the event.";
+    ok = 0;
+  } else if (parseInt(start[0]) === parseInt(end[0])) {
+    if (parseInt(end[1]) - parseInt(start[1]) < 30) {
+      wrongInput.style.display = "block";
+      wrongInput.innerHTML = "An event must be minimum half an hour.";
+      ok = 0;
+    }
+  } else if (parseInt(end[0]) - parseInt(start[0]) === 1) {
+    if (60 - parseInt(start[1]) + parseInt(end[1]) < 30) {
+      wrongInput.style.display = "block";
+      wrongInput.innerHTML = "An event must be minimum half an hour.";
+      ok = 0;
+    }
+  }
+  if (popUp.style.display === "block" && ok === 1) {
     popUp.style.display = "none";
   }
 };

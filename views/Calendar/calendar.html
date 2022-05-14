@@ -75,13 +75,16 @@
             placeholder="Add description"
             rows="5"
           ></textarea>
+          <input type="date" id="day-event" />
           <div class="date-time-container">
-            <input type="datetime-local" id="start-time" />
-            <input type="datetime-local" id="end-time" />
+            
+            <input type="time" id="start-time" />
+            <input type="time" id="end-time" />
           </div>
+          <p id="wrong-input"></p>
           <div class="color-picker">
             <label for="color-picker-input">Pick a color:</label>
-            <input type="color" id="color-picker-input" value="#53b653" />
+            <input type="color" id="color-picker-input" value="#b65476" />
           </div>
           <button id="add-event-btn" onClick="handleAddEvent()">
             Add Event
