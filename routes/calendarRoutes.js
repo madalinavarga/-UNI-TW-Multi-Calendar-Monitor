@@ -1,13 +1,10 @@
 const fs = require('fs');
-const { getViewHTML, loginUser } = require('../controllers/loginController')
+const { getViewHTML } = require("../controllers/calendarController");
 
-async function login(req, res) {
+function calendarRoutes(req, res) {
     switch (req.method) {
         case "GET":
             getViewHTML(req, res);
-            break;
-        case "POST":
-            await loginUser(req, res);
             break;
         default:
             res.write('method not allowed');
@@ -15,5 +12,5 @@ async function login(req, res) {
 }
 
 module.exports = {
-    login: login
+    calendarRoutes
 }

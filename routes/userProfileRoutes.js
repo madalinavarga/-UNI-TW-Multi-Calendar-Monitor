@@ -1,26 +1,15 @@
 const fs = require('fs');
-const { getViewHTML, getViewCSS } = require('../controllers/userProfileController');
+const { getViewHTML } = require('../controllers/userProfileController');
+const { middleware } = require("../middleware/middleware")
 
 function userProfile(req, res) {
-    switch (req.url) {
-        case "/userProfile":
-            switch (req.method) {
-                case "GET":
-                    getViewHTML(req, res);
-                    break;
-            }
+    switch (req.method) {
+        case "GET":
+            //getViewHTML(req, res);
+            middleware(req, res, getViewHTML)
             break;
-        case "/style/userProfile.css":
-            switch (req.method) {
-                case "GET":
-                    getViewCSS(req, res);
-                    break;
-            }
-            break;
-
-        default:
-            res.write('page not found!');
     }
+
 }
 
 module.exports = {

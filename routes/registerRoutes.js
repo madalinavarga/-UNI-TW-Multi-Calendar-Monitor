@@ -1,30 +1,17 @@
 const fs = require('fs');
-const { getViewHTML, registerUser, getViewRegister, getScriptRegister } = require('../controllers/registerController');
+const { getViewHTML, registerUser } = require('../controllers/registerController');
 
 
 async function register(req, res) {
-    switch (req.url) {
-        case "/register":
-            switch (req.method) {
-                case "GET":
-                    getViewHTML(req, res);
-                    break;
-                case "POST":
-                    await registerUser(req, res);
-                    break;
-                default:
-                    res.write('method not allowed');
-
-            }
+    switch (req.method) {
+        case "GET":
+            getViewHTML(req, res);
             break;
-        case "/script/register.js":
-            getScriptRegister(req, res);
-            break;
-        case "/style/register.css":
-            getViewRegister(req, res);
+        case "POST":
+            await registerUser(req, res);
             break;
         default:
-            res.write('page not found!'); //write a response to the client
+            res.write('method not allowed');
 
     }
 }
