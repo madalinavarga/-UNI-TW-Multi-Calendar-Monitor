@@ -27,30 +27,56 @@
         <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
     <div class="container">
-        <div>
-            <input type="date" id="date-picker" name="trip-start" />
-        </div>
-        <button id="create-event-btn" onClick="handleCreateEvent()">
-        Create Event
+      <!-- <div class="select">
+        <p>Select calendar week:</p>
+        <input type="date" id="date-picker" />
+      </div> -->
+      <button id="create-event-btn" onclick="handleCreateEvent()">
+        + New Event
       </button>
-        <div id="calendar"></div>
-        <div class="popup-container">
-            <div class="popup-content">
-                <input type="text" placeholder="Add title" />
-                <textarea type="text" placeholder="Add description" rows="5"></textarea>
-                <div class="date-time-container">
-                    <p id="start-date-time"></p>
-                    <p id="end-date-time"></p>
-                </div>
-                <div class="exact-date-time-container">
-                    <input type="datetime-local" id="start-time" />
-                    <input type="datetime-local" id="end-time" />
-                </div>
-                <div class="color-picker">
-                    <label for="color-picker-input">Pick a color:</label>
-                    <input type="color" id="color-picker-input" value="#53b653" />
-                </div>
-                <button id="add-event-btn" onClick="handleAddEvent()">
+
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <div class="calendar-header-chunk">
+            <h2 id="shown-week">May 8 - 14, 2022</h2>
+          </div>
+          <div class="calendar-header-chunk">
+            <button type="button" class="btn" onclick="getPreviousWeek()">
+              <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn" onclick="getNextWeek()">
+              <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div id="calendar-table">
+          <div id="calendar-table-header">
+            <div id="hour-cells">
+              
+            </div>
+          </div>          
+      </div>
+
+      <div class="popup-container">
+        <div class="popup-content">
+          <input type="text" placeholder="Add title" />
+          <textarea
+            type="text"
+            placeholder="Add description"
+            rows="5"
+          ></textarea>
+          <input type="date" id="day-event" />
+          <div class="date-time-container">
+            
+            <input type="time" id="start-time" />
+            <input type="time" id="end-time" />
+          </div>
+          <p id="wrong-input"></p>
+          <div class="color-picker">
+            <label for="color-picker-input">Pick a color:</label>
+            <input type="color" id="color-picker-input" value="#b65476" />
+          </div>
+          <button id="add-event-btn" onClick="handleAddEvent()">
             Add Event
           </button>
             </div>
