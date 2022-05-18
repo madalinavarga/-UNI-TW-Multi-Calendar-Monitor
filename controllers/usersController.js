@@ -1,11 +1,9 @@
-const { getConnectionDB } = require('../model')
-
+const { userModel } = require("../model/user");
 async function getAllUsers(req, res) {
-    const connection = await getConnectionDB();
-    const result = await connection.execute(`select * from users`, []);
-    res.write(result.rows.toString());
+  const users = await userModel.find();
+  res.write(users.toString());
 }
 
 module.exports = {
-    getAllUsers
-}
+  getAllUsers,
+};

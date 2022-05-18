@@ -1,10 +1,8 @@
 //entry point to app
-
 //imports 
 const http = require('http');
 const fs = require('fs');
 const { initDB } = require('./model');
-//requests for routes
 const { login } = require('./routes/loginRoutes');
 const { register } = require('./routes/registerRoutes');
 const { friendsList } = require('./routes/friendsListRoutes');
@@ -44,10 +42,10 @@ http.createServer(async(req, res) => {
         case "/users":
             await usersRoutes(req, res);
             break;
+            
         case "/calendar":
             await calendarRoutes(req, res);
             break;
-
 
         default:
             try {
