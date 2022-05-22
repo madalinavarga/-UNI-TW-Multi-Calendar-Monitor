@@ -4,6 +4,7 @@ const http = require('http');
 const fs = require('fs');
 const { initDB } = require('./model');
 const { login } = require('./routes/loginRoutes');
+const { loginWithGoogle } = require("./routes/loginWithGoogleRoutes")
 const { register } = require('./routes/registerRoutes');
 const { friendsList } = require('./routes/friendsListRoutes');
 const { userProfile } = require('./routes/userProfileRoutes');
@@ -21,10 +22,16 @@ function getContentTypeForFile(filename) { // exemple views/Register/register.ht
 
 //create a server object:
 http.createServer(async(req, res) => {
-    console.log(req.method, req.url);
+    [req.url, req.params] = req.url.split("?")
+    console.log(req.method, req.url, req.params);
+
     switch (req.url) {
         case "/login":
             await login(req, res);
+            break;
+
+        case "/login/google":
+            await loginWithGoogle(req, res)
             break;
 
         case "/register":
@@ -42,7 +49,7 @@ http.createServer(async(req, res) => {
         case "/users":
             await usersRoutes(req, res);
             break;
-            
+
         case "/calendar":
             await calendarRoutes(req, res);
             break;

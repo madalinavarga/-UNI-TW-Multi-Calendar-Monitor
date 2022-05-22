@@ -1,7 +1,9 @@
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const { userModel } = require("../model/user");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
+const { getGoogleAuthURL } = require("../utils/getGoogleAuthUrl");
+const querystring = require('querystring');
 
 //GET
 function getViewHTML(req, res) {
@@ -40,7 +42,30 @@ async function loginUser(req, res) {
   });
 }
 
+async function loginUserWithGoogle(req, res) {
+  console.log(req.params)
+
+  const queryParams = {
+    code: new URLSearchParams(req.params).get("code"),
+    client_id: "1098497934240-41hpe6qpi67seng5ln8ees5e8re6abs4.apps.googleusercontent.com",
+    client_secret: "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",
+    redirect_uri: "http://localhost:4000/login/google",
+    grant_type: 'authorization_code',
+  };
+
+  const response = await fetch("https://oauth2.googleapis.com/token?" + new URLSearchParams(queryParams), {
+    method: "POST"
+  })
+  const data = await response.json()
+  const userData = JSON.parse(atob(data.id_token.split('.')[1]))
+
+  console.log("google:" ,data)
+  res.writeHead(200);
+  res.write(JSON.stringify(userData))
+}
+
 module.exports = {
   getViewHTML,
   loginUser,
+  loginUserWithGoogle,
 };
