@@ -47,8 +47,8 @@ async function loginUserWithGoogle(req, res) {
 
   const queryParams = {
     code: new URLSearchParams(req.params).get("code"),
-    client_id: "1098497934240-41hpe6qpi67seng5ln8ees5e8re6abs4.apps.googleusercontent.com",
-    client_secret: "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",
+    client_id: "",
+    client_secret: "",
     redirect_uri: "http://localhost:4000/login/google",
     grant_type: 'authorization_code',
   };
