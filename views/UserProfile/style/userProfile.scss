@@ -1,28 +1,26 @@
 .user-profile-container {
-    width: 30rem;
-    height: 35rem;
+  width: 30rem;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  background-color: rgba(149, 221, 224, 0.705);
+  border-radius: 0.2rem;
+  .user-info {
     display: flex;
     flex-direction: column;
-    padding: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    background-color: rgba(149, 221, 224, 0.705);
-    border-radius: 0.2rem;
-    .user-info {
-        display: flex;
-        flex-direction: column;
-        row-gap: 1rem;
-        margin-top: 2rem;
-        text-align: center;
-    }
-    .btn {
-        margin-top: 3rem;
-    }
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .btn {
+    margin-top: 1rem;
+  }
 }
 
 @media screen and (max-width: 550px) {
-    .user-profile-container {
-        width: 90%;
-    }
+  .user-profile-container {
+    width: 90%;
+  }
 }
