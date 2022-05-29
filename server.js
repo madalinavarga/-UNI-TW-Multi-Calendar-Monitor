@@ -23,7 +23,8 @@ function getContentTypeForFile(filename) {
 }
 
 //create a server object:
-http.createServer(async (req, res) => {
+http
+  .createServer(async (req, res) => {
     [req.url, req.params] = req.url.split("?");
     console.log(req.method, req.url, req.params);
 
@@ -53,7 +54,7 @@ http.createServer(async (req, res) => {
         userProfile(req, res);
         break;
 
-      case "/users":
+      case "/userDetails":
         await usersRoutes(req, res);
         break;
 

@@ -1,13 +1,15 @@
 const jwt = require("jsonwebtoken");
+const { userModel } = require("../model/user");
 
-function middleware(req, res, next) {
+async function middleware(req, res, next) {
   try {
     const hasCookie = req.headers.cookie;
-    //const user = jwt.verify(token, 'student');
-    //console.log("Request de la userul: ", user)
-    //req.user = user;
     if (hasCookie) {
-      next(req, res); // controller dat ca parametru
+      const cookie=req.headers.cookie;
+      const token=cookie.split("=")[1];
+      const userData = JSON.parse(atob(token.split(".")[1]));
+      req.email=userData.user.email;
+      await next(req, res); // controller dat ca parametru
     } else {
       res.writeHead(500);
       res.write("not allowed");

@@ -58,6 +58,7 @@ async function loginUserWithGoogle(req, res) {
       method: "POST",
     }
   );
+  
   const data = await response.json();
   const userData = JSON.parse(atob(data.id_token.split(".")[1]));
 
