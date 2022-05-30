@@ -58,6 +58,27 @@ const handleAddEvent = () => {
   if (popUp.style.display === "block" && ok === 1) {
     popUp.style.display = "none";
   }
+
+  if (ok == 1) {
+    const payload = {
+      dateEvent: dateEvent.value,
+      startEvent: startEvent.value,
+      endEvent: endEvent.value,
+    };
+    fetch("/calendar", {
+      method: "POST", // *GET, POST, PUT, DELETE
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload), // body data
+    }).then((response) => {
+      if (response.status == 200) {
+        window.location.href = "/calendar";
+      } else {
+        alert("Error");
+      }
+    });
+  }
 };
 
 const handleCreateEvent = () => {
