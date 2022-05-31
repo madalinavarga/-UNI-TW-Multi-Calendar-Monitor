@@ -1,5 +1,6 @@
 //entry point to app
 //imports
+const PORT=process.env.PORT | 4000;
 const http = require("http");
 const fs = require("fs");
 const { initDB } = require("./model");
@@ -73,6 +74,6 @@ http
     }
     res.end(); //end the response
   })
-  .listen(4000, () => {
+  .listen(PORT, () => {
     console.log("Server listens on port 4000...");
   }); //the server object listens on port 4000
