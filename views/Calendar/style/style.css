@@ -106,6 +106,7 @@
 
 .container .popup-container {
   display: none;
+  position: relative;
   background-color: #5c85b4;
   height: 500px;
   padding: 50px;
@@ -118,6 +119,14 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+.container .popup-container i {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: #f04646;
 }
 
 .container .popup-container .popup-content {

@@ -21,8 +21,6 @@ const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
 const createEvent = document.getElementById("create-event-btn");
 
-const handleColorPicker = () => {};
-
 const handleAddEvent = () => {
   let startEvent = document.getElementById("start-time");
   let endEvent = document.getElementById("end-time");
@@ -32,7 +30,9 @@ const handleAddEvent = () => {
   wrongInput.style.display = "none";
   let start = startEvent.value.split(":");
   let end = endEvent.value.split(":");
-  console.log(dateEvent.value + " " + startEvent.value + " " + endEvent.value);
+  console.log(
+    new Date(dateEvent.value) + " " + startEvent.value + " " + endEvent.value
+  );
 
   if (!dateEvent.value || !startEvent.value || !endEvent.value) {
     wrongInput.style.display = "block";
@@ -60,24 +60,50 @@ const handleAddEvent = () => {
   }
 
   if (ok == 1) {
-    const payload = {
-      dateEvent: dateEvent.value,
-      startEvent: startEvent.value,
-      endEvent: endEvent.value,
-    };
-    fetch("/calendar", {
-      method: "POST", // *GET, POST, PUT, DELETE
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload), // body data
-    }).then((response) => {
-      if (response.status == 200) {
-        window.location.href = "/calendar";
-      } else {
-        alert("Error");
+    let type;
+    let hourValue;
+    if (start[0] < 13) {
+      type = "am";
+      hourValue = start[0];
+    } else {
+      type = "pm";
+      hourValue = start[0] - 12;
+      if (hourValue === 0) {
+        hourValue = 12;
       }
-    });
+    }
+
+    let date = new Date(dateEvent.value);
+    console.log(
+      `"${date.getDate()}-${date.getMonth()}-${date.getFullYear()}-${
+        parseInt(hourValue) + type
+      }"`
+    );
+    let hourCell = document.getElementById(
+      `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}-${
+        parseInt(hourValue) + type
+      }`
+    );
+    hourCell.insertAdjacentHTML("beforeend", "<p>event</p>");
+
+    // const payload = {
+    //   dateEvent: dateEvent.value,
+    //   startEvent: startEvent.value,
+    //   endEvent: endEvent.value,
+    // };
+    // fetch("/calendar", {
+    //   method: "POST", // *GET, POST, PUT, DELETE
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(payload), // body data
+    // }).then((response) => {
+    //   if (response.status == 200) {
+    //     window.location.href = "/calendar";
+    //   } else {
+    //     alert("Error");
+    //   }
+    // });
   }
 };
 
@@ -89,7 +115,7 @@ const handleCreateEvent = () => {
   }
 };
 
-colorPicker.addEventListener("input", handleColorPicker);
+// colorPicker.addEventListener("input", handleColorPicker);
 
 let firstDayWeek;
 let lastDayWeek;
@@ -103,9 +129,18 @@ const getWeek = () => {
   shownWeek.innerHTML = monthNames[month] + " " + year;
   let first = curr.getDate() - curr.getDay() + 1;
   let last = first + 6;
+  let changed = false;
+  let differentDays = 0;
+
   for (let day = first; day <= last; day++) {
     const date = new Date(year, month, day);
-
+    if (date.getMonth() != month) {
+      differentDays++;
+    }
+    if (date.getMonth() != month && changed === false) {
+      secondMonth = date.getMonth();
+      changed = true;
+    }
     const options1 = { weekday: "short" };
     const options2 = { day: "numeric" };
 
@@ -118,12 +153,25 @@ const getWeek = () => {
   }
   firstDayWeek = last + 1;
   lastDayWeek = firstDayWeek + 6;
+  if (changed == true) {
+    if (secondMonth < month) {
+      shownWeek.innerHTML =
+        monthNames[secondMonth] + " - " + monthNames[month] + " " + year;
+      nextMonthchanged = true;
+    } else {
+      shownWeek.innerHTML =
+        monthNames[month] + " - " + monthNames[secondMonth] + " " + year;
+    }
+    secondMonth = month;
+  }
+  getHourCells(differentDays);
 };
+
 let mondayStartMonth = 0;
+
 const getNextWeek = () => {
   let dayNameParagraph = document.querySelectorAll(".day-name");
   let dayNumberParagraph = document.querySelectorAll(".day-number");
-  let hourCell = document.querySelectorAll(".hour-cell");
   let changedMonth = false;
   let changedYear = false;
 
@@ -191,7 +239,6 @@ const getPreviousWeek = () => {
   let changedYear = false;
   firstDayWeek -= 14;
   lastDayWeek = firstDayWeek - 7;
-
   day = firstDayWeek;
 
   if (nextMonthchanged) {
@@ -205,7 +252,6 @@ const getPreviousWeek = () => {
 
     if (date.getMonth() !== secondMonth && !changedMonth) {
       secondMonth = date.getMonth();
-      console.log(secondMonth);
       changedMonth = true;
       if (day === lastDayWeek) {
         mondayStartMonth = 1;
@@ -240,10 +286,14 @@ const getPreviousWeek = () => {
   });
   firstDayWeek += 7;
   lastDayWeek = firstDayWeek + 6;
-  if (secondMonth !== month && mondayStartMonth === 0) {
+  if (secondMonth < month && mondayStartMonth === 0) {
     shownWeek.innerHTML =
       monthNames[secondMonth] + " - " + monthNames[month] + " " + year;
     month = secondMonth;
+  } else if (secondMonth > month && mondayStartMonth === 0) {
+    shownWeek.innerHTML =
+      monthNames[month] + " - " + monthNames[secondMonth] + " " + year;
+    secondMonth = month;
   } else if (mondayStartMonth === 1) {
     month = secondMonth;
     mondayStartMonth = 0;
@@ -254,44 +304,98 @@ const getPreviousWeek = () => {
 };
 
 const getHours = () => {
-  for (let i = 8; i < 13; i++) {
+  for (let i = 8; i < 12; i++) {
     hour.insertAdjacentHTML("beforeend", `<div class="${i}-am">${i} am</div>`);
   }
-  for (let i = 1; i < 13; i++) {
+  hour.insertAdjacentHTML("beforeend", `<div class="12-pm">12 pm</div>`);
+  for (let i = 1; i < 12; i++) {
     hour.insertAdjacentHTML("beforeend", `<div class="${i}-pm">${i} pm</div>`);
   }
+  hour.insertAdjacentHTML("beforeend", `<div class="12-am">12 am</div>`);
   for (let i = 1; i < 8; i++) {
     hour.insertAdjacentHTML("beforeend", `<div class="${i}-am">${i} am</div>`);
   }
 };
 
-const getHourCells = () => {
+const getHourCells = (differentDays) => {
   let dayDate = document.querySelectorAll(".day-date");
   let dayNumberParagraph = document.querySelectorAll(".day-number");
   let j = 0;
   dayDate.forEach((element) => {
-    for (let i = 8; i < 13; i++) {
+    if (differentDays > 0) {
+      differentDays--;
+      for (let i = 8; i < 12; i++) {
+        element.insertAdjacentHTML(
+          "beforeend",
+          `<div class ="hour-cell-${j} ${i}am" id="${
+            dayNumberParagraph[j].innerHTML
+          }-${month - 1}-${year}-${i}am"></div>`
+        );
+      }
       element.insertAdjacentHTML(
         "beforeend",
-        `<div class ="hour-cell-${j} ${i}am" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}"></div>`
+        `<div class ="hour-cell-${j} 12pm" id="${
+          dayNumberParagraph[j].innerHTML
+        }-${month - 1}-${year}-12pm"></div>`
       );
-    }
-    for (let i = 1; i < 13; i++) {
+      for (let i = 1; i < 12; i++) {
+        element.insertAdjacentHTML(
+          "beforeend",
+          `<div class ="hour-cell-${j} ${i}pm" id="${
+            dayNumberParagraph[j].innerHTML
+          }-${month - 1}-${year}-${i}pm"></div>`
+        );
+      }
       element.insertAdjacentHTML(
         "beforeend",
-        `<div class ="hour-cell-${j} ${i}pm" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}"></div>`
+        `<div class ="hour-cell-${j} 12am" id="${
+          dayNumberParagraph[j].innerHTML
+        }-${month - 1}-${year}-12am"></div>`
       );
-    }
-    for (let i = 1; i < 8; i++) {
+      for (let i = 1; i < 8; i++) {
+        element.insertAdjacentHTML(
+          "beforeend",
+          `<div class ="hour-cell-${j} ${i}am" id="${
+            dayNumberParagraph[j].innerHTML
+          }-${month - 1}-${year}-${i}am"></div>`
+        );
+      }
+      j++;
+    } else {
+      for (let i = 8; i < 12; i++) {
+        element.insertAdjacentHTML(
+          "beforeend",
+          `<div class ="hour-cell-${j} ${i}am" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}-${i}am"></div>`
+        );
+      }
       element.insertAdjacentHTML(
         "beforeend",
-        `<div class ="hour-cell-${j} ${i}am" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}"></div>`
+        `<div class ="hour-cell-${j} 12pm" id="${
+          dayNumberParagraph[j].innerHTML
+        }-${month - 1}-${year}-12pm"></div>`
       );
+      for (let i = 1; i < 12; i++) {
+        element.insertAdjacentHTML(
+          "beforeend",
+          `<div class ="hour-cell-${j} ${i}pm" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}-${i}pm"></div>`
+        );
+      }
+      element.insertAdjacentHTML(
+        "beforeend",
+        `<div class ="hour-cell-${j} 12am" id="${
+          dayNumberParagraph[j].innerHTML
+        }-${month - 1}-${year}-12am"></div>`
+      );
+      for (let i = 1; i < 8; i++) {
+        element.insertAdjacentHTML(
+          "beforeend",
+          `<div class ="hour-cell-${j} ${i}am" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}-${i}am"></div>`
+        );
+      }
+      j++;
     }
-    j++;
   });
 };
 
 getWeek();
 getHours();
-getHourCells();
