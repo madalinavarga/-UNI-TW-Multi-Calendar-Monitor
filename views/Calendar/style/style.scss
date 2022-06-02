@@ -52,10 +52,16 @@
         .day-date {
           border: 1px solid #dfe1e2a2;
           width: 100%;
-          div {
+          .hours {
             width: 100%;
             height: 61.2px;
             border: 1px solid #dfe1e2a2;
+          }
+          .first-half {
+            height: 50%;
+          }
+          .second-half {
+            height: 50%;
           }
         }
         #hour-cells {
@@ -88,7 +94,7 @@
     z-index: 2;
     position: absolute;
     width: 400px;
-    top: 15px;
+    top: -22px;
     left: 0;
     right: 0;
     margin-left: auto;
