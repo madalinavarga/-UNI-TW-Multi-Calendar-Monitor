@@ -28,32 +28,11 @@ function login() {
     body: JSON.stringify(payload), // body data
   }).then((response) => {
     if (response.status == 200) {
-      //console.log(JSON.stringify(response.body));
-      //return response.json;
-      /*
-      response.on('data', function (chunk) {
-        str += chunk;
-      });
-    
-      response.on('end', function () {
-        console.log(req.data);
-        console.log(str);
-        // your code here if you want to use the results !
-      });
-      */
+      
 
       let body = "";
       body=JSON.stringify(response.body).split(",")[0];
 
-      // req.on("data", function (data) {
-      //   body += data;
-      // });
-
-      //console.log("respinse body: " + response.body);
-      //var body = response.body;
-      //var body = JSON.parse(response.body);
-      //console.log(body);
-      //console.log("abc");
       
       if (body != "isAdmin") {
         window.location.href = "/admin";

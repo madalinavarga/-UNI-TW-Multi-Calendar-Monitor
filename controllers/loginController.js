@@ -28,11 +28,6 @@ async function loginUser(req, res) {
             res.writeHead(200, {
               "Set-Cookie": `token=${token}; HttpOnly`,
             });
-
-            //res.body="isAdmin";
-            console.log(data.email);
-            console.log(data.isAdmin);
-
             
             if (data.isAdmin == true) {
               res.write("isAdmin,");
