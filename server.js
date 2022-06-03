@@ -1,6 +1,6 @@
 //entry point to app
 //imports
-const PORT=process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 const http = require("http");
 const fs = require("fs");
 const { initDB } = require("./model");
@@ -12,6 +12,7 @@ const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
+const { adminRoutes } = require("./routes/adminRoutes");
 
 //init db
 initDB();
@@ -61,6 +62,9 @@ http
 
       case "/calendar":
         await calendarRoutes(req, res);
+        break;
+      case "/admin":
+        await adminRoutes(req, res);
         break;
 
       default:

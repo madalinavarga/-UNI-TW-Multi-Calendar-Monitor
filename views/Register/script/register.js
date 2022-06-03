@@ -18,8 +18,10 @@ function register() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const passwordConfirm = document.getElementById("password-confirm").value;
+  const isAdmin = document.querySelector("#isAdmin").checked;
 
   if (!firstName || !lastName || !email || !password || !passwordConfirm) {
+    //alert(isAdmin);
     alert("All fields are required!");
     return;
   }
@@ -41,6 +43,7 @@ function register() {
     lastName: lastName,
     email: email,
     password: password,
+    isAdmin: isAdmin,
   };
 
   fetch("/register", {

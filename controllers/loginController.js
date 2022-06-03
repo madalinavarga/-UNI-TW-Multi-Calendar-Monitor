@@ -28,7 +28,21 @@ async function loginUser(req, res) {
             res.writeHead(200, {
               "Set-Cookie": `token=${token}; HttpOnly`,
             });
+
+            //res.body="isAdmin";
+            console.log(data.email);
+            console.log(data.isAdmin);
+
+            
+            if (data.isAdmin == true) {
+              res.write("isAdmin,");
+            } else {
+              res.write("isNotAdmin,");
+            }
             res.write(token);
+            
+            res.end();
+
             return;
           }
         }
@@ -70,12 +84,13 @@ async function loginUserWithGoogle(req, res) {
     });
     return;
   }
-
+  /*
   const token = jwt.sign({ user }, "student");
   res.writeHead(302, {
     Location: `http://localhost:4000`,
     "Set-Cookie": `token=${token}; HttpOnly; path=/`,
   });
+  */
 }
 
 module.exports = {
