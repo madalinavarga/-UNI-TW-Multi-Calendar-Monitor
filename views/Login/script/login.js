@@ -39,7 +39,7 @@ function login() {
 function getGoogleAuthURL() {
   const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
   const options = {
-    redirect_uri: `http://localhost:4000/login/google`,
+    redirect_uri: `https://my-calendar-tw.herokuapp.com/login/google`,
     client_id:
       "1098497934240-41hpe6qpi67seng5ln8ees5e8re6abs4.apps.googleusercontent.com",
     access_type: "offline",
@@ -59,9 +59,9 @@ function loginWithGoogle() {
 }
 
 function redirectRegister(){
-    window.location.href="http://localhost:4000/register"
+    window.location.href="/register"
 }
 
 function redirectHome(){
-    window.location.href="http://localhost:4000/home"
+    window.location.href="/home"
 }
