@@ -70,13 +70,16 @@ function cancelEdit() {
 
 async function save() {
   const file = document.getElementById("image").files[0];
-  const profileImage = await toBase64(file);
+  let profileImage;
+  if(file){
+   profileImage = await toBase64(file);
+  }
 
   const payload = {
     firstName: document.getElementById("firstName").value,
     lastName: document.getElementById("lastName").value,
     email: document.getElementById("email").value,
-    photo: profileImage,
+    photo: profileImage || userData.photo
   };
 
   const response = await fetch("userProfile/edit", {
