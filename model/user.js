@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  photo: {
+    type: String,
+    required: false
+  },
   friends:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
