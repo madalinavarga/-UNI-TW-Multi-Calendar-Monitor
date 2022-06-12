@@ -1,6 +1,7 @@
 .user-profile-container {
   width: 30rem;
   height: 35rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -11,11 +12,32 @@
   .user-info {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 2rem;
-    text-align: center;
-  }
-  .btn {
-    margin-top: 1rem;
+    gap: 1rem;
+    .btn {
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+    > div, h2, .logout {
+      display: flex;
+      gap: 0.5rem;
+      width: 75%;
+      align-items: center;
+    }
+    .logout {
+      cursor: pointer;
+    }
+    .edit {
+      width: 1rem;
+      cursor: pointer;
+    } 
+    #save, #cancel {
+      width: 25%;
+      margin: 0;
+      display: none;
+    }
   }
 }
 

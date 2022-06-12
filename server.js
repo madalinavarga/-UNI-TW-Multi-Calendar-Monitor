@@ -8,10 +8,11 @@ const { login } = require("./routes/loginRoutes");
 const { loginWithGoogle } = require("./routes/loginWithGoogleRoutes");
 const { register } = require("./routes/registerRoutes");
 const { friendsList } = require("./routes/friendsListRoutes");
-const { userProfile } = require("./routes/userProfileRoutes");
+const { userProfile, editUserProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
+const { logoutRoutes } = require("./routes/logoutRoutes");
 
 //init db
 initDB();
@@ -35,6 +36,10 @@ http
         await homeRoutes(req, res);
         break;
 
+      case "/logout":
+        await logoutRoutes(req,res);
+        break;
+
       case "/login":
         await login(req, res);
         break;
@@ -55,6 +60,10 @@ http
         userProfile(req, res);
         break;
 
+      case "/userProfile/edit":
+        await editUserProfile(req,res);
+        break;
+      
       case "/userDetails":
         await usersRoutes(req, res);
         break;
