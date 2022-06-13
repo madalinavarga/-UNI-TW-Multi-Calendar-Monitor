@@ -26,23 +26,14 @@ function createEvent(req, res) {
   });
 }
 
-function getEventsPerDay(req, res) {
-  const events = eventModel.find(
-    { dateEvent: req.dateEvent },
-    (error, data) => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(data);
-      }
-    }
-  );
+async function getEvents(req, res) {
+  const events = await eventModel.find();
   res.writeHead(200);
-  res.write(events.toString);
+  res.write(JSON.stringify(events));
 }
 
 module.exports = {
   getViewHTML,
   createEvent,
-  getEventsPerDay,
+  getEvents,
 };

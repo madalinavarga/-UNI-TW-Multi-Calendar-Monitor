@@ -5,10 +5,10 @@ async function middleware(req, res, next) {
   try {
     const hasCookie = req.headers.cookie;
     if (hasCookie) {
-      const cookie=req.headers.cookie;
+      const cookie = req.headers.cookie;
       const token = cookie.split("token=")[1].split(";")[0];
       const userData = JSON.parse(atob(token.split(".")[1]));
-      req.email=userData.user.email;
+      req.email = userData.user.email;
       await next(req, res); // controller dat ca parametru
     } else {
       res.writeHead(500);

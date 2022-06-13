@@ -1,6 +1,6 @@
 const fs = require("fs");
 const {
-  getEventsPerDay,
+  getEvents,
   createEvent,
   getViewHTML,
 } = require("../controllers/calendarController");
@@ -10,6 +10,7 @@ function calendarRoutes(req, res) {
   switch (req.method) {
     case "GET":
       middleware(req, res, getViewHTML);
+      // middleware(req, res, getEvents);
       break;
     case "POST":
       middleware(req, res, createEvent);
@@ -18,6 +19,16 @@ function calendarRoutes(req, res) {
   }
 }
 
+function eventsRoutes(req, res) {
+  switch (req.method) {
+    case "GET":
+      middleware(req, res, getEvents);
+    default:
+      res.write("method not allowed");
+  }
+}
+
 module.exports = {
   calendarRoutes,
+  eventsRoutes,
 };

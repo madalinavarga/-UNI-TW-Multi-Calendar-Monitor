@@ -183,15 +183,14 @@ let nextMonthchanged = false;
 let year = curr.getFullYear();
 
 const getEventsPerDay = (date) => {
-  // fetch("/calendar", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: date.toString(),
-  // })
-  //   .then((res) => res.json)
-  //   .then((data) => console.log(data));
+  fetch("/calendar-events", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res)
+    .then((data) => console.log(data));
 };
 
 //this function is called at the beggining to show the current week
