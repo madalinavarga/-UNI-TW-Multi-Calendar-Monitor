@@ -18,18 +18,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  isAdmin:{
-    type: Boolean,
-    required:true,
-  },
   role: {
     type: Number,
     required: true,
   },
-  friends:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'users'
-  }]
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
 });
 const userModel = mongoose.model("users", userSchema, "users");
 

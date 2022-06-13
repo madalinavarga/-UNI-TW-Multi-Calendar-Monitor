@@ -28,19 +28,7 @@ function login() {
     body: JSON.stringify(payload), // body data
   }).then((response) => {
     if (response.status == 200) {
-      
-
-      let body = "";
-      body=JSON.stringify(response.body).split(",")[0];
-
-      
-      if (body != "isAdmin") {
-        window.location.href = "/admin";
-      } else {
-        window.location.href = "/admin";
-      }
-      
-      //window.location.href = "/home";
+      window.location.href = "/home";
     } else {
       alert("Invalid username or password");
     }

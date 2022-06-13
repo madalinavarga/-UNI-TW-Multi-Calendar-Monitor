@@ -43,7 +43,7 @@ function register() {
     lastName: lastName,
     email: email,
     password: password,
-    isAdmin: isAdmin,
+    role: isAdmin,
   };
 
   fetch("/register", {
