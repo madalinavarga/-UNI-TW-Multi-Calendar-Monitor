@@ -4,8 +4,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-if(window.location.href.includes("failed"))
-alert("Google adress not found")
+if (window.location.href.includes("failed")) alert("Google adress not found");
 
 function login() {
   const email = document.getElementById("email").value;
@@ -58,6 +57,14 @@ function loginWithGoogle() {
   window.location.href = getGoogleAuthURL();
 }
 
+/*
+function redirectRegister() {
+  window.location.href = "http://localhost:4000/register";
+}
+
+function redirectHome() {
+  window.location.href = "http://localhost:4000/home";
+}*/
 function redirectRegister(){
     window.location.href="/register"
 }
@@ -65,3 +72,4 @@ function redirectRegister(){
 function redirectHome(){
     window.location.href="/home"
 }
+

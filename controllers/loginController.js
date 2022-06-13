@@ -24,11 +24,17 @@ async function loginUser(req, res) {
         if (user != null) {
           if (await bcrypt.compare(data.password, user.password)) {
             const token = jwt.sign({ user }, "student");
+            /*
             res.setHeader("Content-Type", "application/json");
             res.writeHead(200, {
-              "Set-Cookie": `token=${token}; HttpOnly`,
+              "Set-Cookie": `token=${token}; HttpOnly`,*/
+            res.writeHead(302, {
+              Location: `/`,
+              "Set-Cookie": `token=${token}; HttpOnly; path=/`,
             });
-            res.write(token);
+
+            res.end();
+
             return;
           }
         }
@@ -70,12 +76,13 @@ async function loginUserWithGoogle(req, res) {
     });
     return;
   }
-
+  /*
   const token = jwt.sign({ user }, "student");
   res.writeHead(302, {
     Location: `/`,
     "Set-Cookie": `token=${token}; HttpOnly; path=/`,
   });
+  */
 }
 
 async function loginUserWithTwitter(req, res) {

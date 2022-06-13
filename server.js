@@ -12,8 +12,10 @@ const { userProfile, editUserProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
+const { adminRoutes } = require("./routes/adminRoutes");
 const { logoutRoutes } = require("./routes/logoutRoutes");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
+
 
 //init db
 initDB();
@@ -75,6 +77,9 @@ http
 
       case "/calendar":
         await calendarRoutes(req, res);
+        break;
+      case "/admin":
+        await adminRoutes(req, res);
         break;
 
       case "/login/twitter":
