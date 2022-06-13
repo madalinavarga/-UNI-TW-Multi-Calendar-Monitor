@@ -7,13 +7,13 @@ const { initDB } = require("./model");
 const { login } = require("./routes/loginRoutes");
 const { loginWithGoogle } = require("./routes/loginWithGoogleRoutes");
 const { register } = require("./routes/registerRoutes");
-const { friendsList } = require("./routes/friendsListRoutes");
+const { friendsList, getFriends } = require("./routes/friendsListRoutes");
 const { userProfile, editUserProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { logoutRoutes } = require("./routes/logoutRoutes");
-const {loginWithTwitter} = require("./routes/loginWithTwitterRoutes");
+const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 
 //init db
 initDB();
@@ -55,6 +55,10 @@ http
 
       case "/friendsList":
         friendsList(req, res);
+        break;
+
+      case "/getFriends":
+        await getFriends(req, res);
         break;
 
       case "/userProfile":

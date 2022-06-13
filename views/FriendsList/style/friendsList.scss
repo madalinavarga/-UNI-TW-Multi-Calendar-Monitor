@@ -1,92 +1,102 @@
-$color-nav:grey;
+$color-nav: grey;
 .container-friends {
-    justify-content: flex-start;
-    .nav-friends {
-        width: 100%;
-        padding: 0.7rem;
-        display: flex;
-        align-items: center;
-        justify-content: end;
-        background-color: $color-nav;
-        column-gap: 3rem;
-        padding-right: 5rem;
-        li {
-            list-style-type: none;
-            a {
-                color: white;
-            }
-        }
+  justify-content: flex-start;
+  .nav-friends {
+    width: 100%;
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: $color-nav;
+    column-gap: 3rem;
+    padding-right: 5rem;
+    li {
+      list-style-type: none;
+      a {
+        color: white;
+      }
     }
-    /* FRIENDS -> 1 container : details + buttons*/
-    .friends {
-        display: flex;
-        flex-direction: column;
+  }
+  /* FRIENDS -> 1 container : details + buttons*/
+  .friends-page-components {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    #friends-container {
+      width: 50%;
+      margin-top:1rem;
+      margin-bottom: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .friend-container {
+        display: grid;
+        grid-template-columns: 3fr 6fr;
+        background: rgba(149, 221, 224, 0.705);
         padding: 2rem;
-        row-gap: 2rem;
         border-radius: 0.5rem;
-        .friend-container {
-            margin-left: 10rem;
-            margin-right: 10rem;
-            display: grid;
-            grid-template-columns: 3fr 6fr;
-            background: rgba(149, 221, 224, 0.705);
-            padding: 2rem;
-            border-radius: 0.5rem;
-            .friend-buttons {
-                display: flex;
-                align-items: center;
-                justify-content: start;
-                column-gap: 3rem;
-            }
+        .friend-buttons {
+          display: flex;
+          align-items: center;
+          justify-content: start;
         }
+      }
     }
-    .friend-details {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    .social-media {
+      .fromTwitter {
+        border: 1px solid black;
+      }
     }
+  }
+  .friend-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 900px) {
-    .container-friends {
-        .friends {
-            .friend-container {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                .friend-buttons {
-                    flex-direction: column;
-                    gap: 0.5rem;
-                }
-            }
+  .container-friends {
+    .friends {
+      .friend-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        .friend-buttons {
+          flex-direction: column;
+          gap: 0.5rem;
         }
+      }
     }
+  }
 }
 
 .subliniere {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-    .container-friends {
-        .nav-friends {
-            padding: 0.7rem;
-            margin: 0;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-        .friends {
-            padding: 1rem;
-            margin: 0;
-            .friend-container {
-                padding: 1rem;
-                margin: 0;
-            }
-        }
+  .container-friends {
+    .nav-friends {
+      padding: 0.7rem;
+      margin: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
+    .friends {
+      padding: 1rem;
+      margin: 0;
+      .friend-container {
+        padding: 1rem;
+        margin: 0;
+      }
+    }
+  }
 }

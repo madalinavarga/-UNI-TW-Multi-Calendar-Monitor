@@ -20,7 +20,7 @@ async function loginUser(req, res) {
     req.on("end", async function () {
       try {
         const data = JSON.parse(body);
-        const user = await userModel.findOne({ email: data.email });
+        const user = await userModel.findOne({ email: data.email }, 'firstName lastName password email role');
         if (user != null) {
           if (await bcrypt.compare(data.password, user.password)) {
             const token = jwt.sign({ user }, "student");
