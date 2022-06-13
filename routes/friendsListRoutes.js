@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { getViewHTML } = require("../controllers/friendsListController");
+const { getViewHTML, getFriendsList } = require("../controllers/friendsListController");
 const { middleware } = require("../middleware/middleware")
 
 
@@ -13,6 +13,16 @@ function friendsList(req, res) {
     }
 }
 
+async function getFriends(req,res){
+    switch (req.method) {
+        case "GET":
+            await middleware(req, res, getFriendsList)
+            break;
+        default:
+            res.write('method not allowed');
+    }
+}
 module.exports = {
-    friendsList: friendsList
+    friendsList,
+    getFriends
 }
