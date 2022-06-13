@@ -99,17 +99,58 @@ const handleAddEvent = () => {
 };
 
 const addEvent = (date, start, end, color, title, description) => {
-  let element = document.querySelector(
-    `.d${date.getDate()}-${date.getMonth()}`
-  );
-  element.insertAdjacentHTML(
-    "beforeend",
-    `<div class="event" id="${start}-${end}" style="background-color:${convertToRgba(
-      color
-    )}">
-      <p>${start} - ${end}</p>
-      <p>${title.substring(0, 12)}</p></div>`
-  );
+  let day = document.querySelector(`.d${date.getDate()}-${date.getMonth()}`);
+  if (day != null) {
+    if (day.childElementCount == 0) {
+      day.insertAdjacentHTML(
+        "beforeend",
+        `<div class="event" id="${start}-${end}" style="background-color:${convertToRgba(
+          color
+        )}">
+          ${eventText(start, end, title)}
+          </div>`
+      );
+    } else {
+      eventPlaceInList(day, start, end, color, title);
+    }
+  }
+};
+
+//function that will return after or before what event it should be added
+const eventPlaceInList = (day, start, end, color, title) => {
+  let added = 0;
+  for (let i = 0; i < day.children.length; i++) {
+    let startExistingEvent = day.children[i].id.split("-")[0];
+    let endExistingEvent = day.children[i].id.split("-")[1];
+    if (start < startExistingEvent) {
+      day.children[i].insertAdjacentHTML(
+        "beforebegin",
+        `<div class="event" id="${start}-${end}" style="background-color:${convertToRgba(
+          color
+        )}">
+        ${eventText(start, end, title)}
+        </div>`
+      );
+      added = 1;
+      break;
+    }
+  }
+  if (added == 0) {
+    day.insertAdjacentHTML(
+      "beforeend",
+      `<div class="event" id="${start}-${end}" style="background-color:${convertToRgba(
+        color
+      )}">
+        ${eventText(start, end, title)}
+        </div>`
+    );
+  }
+};
+
+//function that shows the event in the weekly calendar
+const eventText = (start, end, title) => {
+  return `<p>${start} - ${end}</p>
+          <p>${title.substring(0, 12)}</p>`;
 };
 
 //function to make hex color rgba, if an user select color black to see the hour and title
