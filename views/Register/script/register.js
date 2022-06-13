@@ -62,5 +62,5 @@ function register() {
 }
 
 function redirectHome() {
-  window.location.href = "http://localhost:4000/home";
+  window.location.href = "/home";
 }

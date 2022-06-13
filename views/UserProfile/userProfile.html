@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
     <link rel="stylesheet" href="views/UserProfile/style/userProfile.css" />
     <link
@@ -31,22 +39,39 @@
     <div class="container">
       <div class="user-profile-container">
         <div class="user-photo center">
-          <img
-            class="avatar"
-            src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png"
-            alt="avatar"
-          />
-          <p>Edit</p>
+          <label for="image">
+            <input type="file" name="image" id="image" style="display: none" disabled/>
+            <img
+              class="avatar"
+              id="userPhoto"
+              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar"
+            />
+          </label>
         </div>
         <div class="user-info">
-          <hr />
-          <h2>User info</h2>
-          <div id="firstName"></div>
-          <div id="lastName"></div>
-          <div id="email"></div>
-          <div id="password"></div>
-          <!-- <button class="btn-primary btn" type="submit">Save</button> -->
-          <a href="../Home/home.html">Log out</a>
+          <hr/>
+          <h2> User info<i class="far fa-edit edit" onclick="toggleEdit()"></i> </h2>
+          <div>
+            <b>First name:</b>
+            <div id="firstName"></div>
+          </div>
+          <div>
+            <b>Last name:</b>
+            <div id="lastName"></div>
+          </div>
+          <div>
+            <b>Email:</b>
+            <div id="email"></div>
+          </div>
+          <div>
+            <button id="save" class="btn-primary btn" onclick="save()">
+              Save
+            </button>
+            <button id="cancel" class="btn-danger btn" onclick="cancelEdit()">
+              Cancel
+            </button>
+          </div>
+          <b class="logout" onclick="logout()">Log out</b>
         </div>
       </div>
     </div>
@@ -65,5 +90,6 @@
       </div>
     </div>
     <script src="views/UserProfile/script/userProfile.js"></script>
+    <script src="../../public/script/script.js"></script>
   </body>
 </html>

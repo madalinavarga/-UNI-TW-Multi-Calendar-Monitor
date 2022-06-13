@@ -1,79 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
     <link rel="stylesheet" href="views/FriendsList/style/friendsList.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>MyTime</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="navbar">
-        <img src="../../images/logo.svg" alt="Menu logo" />
-        <div class="navbar-items-container">
-            <a class="navbar-items" href="/home">Home</a>
-            <a class="navbar-items active-navbar-item" href="/friendsList">Friends</a>
-            <a class="navbar-items" href="/calendar">Calendar</a>
-            <a class="navbar-items" href="/requests">Requests</a>
-            <a class="navbar-items" href="/userProfile">Profile</a>
-        </div>
-        <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
+      <img src="../../images/logo.svg" alt="Menu logo" />
+      <div class="navbar-items-container">
+        <a class="navbar-items" href="/home">Home</a>
+        <a class="navbar-items active-navbar-item" href="/friendsList"
+          >Friends</a
+        >
+        <a class="navbar-items" href="/calendar">Calendar</a>
+        <a class="navbar-items" href="/requests">Requests</a>
+        <a class="navbar-items" href="/userProfile">Profile</a>
+      </div>
+      <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
+
     <div class="container-friends">
-        <div class="nav-friends">
-            <li><a href="#">Friend Requests</a></li>
-            <li><a class="subliniere" href="../FriendsList/friendsList.html">Your Friends List</a></li>
-            <div class="search-container">
-                <form action="#">
-                    <input type="text" placeholder="Search..." name="search" />
-                    <button type="submit" class="btn-primary btn">Search</button>
-                </form>
-            </div>
+      <div class="nav-friends">
+        <li><a href="#">Friend Requests</a></li>
+        <li>
+          <a class="subliniere" href="../FriendsList/friendsList.html">Your Friends List</a>
+        </li>
+        <div class="search-container">
+          <form action="#">
+            <input type="text" placeholder="Search..." name="search" />
+            <button type="submit" class="btn-primary btn">Search</button>
+          </form>
         </div>
-        <div class="friends">
-            <div class="friend-container">
-                <div class="friend-details">
-                    <img class="avatar" src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar" />
-                    <p>Nume utilizator</p>
-                </div>
-                <div class="friend-buttons">
-                    <button class="btn-primary btn">Facebook</button>
-                    <button class="btn-primary btn">See options</button>
-                    <button class="btn-danger btn">Delete</button>
-                </div>
-            </div>
-            <div class="friend-container">
-                <div class="friend-details">
-                    <img class="avatar" src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar" />
-                    <p>Nume utilizator</p>
-                </div>
-                <div class="friend-buttons">
-                    <button class="btn-primary btn">Facebook</button>
-                    <button class="btn-primary btn">See options</button>
-                    <button class="btn-danger btn">Delete</button>
-                </div>
-            </div>
+      </div>
+      <div class="friends-page-components">
+        <div id="friends-container">
         </div>
+        <div class="social-media">
+          <div class="fromTwitter">
+            <p>twitter</p>
+            <button id="btn-twitter">login twitter</button>
+            <div class="twiter-container">
+                <img
+              class="avatar"
+              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png"
+              alt="avatar"
+            />
+            <div class="add-friend">
+                <h3>Nume prieten</h3>
+                <button class="btn-add btn">Add friend</button>
+            </div>
+            </div>
+          </div>
+          <div class="from2">
+            <p>social 2</p>
+            <button>login ceva</button></div>
+        </div>
+      </div>
     </div>
     <div class="footer">
-        <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
-        <div class="icons-container">
-            <a href="https://www.google.com/">
-                <img src="../../images/facebook-icon.png" alt="facebook-icon" />
-            </a>
-            <a href="https://www.google.com/">
-                <img src="../../images/instagram-icon.png" alt="instagram-icon" />
-            </a>
-            <a href="https://www.google.com/">
-                <img src="../../images/twitter-icon.png" alt="instagram-icon" />
-            </a>
-        </div>
+      <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
+      <div class="icons-container">
+        <a href="https://www.google.com/">
+          <img src="../../images/facebook-icon.png" alt="facebook-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../../images/instagram-icon.png" alt="instagram-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../../images/twitter-icon.png" alt="instagram-icon" />
+        </a>
+      </div>
     </div>
     <script src="../../public/script/script.js"></script>
-</body>
-
+    <script src="views/FriendsList/script/friendsList.js"></script>
+  </body>
 </html>

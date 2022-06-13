@@ -1,17 +1,25 @@
 const fs = require('fs');
-const { getViewHTML } = require('../controllers/userProfileController');
+const { getViewHTML, editProfile } = require('../controllers/userProfileController');
 const { middleware } = require("../middleware/middleware")
 
 function userProfile(req, res) {
     switch (req.method) {
         case "GET":
-            //getViewHTML(req, res);
             middleware(req, res, getViewHTML)
             break;
     }
 
 }
 
+async function editUserProfile(req,res){
+    switch (req.method) {
+        case "PUT":
+           await  middleware(req, res, editProfile)
+            break;
+    }
+}
+
 module.exports = {
-    userProfile: userProfile
+    userProfile: userProfile,
+    editUserProfile
 }
