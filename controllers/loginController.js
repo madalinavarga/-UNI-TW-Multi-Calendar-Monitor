@@ -78,8 +78,37 @@ async function loginUserWithGoogle(req, res) {
   });
 }
 
+async function loginUserWithTwitter(req, res) {
+  // if redirect from twitter,redirect back to friends list with twitter id as cookie
+  if (req.params) {
+    const response = await fetch(
+      `https://api.twitter.com/oauth/access_token?${req.params}`,
+      {
+        method: "POST",
+      }
+    );
+    const data = await response.text();
+    const params = new URLSearchParams(data);
+    res.writeHead(302, {
+      Location: `/friendsList`,
+      "Set-Cookie": `twitterId=${params.get("user_id")}; path=/`,
+    });
+  }
+  // if not redirect from twitter, go to twitter login first
+  else {
+    const response = await fetch(
+      "https://twitter.com/oauth/request_token?&oauth_consumer_key=D8ALg4MyQluL8bZLoh1MAeU4b&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1655036217&oauth_nonce=dR8xrS&oauth_version=1.0A&oauth_callback=http%253A%252F%252Flocalhost%253A4000%252Flogin%252Ftwitter&oauth_signature=l3tcoOxMLRXMvgogxLFClea%2Fik8%3D"
+    );
+    const token = await response.text();
+    res.writeHead(302, {
+      Location: `https://api.twitter.com/oauth/authenticate?${token}`,
+    });
+  }
+}
+
 module.exports = {
   getViewHTML,
   loginUser,
   loginUserWithGoogle,
+  loginUserWithTwitter,
 };

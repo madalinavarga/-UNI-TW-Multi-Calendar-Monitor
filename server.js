@@ -1,6 +1,6 @@
 //entry point to app
 //imports
-const PORT=process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 const http = require("http");
 const fs = require("fs");
 const { initDB } = require("./model");
@@ -13,6 +13,7 @@ const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { logoutRoutes } = require("./routes/logoutRoutes");
+const {loginWithTwitter} = require("./routes/loginWithTwitterRoutes");
 
 //init db
 initDB();
@@ -37,7 +38,7 @@ http
         break;
 
       case "/logout":
-        await logoutRoutes(req,res);
+        await logoutRoutes(req, res);
         break;
 
       case "/login":
@@ -61,15 +62,19 @@ http
         break;
 
       case "/userProfile/edit":
-        await editUserProfile(req,res);
+        await editUserProfile(req, res);
         break;
-      
+
       case "/userDetails":
         await usersRoutes(req, res);
         break;
 
       case "/calendar":
         await calendarRoutes(req, res);
+        break;
+
+      case "/login/twitter":
+        await loginWithTwitter(req, res);
         break;
 
       default:
