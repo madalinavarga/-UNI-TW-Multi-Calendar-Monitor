@@ -11,9 +11,13 @@ const monthNames = [
   "October",
   "November",
   "December",
-];
+]; // i use this array to show the month of the week
+
 const calendar = document.getElementById("calendar-table");
 const calendarTableHeader = document.getElementById("calendar-table-header");
+const calendarTableContainer = document.getElementById(
+  "calendar-table-container"
+);
 const inputDate = document.getElementById("date-picker");
 const popUp = document.querySelector(".popup-container");
 const colorPicker = document.getElementById("color-picker-input");
@@ -21,6 +25,8 @@ const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
 const createEvent = document.getElementById("create-event-btn");
 
+// this function handles if the user entered a wrong date and time event and if everything is correct
+// it adds the event
 const handleAddEvent = () => {
   let startEvent = document.getElementById("start-time");
   let endEvent = document.getElementById("end-time");
@@ -62,7 +68,14 @@ const handleAddEvent = () => {
     let title = document.getElementById("event-title").value;
     let description = document.getElementById("event-description").value;
     let date = new Date(dateEvent.value);
-    addEvent(date, start, end, colorPicker.value, title, description);
+    addEvent(
+      date,
+      startEvent.value,
+      endEvent.value,
+      colorPicker.value,
+      title,
+      description
+    );
 
     // const payload = {
     //   dateEvent: dateEvent.value,
@@ -85,95 +98,29 @@ const handleAddEvent = () => {
   }
 };
 
-const calculateEventHour = (start, end) => {
-  return parseInt(end[0]) - parseInt(start[0]);
-};
-
-const calculateEventMinutes = (start, end) => {
-  return parseInt(end[1]) - parseInt(start[1]);
-};
-
 const addEvent = (date, start, end, color, title, description) => {
-  let type;
-  let hourValue;
-  if (start[0] < 13) {
-    type = "am";
-    hourValue = start[0];
-  } else {
-    type = "pm";
-    hourValue = start[0] - 12;
-    if (hourValue === 0) {
-      hourValue = 12;
-    }
-  }
-  if (calculateEventHour(start, end) === 0) {
-    if (parseInt(start[1]) === 30) {
-      let cell = getSecondHalfCell(date, hourValue, type, color);
-      setCellTitle(cell, title);
-    } else if (parseInt(end[1]) === 30) {
-      let cell = getFirstHalfCell(date, hourValue, type, color);
-      setCellTitle(cell, title);
-    } else {
-      setCellTitle(getFirstHalfCell(date, hourValue, type, color), title);
-      getSecondHalfCell(date, hourValue, type, color);
-    }
-  } else {
-    let numberOfHours = calculateEventHour(start, end);
-    setCellTitle(getFirstHalfCell(date, hourValue, type, color), title);
-    while (numberOfHours != 0) {
-      numberOfHours--;
-      getFirstHalfCell(date, hourValue, type, color);
-      getSecondHalfCell(date, hourValue, type, color);
-      hourValue++;
-      if (hourValue == 12 && type == "am") {
-        hourValue = 1;
-        type = "pm";
-      } else if (hourValue == 12 && type == "am") {
-        hourValue = 1;
-        type = "am";
-      }
-    }
-  }
+  let element = document.querySelector(
+    `.d${date.getDate()}-${date.getMonth()}`
+  );
+  element.insertAdjacentHTML(
+    "beforeend",
+    `<div class="event" id="${start}-${end}" style="background-color:${convertToRgba(
+      color
+    )}">
+      <p>${start} - ${end}</p>
+      <p>${title.substring(0, 12)}</p></div>`
+  );
 };
 
-const getFirstHalfCell = (date, hourValue, type, color) => {
-  let cell = document
-    .getElementById(
-      `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}-${
-        parseInt(hourValue) + type
-      }`
-    )
-    .getElementsByClassName("first-half")[0];
+//function to make hex color rgba, if an user select color black to see the hour and title
+const convertToRgba = (color) => {
+  const r = parseInt(color.substr(1, 2), 16);
+  const g = parseInt(color.substr(3, 2), 16);
+  const b = parseInt(color.substr(5, 2), 16);
+  const a = 0.7;
 
-  setStyleCellColor(cell, color);
-
-  return cell;
-};
-
-const getSecondHalfCell = (date, hourValue, type, color) => {
-  let cell = document
-    .getElementById(
-      `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}-${
-        parseInt(hourValue) + type
-      }`
-    )
-    .getElementsByClassName("second-half")[0];
-
-  setStyleCellColor(cell, color);
-
-  return cell;
-};
-
-const setCellWidth = (cell, width) => {
-  cell.style.width = width;
-};
-
-const setStyleCellColor = (cell, color) => {
-  cell.style.backgroundColor = color;
-};
-
-const setCellTitle = (cell, title) => {
-  cell.innerHTML = title;
+  const rgba = `rgba(${r},${g},${b},${a})`;
+  return rgba;
 };
 
 const handleCreateEvent = () => {
@@ -194,6 +141,7 @@ let secondMonth = month;
 let nextMonthchanged = false;
 let year = curr.getFullYear();
 
+//this function is called at the beggining to show the current week
 const getWeek = () => {
   shownWeek.innerHTML = monthNames[month] + " " + year;
   let first = curr.getDate() - curr.getDay() + 1;
@@ -219,6 +167,10 @@ const getWeek = () => {
       "beforeend",
       `<div class="day-date"><p class="day-name">${dayName}</p><p class="day-number">${dayNumber}</p></div>`
     );
+    calendarTableContainer.insertAdjacentHTML(
+      "beforeend",
+      `<div class="day-container d${dayNumber}-${date.getMonth()}"></div>`
+    );
   }
   firstDayWeek = last + 1;
   lastDayWeek = firstDayWeek + 6;
@@ -233,11 +185,11 @@ const getWeek = () => {
     }
     secondMonth = month;
   }
-  getHourCells(differentDays);
 };
 
 let mondayStartMonth = 0;
 
+//when you click to change the week forward to see the events in the calendar
 const getNextWeek = () => {
   let dayNameParagraph = document.querySelectorAll(".day-name");
   let dayNumberParagraph = document.querySelectorAll(".day-number");
@@ -245,7 +197,6 @@ const getNextWeek = () => {
   let changedYear = false;
 
   day = firstDayWeek;
-  let j = 0;
   dayNameParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
 
@@ -265,17 +216,13 @@ const getNextWeek = () => {
 
     let dayName = new Intl.DateTimeFormat("en-US", options1).format(date);
     element.innerHTML = dayName;
-    let hourCell = document.querySelectorAll(`.hour-cell-${j}`);
-    hourCell.forEach((element) => {
-      element.id = `${date.getDate()}-${date.getMonth()}-${year}-${
-        element.classList[1]
-      }`;
-    });
-    j++;
     day++;
   });
 
   day = firstDayWeek;
+
+  let dayContainer = document.querySelectorAll(".day-container");
+  let i = 0;
   dayNumberParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
 
@@ -283,8 +230,14 @@ const getNextWeek = () => {
 
     let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
     element.innerHTML = dayNumber;
-
+    //the next part is for updating the class name for every div that will contains events
+    let dayClass = dayContainer[i].className;
+    let lastClass = dayClass.split(" ")[1];
+    console.log(lastClass);
+    dayContainer[i].classList.remove(lastClass);
+    dayContainer[i].classList.add(`d${dayNumber}-${date.getMonth()}`);
     day++;
+    i++;
   });
   firstDayWeek = lastDayWeek + 1;
   lastDayWeek = firstDayWeek + 6;
@@ -302,6 +255,7 @@ const getNextWeek = () => {
   }
 };
 
+//when you click to change the week backwards to see the events in the calendar
 const getPreviousWeek = () => {
   let dayNameParagraph = document.querySelectorAll(".day-name");
   let dayNumberParagraph = document.querySelectorAll(".day-number");
@@ -317,7 +271,6 @@ const getPreviousWeek = () => {
     secondMonth--;
     nextMonthchanged = false;
   }
-  let j = 0;
   dayNameParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
 
@@ -337,17 +290,12 @@ const getPreviousWeek = () => {
 
     let dayName = new Intl.DateTimeFormat("en-US", options1).format(date);
     element.innerHTML = dayName;
-    let hourCell = document.querySelectorAll(`.hour-cell-${j}`);
-    hourCell.forEach((element) => {
-      element.id = `${date.getDate()}-${date.getMonth()}-${year}-${
-        element.classList[1]
-      }`;
-    });
     day++;
-    j++;
   });
 
   day = firstDayWeek;
+  let dayContainer = document.querySelectorAll(".day-container");
+  let i = 0;
   dayNumberParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
 
@@ -355,6 +303,13 @@ const getPreviousWeek = () => {
 
     let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
     element.innerHTML = dayNumber;
+    //the next part is for updating the class name for every div that will contains events
+    let dayClass = dayContainer[i].className;
+    let lastClass = dayClass.split(" ")[1];
+    console.log(lastClass);
+    dayContainer[i].classList.remove(lastClass);
+    dayContainer[i].classList.add(`d${dayNumber}-${date.getMonth()}`);
+    i++;
     day++;
   });
   firstDayWeek += 7;
@@ -376,120 +331,4 @@ const getPreviousWeek = () => {
   }
 };
 
-const getHours = () => {
-  for (let i = 8; i < 12; i++) {
-    hour.insertAdjacentHTML("beforeend", `<div class="${i}-am">${i} am</div>`);
-  }
-  hour.insertAdjacentHTML("beforeend", `<div class="12-pm">12 pm</div>`);
-  for (let i = 1; i < 12; i++) {
-    hour.insertAdjacentHTML("beforeend", `<div class="${i}-pm">${i} pm</div>`);
-  }
-  hour.insertAdjacentHTML("beforeend", `<div class="12-am">12 am</div>`);
-  for (let i = 1; i < 8; i++) {
-    hour.insertAdjacentHTML("beforeend", `<div class="${i}-am">${i} am</div>`);
-  }
-};
-
-const getHourCells = (differentDays) => {
-  let dayDate = document.querySelectorAll(".day-date");
-  let dayNumberParagraph = document.querySelectorAll(".day-number");
-  let j = 0;
-  dayDate.forEach((element) => {
-    if (differentDays > 0) {
-      differentDays--;
-      for (let i = 8; i < 12; i++) {
-        element.insertAdjacentHTML(
-          "beforeend",
-          `<div class ="hour-cell-${j} ${i}am hours" id="${
-            dayNumberParagraph[j].innerHTML
-          }-${month - 1}-${year}-${i}am">
-            <div class="first-half"></div>
-            <div class="second-half"></div>
-          </div>`
-        );
-      }
-      element.insertAdjacentHTML(
-        "beforeend",
-        `<div class ="hour-cell-${j} 12pm hours" id="${
-          dayNumberParagraph[j].innerHTML
-        }-${month - 1}-${year}-12pm">
-        <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-      );
-      for (let i = 1; i < 12; i++) {
-        element.insertAdjacentHTML(
-          "beforeend",
-          `<div class ="hour-cell-${j} ${i}pm hours" id="${
-            dayNumberParagraph[j].innerHTML
-          }-${month - 1}-${year}-${i}pm">
-          <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-        );
-      }
-      element.insertAdjacentHTML(
-        "beforeend",
-        `<div class ="hour-cell-${j} 12am hours" id="${
-          dayNumberParagraph[j].innerHTML
-        }-${month - 1}-${year}-12am">
-        <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-      );
-      for (let i = 1; i < 8; i++) {
-        element.insertAdjacentHTML(
-          "beforeend",
-          `<div class ="hour-cell-${j} ${i}am hours" id="${
-            dayNumberParagraph[j].innerHTML
-          }-${month - 1}-${year}-${i}am">
-          <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-        );
-      }
-      j++;
-    } else {
-      for (let i = 8; i < 12; i++) {
-        element.insertAdjacentHTML(
-          "beforeend",
-          `<div class ="hour-cell-${j} ${i}am hours" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}-${i}am">
-          <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-        );
-      }
-      element.insertAdjacentHTML(
-        "beforeend",
-        `<div class ="hour-cell-${j} 12pm hours" id="${
-          dayNumberParagraph[j].innerHTML
-        }-${month - 1}-${year}-12pm">
-        <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-      );
-      for (let i = 1; i < 12; i++) {
-        element.insertAdjacentHTML(
-          "beforeend",
-          `<div class ="hour-cell-${j} ${i}pm hours" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}-${i}pm">
-          <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-        );
-      }
-      element.insertAdjacentHTML(
-        "beforeend",
-        `<div class ="hour-cell-${j} 12am hours" id="${
-          dayNumberParagraph[j].innerHTML
-        }-${month - 1}-${year}-12am">
-        <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-      );
-      for (let i = 1; i < 8; i++) {
-        element.insertAdjacentHTML(
-          "beforeend",
-          `<div class ="hour-cell-${j} ${i}am hours" id="${dayNumberParagraph[j].innerHTML}-${month}-${year}-${i}am">
-          <div class="first-half"></div>
-            <div class="second-half"></div></div>`
-        );
-      }
-      j++;
-    }
-  });
-};
-
 getWeek();
-getHours();
