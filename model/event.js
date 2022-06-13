@@ -13,6 +13,14 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  color: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: false,
+  },
   //   users:[{
   //     type: mongoose.Schema.Types.ObjectId,
   //     ref: 'users'

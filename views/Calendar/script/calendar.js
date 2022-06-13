@@ -182,6 +182,18 @@ let secondMonth = month;
 let nextMonthchanged = false;
 let year = curr.getFullYear();
 
+const getEventsPerDay = (date) => {
+  // fetch("/calendar", {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: date.toString(),
+  // })
+  //   .then((res) => res.json)
+  //   .then((data) => console.log(data));
+};
+
 //this function is called at the beggining to show the current week
 const getWeek = () => {
   shownWeek.innerHTML = monthNames[month] + " " + year;
@@ -226,6 +238,7 @@ const getWeek = () => {
     }
     secondMonth = month;
   }
+  getEventsPerDay(new Date(2022, 4, 30));
 };
 
 let mondayStartMonth = 0;
@@ -274,8 +287,8 @@ const getNextWeek = () => {
     //the next part is for updating the class name for every div that will contains events
     let dayClass = dayContainer[i].className;
     let lastClass = dayClass.split(" ")[1];
-    console.log(lastClass);
     dayContainer[i].classList.remove(lastClass);
+    dayContainer[i].innerHTML = "";
     dayContainer[i].classList.add(`d${dayNumber}-${date.getMonth()}`);
     day++;
     i++;
@@ -347,8 +360,8 @@ const getPreviousWeek = () => {
     //the next part is for updating the class name for every div that will contains events
     let dayClass = dayContainer[i].className;
     let lastClass = dayClass.split(" ")[1];
-    console.log(lastClass);
     dayContainer[i].classList.remove(lastClass);
+    dayContainer[i].innerHTML = "";
     dayContainer[i].classList.add(`d${dayNumber}-${date.getMonth()}`);
     i++;
     day++;

@@ -1,7 +1,8 @@
 const fs = require("fs");
 const {
-  getViewHTML,
+  getEventsPerDay,
   createEvent,
+  getViewHTML,
 } = require("../controllers/calendarController");
 const { middleware } = require("../middleware/middleware");
 
