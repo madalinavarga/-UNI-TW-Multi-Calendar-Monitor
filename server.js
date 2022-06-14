@@ -77,15 +77,19 @@ http
       case "/calendar":
         await calendarRoutes(req, res);
         break;
+
       case "/calendar-events":
         await eventsRoutes(req, res);
         break;
+
       case "/admin":
         await adminRoutes(req, res);
         break;
+
       case "/login/twitter":
         await loginWithTwitter(req, res);
         break;
+
       default:
         try {
           const contentType = getContentTypeForFile(req.url);

@@ -77,24 +77,26 @@ const handleAddEvent = () => {
       description
     );
 
-    // const payload = {
-    //   dateEvent: dateEvent.value,
-    //   startEvent: startEvent.value,
-    //   endEvent: endEvent.value,
-    // };
-    // fetch("/calendar", {
-    //   method: "POST", // *GET, POST, PUT, DELETE
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(payload), // body data
-    // }).then((response) => {
-    //   if (response.status == 200) {
-    //     window.location.href = "/calendar";
-    //   } else {
-    //     alert("Error");
-    //   }
-    // });
+    //   const payload = {
+    //     dateEvent: dateEvent.value,
+    //     startEvent: startEvent.value,
+    //     endEvent: endEvent.value,
+    //     color: colorPicker.value,
+    //     title: title,
+    //   };
+    //   fetch("/calendar", {
+    //     method: "POST", // *GET, POST, PUT, DELETE
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(payload), // body data
+    //   }).then((response) => {
+    //     if (response.status == 200) {
+    //       window.location.href = "/calendar";
+    //     } else {
+    //       alert("Error");
+    //     }
+    //   });
   }
 };
 
@@ -182,6 +184,7 @@ let secondMonth = month;
 let nextMonthchanged = false;
 let year = curr.getFullYear();
 
+//functia unde as vrea sa afisez in consola toate evenimentele momentan
 const getEventsPerDay = (date) => {
   fetch("/calendar-events", {
     method: "GET",
@@ -189,8 +192,10 @@ const getEventsPerDay = (date) => {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => res)
-    .then((data) => console.log(data));
+    .then((response) => response)
+    .then((res) => {
+      console.log(res);
+    });
 };
 
 //this function is called at the beggining to show the current week

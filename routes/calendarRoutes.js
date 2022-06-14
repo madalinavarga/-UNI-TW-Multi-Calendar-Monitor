@@ -10,10 +10,10 @@ function calendarRoutes(req, res) {
   switch (req.method) {
     case "GET":
       middleware(req, res, getViewHTML);
-      // middleware(req, res, getEvents);
       break;
     case "POST":
       middleware(req, res, createEvent);
+      break;
     default:
       res.write("method not allowed");
   }
@@ -23,6 +23,7 @@ function eventsRoutes(req, res) {
   switch (req.method) {
     case "GET":
       middleware(req, res, getEvents);
+      break;
     default:
       res.write("method not allowed");
   }

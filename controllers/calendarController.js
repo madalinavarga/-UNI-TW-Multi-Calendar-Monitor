@@ -27,9 +27,25 @@ function createEvent(req, res) {
 }
 
 async function getEvents(req, res) {
-  const events = await eventModel.find();
-  res.writeHead(200);
-  res.write(JSON.stringify(events));
+  req.on("end", async function () {
+    try {
+      const events = await eventModel.find();
+
+      if (events != null) {
+        res.writeHead(302, {
+          Location: `/`,
+          "Set-Cookie": `token=${token}; HttpOnly; path=/`,
+        });
+        res.write(events);
+
+        res.end();
+      }
+      res.writeHead(400);
+    } catch (error) {
+      console.log(error);
+      res.writeHead(500);
+    }
+  });
 }
 
 module.exports = {

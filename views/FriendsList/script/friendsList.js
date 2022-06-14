@@ -29,39 +29,40 @@ function pageLoading() {
   // fac request get twitter friends
 }
 
-function createFriendContrainer(i,user) {
+function createFriendContrainer(i, user) {
   let newDiv = document.createElement("div");
   newDiv.id = "friend-" + i;
-  newDiv.className="friend-container";
+  newDiv.className = "friend-container";
 
-  let divUserDetails=document.createElement("div");
+  let divUserDetails = document.createElement("div");
 
-  let userImg =document.createElement("img");
-  userImg.alt="avatar";
-  userImg.className="avatar";
+  let userImg = document.createElement("img");
+  userImg.alt = "avatar";
+  userImg.className = "avatar";
   //if(user.photo==null)
-  userImg.src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png";
+  userImg.src =
+    "https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png";
   divUserDetails.appendChild(userImg);
 
   let userName = document.createElement("h4");
-  let newContent = document.createTextNode(user[i].firstName + " "+ user[i].lastName);
+  let newContent = document.createTextNode(
+    user[i].firstName + " " + user[i].lastName
+  );
   userName.appendChild(newContent);
   divUserDetails.appendChild(userName);
 
-
-
-  //butoane 
+  //butoane
   let buttons = document.createElement("div");
-  buttons.className="friend-buttons";
-  let buttonDelete=document.createElement("button");
-  buttonDelete.className="btn-danger btn";
+  buttons.className = "friend-buttons";
+  let buttonDelete = document.createElement("button");
+  buttonDelete.className = "btn-danger btn";
   newContent = document.createTextNode("Delete");
   buttonDelete.appendChild(newContent);
   buttons.appendChild(buttonDelete);
 
-  let button=document.createElement("button");
-  button.className="btn-primary btn";
-  newContent=document.createTextNode("See options...");
+  let button = document.createElement("button");
+  button.className = "btn-primary btn";
+  newContent = document.createTextNode("See options...");
   button.appendChild(newContent);
   buttons.appendChild(button);
 
