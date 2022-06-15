@@ -10,7 +10,7 @@ const { register } = require("./routes/registerRoutes");
 const { friendsList } = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
-const { calendarRoutes } = require("./routes/calendarRoutes");
+const { calendarRoutes, eventsRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
@@ -64,6 +64,11 @@ http
       case "/calendar":
         await calendarRoutes(req, res);
         break;
+
+      case "/calendar-events":
+        await eventsRoutes(req, res);
+        break;
+
       case "/admin":
         await adminRoutes(req, res);
         break;
