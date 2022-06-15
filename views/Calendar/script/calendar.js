@@ -24,9 +24,23 @@ const colorPicker = document.getElementById("color-picker-input");
 const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
 const createEvent = document.getElementById("create-event-btn");
+const loader = document.getElementById("loader");
+
+function displayLoading() {
+  loader.classList.add("display");
+  // // to stop loading after some time
+  // setTimeout(() => {
+  //     loader.classList.remove("display");
+  // }, 5000);
+}
+
+function hideLoading() {
+  loader.classList.remove("display");
+}
 
 //functia ce imi ia toate evenimentele
 const getEvents = (dateArray) => {
+  displayLoading();
   fetch("/calendar-events", {
     method: "GET",
     headers: {
@@ -35,6 +49,7 @@ const getEvents = (dateArray) => {
   })
     .then((response) => response.json())
     .then((res) => {
+      hideLoading();
       for (let i = 0; i < res.length; i++) {
         let arr = res[i].dateEvent.split("-");
         let date = new Date(
