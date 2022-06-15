@@ -6,23 +6,23 @@ const {
 } = require("../controllers/calendarController");
 const { middleware } = require("../middleware/middleware");
 
-function calendarRoutes(req, res) {
+async function calendarRoutes(req, res) {
   switch (req.method) {
     case "GET":
-      middleware(req, res, getViewHTML);
+      await middleware(req, res, getViewHTML);
       break;
     case "POST":
-      middleware(req, res, createEvent);
+      await middleware(req, res, createEvent);
       break;
     default:
       res.write("method not allowed");
   }
 }
 
-function eventsRoutes(req, res) {
+async function eventsRoutes(req, res) {
   switch (req.method) {
     case "GET":
-      middleware(req, res, getEvents);
+      await middleware(req, res, getEvents);
       break;
     default:
       res.write("method not allowed");

@@ -25,6 +25,37 @@ const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
 const createEvent = document.getElementById("create-event-btn");
 
+//functia ce imi ia toate evenimentele
+const getEvents = (dateArray) => {
+  fetch("/calendar-events", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      for (let i = 0; i < res.length; i++) {
+        let arr = res[i].dateEvent.split("-");
+        let date = new Date(
+          parseInt(arr[2]),
+          parseInt(arr[1]) - 1,
+          parseInt(arr[0])
+        );
+        if (dateArray.find((el) => el.getDate == date.getDate)) {
+          addEvent(
+            date,
+            res[i].startEvent,
+            res[i].endEvent,
+            res[i].color,
+            res[i].title,
+            ""
+          );
+        }
+      }
+    });
+};
+
 // this function handles if the user entered a wrong date and time event and if everything is correct
 // it adds the event
 const handleAddEvent = () => {
@@ -184,20 +215,6 @@ let secondMonth = month;
 let nextMonthchanged = false;
 let year = curr.getFullYear();
 
-//functia unde as vrea sa afisez in consola toate evenimentele momentan
-const getEventsPerDay = (date) => {
-  fetch("/calendar-events", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response)
-    .then((res) => {
-      console.log(res);
-    });
-};
-
 //this function is called at the beggining to show the current week
 const getWeek = () => {
   shownWeek.innerHTML = monthNames[month] + " " + year;
@@ -205,9 +222,10 @@ const getWeek = () => {
   let last = first + 6;
   let changed = false;
   let differentDays = 0;
-
+  let dateArray = [];
   for (let day = first; day <= last; day++) {
     const date = new Date(year, month, day);
+    dateArray.push(date);
     if (date.getMonth() != month) {
       differentDays++;
     }
@@ -242,7 +260,7 @@ const getWeek = () => {
     }
     secondMonth = month;
   }
-  getEventsPerDay(new Date(2022, 4, 30));
+  getEvents(dateArray);
 };
 
 let mondayStartMonth = 0;
@@ -253,7 +271,7 @@ const getNextWeek = () => {
   let dayNumberParagraph = document.querySelectorAll(".day-number");
   let changedMonth = false;
   let changedYear = false;
-
+  let dateArray = [];
   day = firstDayWeek;
   dayNameParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
@@ -283,7 +301,7 @@ const getNextWeek = () => {
   let i = 0;
   dayNumberParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
-
+    dateArray.push(date);
     const options2 = { day: "numeric" };
 
     let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
@@ -311,13 +329,14 @@ const getNextWeek = () => {
   } else {
     shownWeek.innerHTML = monthNames[month] + " " + year;
   }
+  getEvents(dateArray);
 };
 
 //when you click to change the week backwards to see the events in the calendar
 const getPreviousWeek = () => {
   let dayNameParagraph = document.querySelectorAll(".day-name");
   let dayNumberParagraph = document.querySelectorAll(".day-number");
-
+  let dateArray = [];
   let changedMonth = false;
   let changedYear = false;
   firstDayWeek -= 14;
@@ -356,7 +375,7 @@ const getPreviousWeek = () => {
   let i = 0;
   dayNumberParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
-
+    dateArray.push(date);
     const options2 = { day: "numeric" };
 
     let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
@@ -387,6 +406,7 @@ const getPreviousWeek = () => {
   } else {
     shownWeek.innerHTML = monthNames[month] + " " + year;
   }
+  getEvents(dateArray);
 };
 
 getWeek();
