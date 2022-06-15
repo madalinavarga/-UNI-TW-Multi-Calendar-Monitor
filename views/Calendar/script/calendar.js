@@ -182,15 +182,17 @@ let secondMonth = month;
 let nextMonthchanged = false;
 let year = curr.getFullYear();
 
-const getEventsPerDay = (date) => {
-  fetch("/calendar-events", {
+async function getEventsPerDay (date) {
+  await fetch("/calendar-events", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => res)
-    .then((data) => console.log(data));
+    .then((response) => {
+      return response.json();
+    })
+    .then((x) => console.log(x));
 };
 
 //this function is called at the beggining to show the current week

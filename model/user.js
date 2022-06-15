@@ -29,7 +29,11 @@ const userSchema = new mongoose.Schema({
   friends:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
-  }]
+  }],
+  // events:[{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'events'
+  // }]
 });
 const userModel = mongoose.model("users", userSchema, "users");
 

@@ -1,5 +1,6 @@
 const fs = require("fs");
 const { eventModel } = require("../model/event");
+const { userModel } = require("../model/user");
 
 function getViewHTML(req, res) {
   res.write(fs.readFileSync("./views/Calendar/calendar.html"));
@@ -27,9 +28,18 @@ function createEvent(req, res) {
 }
 
 async function getEvents(req, res) {
+  // un user are o lista de evenimente => lista de id-uri de events  ? sau un event o lista de useri (mmm)
+  // returneaza o lista de evenimente 
+  // const email = req.email;// user email 
+  // const user = await userModel.findOne({ email: email });
+  // const eventsId= user.events;// lista 
   const events = await eventModel.find();
-  res.writeHead(200);
-  res.write(JSON.stringify(events));
+  if (events != null) {
+    res.writeHead(200);
+    res.write(JSON.stringify(events));
+    return;
+  }
+  res.writeHead(400);
 }
 
 module.exports = {
