@@ -42,7 +42,7 @@ const getEvents = (dateArray) => {
           parseInt(arr[1]) - 1,
           parseInt(arr[0])
         );
-        if (dateArray.find((el) => el.getDate == date.getDate)) {
+        if (dateArray.find((el) => el.toString() == date.toString())) {
           addEvent(
             date,
             res[i].startEvent,
@@ -54,6 +54,22 @@ const getEvents = (dateArray) => {
         }
       }
     });
+};
+
+const postEvent = (payload) => {
+  fetch("/calendar", {
+    method: "POST", // *GET, POST, PUT, DELETE
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload), // body data
+  }).then((response) => {
+    if (response.status == 200) {
+      console.log("event added");
+    } else {
+      alert("Error adding the event");
+    }
+  });
 };
 
 // this function handles if the user entered a wrong date and time event and if everything is correct
@@ -99,6 +115,12 @@ const handleAddEvent = () => {
     let title = document.getElementById("event-title").value;
     let description = document.getElementById("event-description").value;
     let date = new Date(dateEvent.value);
+    let stringDate =
+      date.getDate().toString() +
+      "-" +
+      (date.getMonth() + 1).toString() +
+      "-" +
+      date.getFullYear();
     addEvent(
       date,
       startEvent.value,
@@ -107,27 +129,14 @@ const handleAddEvent = () => {
       title,
       description
     );
-
-    //   const payload = {
-    //     dateEvent: dateEvent.value,
-    //     startEvent: startEvent.value,
-    //     endEvent: endEvent.value,
-    //     color: colorPicker.value,
-    //     title: title,
-    //   };
-    //   fetch("/calendar", {
-    //     method: "POST", // *GET, POST, PUT, DELETE
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(payload), // body data
-    //   }).then((response) => {
-    //     if (response.status == 200) {
-    //       window.location.href = "/calendar";
-    //     } else {
-    //       alert("Error");
-    //     }
-    //   });
+    const payload = {
+      dateEvent: stringDate,
+      startEvent: startEvent.value,
+      endEvent: endEvent.value,
+      color: colorPicker.value,
+      title: title,
+    };
+    postEvent(payload);
   }
 };
 
