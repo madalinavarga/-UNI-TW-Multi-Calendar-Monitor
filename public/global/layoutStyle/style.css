@@ -44,7 +44,7 @@ body {
 
 @media (max-width: 1050px) {
   .navbar .active-navbar-item {
-    color: #006EBD !important;
+    color: #006ebd !important;
   }
   .navbar .active-navbar-item:hover {
     color: white !important;
@@ -54,7 +54,7 @@ body {
     padding: 7px;
   }
   .navbar .navbar-items:hover {
-    background-color: #006EBD !important;
+    background-color: #006ebd !important;
     border-radius: 10px;
     padding: 10px;
   }
@@ -72,6 +72,7 @@ body {
             flex-direction: column;
     background-color: #6f9fd7d0;
     padding: 10px;
+    z-index: 3;
   }
   .navbar .hamburger-menu {
     display: block !important;

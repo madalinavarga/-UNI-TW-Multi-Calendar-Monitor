@@ -24,6 +24,68 @@ const colorPicker = document.getElementById("color-picker-input");
 const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
 const createEvent = document.getElementById("create-event-btn");
+const loader = document.getElementById("loader");
+
+function displayLoading() {
+  loader.classList.add("display");
+  // // to stop loading after some time
+  // setTimeout(() => {
+  //     loader.classList.remove("display");
+  // }, 5000);
+}
+
+function hideLoading() {
+  loader.classList.remove("display");
+}
+
+//functia ce imi ia toate evenimentele
+const getEvents = (dateArray) => {
+  displayLoading();
+  fetch("/calendar-events", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      hideLoading();
+      for (let i = 0; i < res.length; i++) {
+        let arr = res[i].dateEvent.split("-");
+        let date = new Date(
+          parseInt(arr[2]),
+          parseInt(arr[1]) - 1,
+          parseInt(arr[0])
+        );
+        if (dateArray.find((el) => el.toString() == date.toString())) {
+          addEvent(
+            date,
+            res[i].startEvent,
+            res[i].endEvent,
+            res[i].color,
+            res[i].title,
+            ""
+          );
+        }
+      }
+    });
+};
+
+const postEvent = (payload) => {
+  fetch("/calendar", {
+    method: "POST", // *GET, POST, PUT, DELETE
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload), // body data
+  }).then((response) => {
+    if (response.status == 200) {
+      console.log("event added");
+    } else {
+      alert("Error adding the event");
+    }
+  });
+};
 
 // this function handles if the user entered a wrong date and time event and if everything is correct
 // it adds the event
@@ -68,6 +130,12 @@ const handleAddEvent = () => {
     let title = document.getElementById("event-title").value;
     let description = document.getElementById("event-description").value;
     let date = new Date(dateEvent.value);
+    let stringDate =
+      date.getDate().toString() +
+      "-" +
+      (date.getMonth() + 1).toString() +
+      "-" +
+      date.getFullYear();
     addEvent(
       date,
       startEvent.value,
@@ -76,25 +144,14 @@ const handleAddEvent = () => {
       title,
       description
     );
-
-    // const payload = {
-    //   dateEvent: dateEvent.value,
-    //   startEvent: startEvent.value,
-    //   endEvent: endEvent.value,
-    // };
-    // fetch("/calendar", {
-    //   method: "POST", // *GET, POST, PUT, DELETE
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(payload), // body data
-    // }).then((response) => {
-    //   if (response.status == 200) {
-    //     window.location.href = "/calendar";
-    //   } else {
-    //     alert("Error");
-    //   }
-    // });
+    const payload = {
+      dateEvent: stringDate,
+      startEvent: startEvent.value,
+      endEvent: endEvent.value,
+      color: colorPicker.value,
+      title: title,
+    };
+    postEvent(payload);
   }
 };
 
@@ -182,18 +239,6 @@ let secondMonth = month;
 let nextMonthchanged = false;
 let year = curr.getFullYear();
 
-const getEventsPerDay = (date) => {
-  // fetch("/calendar", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: date.toString(),
-  // })
-  //   .then((res) => res.json)
-  //   .then((data) => console.log(data));
-};
-
 //this function is called at the beggining to show the current week
 const getWeek = () => {
   shownWeek.innerHTML = monthNames[month] + " " + year;
@@ -201,9 +246,10 @@ const getWeek = () => {
   let last = first + 6;
   let changed = false;
   let differentDays = 0;
-
+  let dateArray = [];
   for (let day = first; day <= last; day++) {
     const date = new Date(year, month, day);
+    dateArray.push(date);
     if (date.getMonth() != month) {
       differentDays++;
     }
@@ -238,7 +284,7 @@ const getWeek = () => {
     }
     secondMonth = month;
   }
-  getEventsPerDay(new Date(2022, 4, 30));
+  getEvents(dateArray);
 };
 
 let mondayStartMonth = 0;
@@ -249,7 +295,7 @@ const getNextWeek = () => {
   let dayNumberParagraph = document.querySelectorAll(".day-number");
   let changedMonth = false;
   let changedYear = false;
-
+  let dateArray = [];
   day = firstDayWeek;
   dayNameParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
@@ -279,7 +325,7 @@ const getNextWeek = () => {
   let i = 0;
   dayNumberParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
-
+    dateArray.push(date);
     const options2 = { day: "numeric" };
 
     let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
@@ -307,13 +353,14 @@ const getNextWeek = () => {
   } else {
     shownWeek.innerHTML = monthNames[month] + " " + year;
   }
+  getEvents(dateArray);
 };
 
 //when you click to change the week backwards to see the events in the calendar
 const getPreviousWeek = () => {
   let dayNameParagraph = document.querySelectorAll(".day-name");
   let dayNumberParagraph = document.querySelectorAll(".day-number");
-
+  let dateArray = [];
   let changedMonth = false;
   let changedYear = false;
   firstDayWeek -= 14;
@@ -352,7 +399,7 @@ const getPreviousWeek = () => {
   let i = 0;
   dayNumberParagraph.forEach((element) => {
     const date = new Date(curr.getFullYear(), curr.getMonth(), day);
-
+    dateArray.push(date);
     const options2 = { day: "numeric" };
 
     let dayNumber = new Intl.DateTimeFormat("en-US", options2).format(date);
@@ -383,6 +430,7 @@ const getPreviousWeek = () => {
   } else {
     shownWeek.innerHTML = monthNames[month] + " " + year;
   }
+  getEvents(dateArray);
 };
 
 getWeek();

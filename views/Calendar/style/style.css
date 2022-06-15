@@ -108,9 +108,49 @@
   margin-top: 10px;
 }
 
+.container #loader {
+  position: absolute;
+  top: 450px;
+  z-index: 3;
+  width: 32px;
+  height: 32px;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid #28262b;
+  border-radius: 100%;
+  margin: auto;
+  visibility: hidden;
+  -webkit-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+}
+
+.container #loader.display {
+  visibility: visible;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .container .popup-container {
   display: none;
-  position: relative;
   background-color: #5c85b4;
   height: 500px;
   padding: 50px;
@@ -118,7 +158,7 @@
   z-index: 2;
   position: absolute;
   width: 400px;
-  top: -22px;
+  top: 89px;
   left: 0;
   right: 0;
   margin-left: auto;
