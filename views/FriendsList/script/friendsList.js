@@ -5,11 +5,12 @@ function pageLoading() {
   let twitterId = cookies.find((cookie) => cookie.includes("twitterId"));
   if (twitterId) {
     document.getElementById("btn-twitter").style.display = "none";
+    getTwitterFriends(); // display
   } else {
     document.getElementById("btn-twitter").style.display = "block";
   }
 
-  // fac request la getfriends
+  // fac request la getfriends din app 
   fetch("/getFriends", {
     method: "GET",
     headers: {
@@ -71,11 +72,15 @@ function createFriendContrainer(i,user) {
   document.getElementById("friends-container").appendChild(newDiv);
 }
 
-function twitterFriends() {
-  const cookies = document.cookie.split(";");
-  let twitterId = cookies.find((cookie) => cookie.includes("twitterId"));
-  if (!twitterId) {
+function loginTwitter() {
     window.location.href = "/login/twitter";
-  }
-  // de facut get friends and afisare
+    getTwitterFriends();
+}
+
+function getTwitterFriends(){
+
+}
+
+function displayUserCard(){
+
 }
