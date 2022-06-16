@@ -16,7 +16,7 @@ http
     console.log(req.method, req.url, req.params);
 
     switch (req.url) {
-      case "/ceva":
+      case "/friends/twitter":
         await getFriends(req, res);
         break;
         

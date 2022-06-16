@@ -20,7 +20,25 @@ async function getFriendsList(req, res) {
   res.writeHead(400);
 }
 
+async function getTwitterFriends(req,res){
+  const response = await fetch("http://localhost:5000/friends/twitter", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+  if(response != null){
+    res.writeHead(200);
+    res.write(JSON.stringify(response));
+    return;
+  }
+
+  res.writeHead(400);
+}
+
 module.exports = {
   getViewHTML,
   getFriendsList,
+  getTwitterFriends
 };

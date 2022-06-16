@@ -3,7 +3,7 @@ const { twitterFriends } = require("../controllers/friendsController");
 async function getFriends(req,res){
     switch (req.method) {
         case "GET":
-            twitterFriends(req, res);
+            await twitterFriends(req, res);
           break;
 
         default:

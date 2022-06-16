@@ -1,6 +1,7 @@
 pageLoading();
 
-function pageLoading() {
+async function pageLoading() {
+  console.log("Loading...")
   const cookies = document.cookie.split(";");
   let twitterId = cookies.find((cookie) => cookie.includes("twitterId"));
   if (twitterId) {
@@ -11,7 +12,7 @@ function pageLoading() {
   }
 
   // fac request la getfriends din app 
-  fetch("/getFriends", {
+  await fetch("/getFriends", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -75,11 +76,25 @@ function createFriendContrainer(i, user) {
 
 function loginTwitter() {
     window.location.href = "/login/twitter";
-    getTwitterFriends();
+   // getTwitterFriends();
 }
 
 function getTwitterFriends(){
-
+  await fetch("/friendsTwitter", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => {
+    return response.json();
+  })
+  .then((friends) => {
+    // let length = friends.length;
+    // for (let i = 0; i < length; i++) {
+    //   displayUserCard(i, user);
+    // }
+  });
 }
 
 function displayUserCard(){

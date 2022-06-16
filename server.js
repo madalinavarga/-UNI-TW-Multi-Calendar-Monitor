@@ -7,13 +7,14 @@ const { initDB } = require("./model");
 const { login } = require("./routes/loginRoutes");
 const { loginWithGoogle } = require("./routes/loginWithGoogleRoutes");
 const { register } = require("./routes/registerRoutes");
-const { friendsList } = require("./routes/friendsListRoutes");
+const { friendsList, twitterFriends, getFriends } = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes, eventsRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
+const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 
 //init db
 initDB();
@@ -44,15 +45,28 @@ http
       case "/login/google":
         await loginWithGoogle(req, res);
         break;
+        
+      case "/login/twitter":
+        await loginWithTwitter(req, res);
+        break;
+
+      case "/friendsTwitter":
+        await twitterFriends(req,res);
+        break;
 
       case "/register":
         await register(req, res);
         break;
 
       case "/friendsList":
-        friendsList(req, res);
+        await friendsList(req, res);
         break;
 
+      case "/getFriends":
+        console.log("friends");
+        await getFriends(req, res);
+        break;
+  
       case "/userProfile":
         userProfile(req, res);
         break;
@@ -76,7 +90,6 @@ http
       case "/usersList":
         await usersListRoutes(req, res);
         break;
-  
 
       default:
         try {
