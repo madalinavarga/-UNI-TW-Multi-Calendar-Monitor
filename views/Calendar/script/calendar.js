@@ -57,7 +57,14 @@ const getEvents = (dateArray) => {
           parseInt(arr[1]) - 1,
           parseInt(arr[0])
         );
-        if (dateArray.find((el) => el.toString() == date.toString())) {
+        if (
+          dateArray.find(
+            (el) =>
+              date.getDate() == el.getDate() &&
+              date.getMonth() == el.getMonth() &&
+              date.getFullYear() == el.getFullYear()
+          )
+        ) {
           addEvent(
             date,
             res[i].startEvent,
