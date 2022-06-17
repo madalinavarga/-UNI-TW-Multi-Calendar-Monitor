@@ -42,38 +42,78 @@
         }
       }
     }
-    #calendar-table {
-      height: 100%;
-      #calendar-table-header {
-        padding-top: 40px;
-        display: flex;
-        width: 100%;
-
-        justify-content: space-between;
-        .day-date {
-          border-bottom: 4px solid #2e2c2c;
+    @media (min-width: 600px) {
+      #calendar-table {
+        height: 100%;
+        #calendar-table-header {
+          padding-top: 40px;
+          display: flex;
           width: 100%;
-          margin-right: 8px;
-          margin-left: 8px;
-          p {
-            font-weight: 700;
+
+          justify-content: space-between;
+          .day-date {
+            border-bottom: 4px solid #2e2c2c;
+            width: 100%;
+            margin-right: 8px;
+            margin-left: 8px;
+            p {
+              font-weight: 700;
+            }
+          }
+        }
+        #calendar-table-container {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          .day-container {
+            height: 100%;
+            width: 100%;
+            margin-right: 8px;
+            margin-left: 8px;
+            .event {
+              width: 100%;
+              border-radius: 20px;
+              margin-top: 10px;
+            }
           }
         }
       }
-      #calendar-table-container {
-        width: 100%;
-        height: 100%;
+    }
+    @media (max-width: 600px) {
+      #calendar-table {
         display: flex;
-        justify-content: space-between;
-        .day-container {
+        height: 100%;
+        #calendar-table-header {
           height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          // padding-bottom: 180px;
+          .day-date {
+            border: 1px solid #2e2c2c;
+            height: 100%;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            margin-top: 30px;
+          }
+        }
+        #calendar-table-container {
           width: 100%;
-          margin-right: 8px;
-          margin-left: 8px;
-          .event {
-            width: 100%;
-            border-radius: 20px;
-            margin-top: 10px;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          .day-container {
+            height: 100%;
+            // margin-bottom: 30px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            .event {
+              width: 40%;
+              border-radius: 20px;
+              margin-left: 10px;
+            }
           }
         }
       }

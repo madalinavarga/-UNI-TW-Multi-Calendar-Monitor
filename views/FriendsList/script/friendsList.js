@@ -1,3 +1,5 @@
+// const { DB_TYPE_INTERVAL_YM } = require("oracledb");
+
 pageLoading();
 
 function pageLoading() {
@@ -61,9 +63,13 @@ function createFriendContrainer(i, user) {
   buttons.appendChild(buttonDelete);
 
   let button = document.createElement("button");
-  button.className = "btn-primary btn";
+  button.className = `btn-primary btn options`;
+  button.id = i;
   newContent = document.createTextNode("See options...");
   button.appendChild(newContent);
+  button.addEventListener("click", function (friend) {
+    seeOptions(user, friend.target.id);
+  });
   buttons.appendChild(button);
 
   newDiv.appendChild(divUserDetails);
@@ -79,4 +85,256 @@ function twitterFriends() {
     window.location.href = "/login/twitter";
   }
   // de facut get friends and afisare
+}
+
+let currentFriend;
+let currentI;
+let eventsUser;
+let eventsFriend;
+async function seeOptions(user, friendId) {
+  popUp.style.display = "block";
+  currentFriend = [...user];
+  currentI = friendId;
+  await fetch("/calendar-events", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((event) => {
+      eventsUser = event;
+    });
+
+  await fetch(`/getFriendEvent/${friendId}`, {
+    method: "GET", // *GET, POST, PUT, DELETE
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((event) => {
+      eventsFriend = event;
+    });
+}
+
+const popUp = document.querySelector(".popup-container");
+const exitOptions = () => {
+  if (popUp.style.display !== "none") {
+    popUp.style.display = "none";
+  } else {
+    popUp.style.display = "block";
+  }
+};
+
+const suggestionsPopUp = document.querySelector(".suggestions-popup");
+const exitSuggestions = () => {
+  if (suggestionsPopUp.style.display !== "none") {
+    suggestionsPopUp.style.display = "none";
+  } else {
+    suggestionsPopUp.style.display = "block";
+  }
+};
+
+function seeSuggestions() {
+  exitOptions();
+  getSuggestions(currentFriend, currentI);
+  suggestionsPopUp.style.display = "block";
+}
+
+const getSuggestions = (user, i) => {
+  const h2 = document.getElementById("title-suggestion");
+  const h3 = document.getElementById("description-suggestion");
+  const eventTitle = document.getElementById("event-title").value;
+  const eventDate = document.getElementById("day-event").value;
+
+  if (eventTitle != "") {
+    h2.innerHTML =
+      eventTitle + " with " + user[i].firstName + " " + user[i].lastName;
+  } else {
+    h2.innerHTML = "Event with " + user[i].firstName + " " + user[i].lastName;
+  }
+
+  if (eventDate != "") {
+    h3.innerHTML = "Suggested time and location for " + eventDate;
+    makeSuggestions(eventDate);
+  } else {
+    h3.innerHTML = "Suggested time and location for today";
+    makeSuggestions(new Date());
+  }
+};
+
+const makeSuggestions = (eventDate) => {
+  let busyHours = seeBusyHours(eventDate, eventsUser).concat(
+    seeBusyHours(eventDate, eventsFriend)
+  );
+  let periodTime = getFreeEventTime(busyHours);
+  if (periodTime.length > 3) {
+    let firstPeriod = document.querySelector(".first").querySelector(".time");
+    let secondPeriod = document.querySelector(".second").querySelector(".time");
+    let thirdPeriod = document.querySelector(".third").querySelector(".time");
+    let forthPeriod = document.querySelector(".forth").querySelector(".time");
+    if (periodTime.length > 20) {
+      //show suggestions for the middle of the day
+      firstPeriod.innerHTML = suggestionString(10, periodTime);
+      secondPeriod.innerHTML = suggestionString(11, periodTime);
+      thirdPeriod.innerHTML = suggestionString(12, periodTime);
+      forthPeriod.innerHTML = suggestionString(13, periodTime);
+    } else if (periodTime.length > 10) {
+      firstPeriod.innerHTML = suggestionString(5, periodTime);
+      secondPeriod.innerHTML = suggestionString(6, periodTime);
+      thirdPeriod.innerHTML = suggestionString(7, periodTime);
+      forthPeriod.innerHTML = suggestionString(8, periodTime);
+    } else {
+      firstPeriod.innerHTML = suggestionString(0, periodTime);
+      secondPeriod.innerHTML = suggestionString(1, periodTime);
+      thirdPeriod.innerHTML = suggestionString(2, periodTime);
+      forthPeriod.innerHTML = suggestionString(3, periodTime);
+    }
+  } else if (periodTime.length != 0) {
+    if (periodTime.length >= 1) {
+      let firstPeriod = document.querySelector(".first").querySelector(".time");
+      firstPeriod.innerHTML = suggestionString(0, periodTime);
+      if (periodTime.length >= 2) {
+        let secondPeriod = document
+          .querySelector(".second")
+          .querySelector(".time");
+        secondPeriod.innerHTML = suggestionString(1, periodTime);
+      }
+      if (periodTime.length >= 3) {
+        let thirdPeriod = document
+          .querySelector(".third")
+          .querySelector(".time");
+        thirdPeriod.innerHTML = suggestionString(2, periodTime);
+      }
+    }
+  }
+};
+
+const suggestionString = (i, periodTime) => {
+  return `${periodTime[i].hours.split("-")[0]}:${
+    periodTime[i].minutes.split("-")[0]
+  } - ${periodTime[i].hours.split("-")[1]}:${
+    periodTime[i].minutes.split("-")[1]
+  }`;
+};
+
+const getFreeEventTime = (busyHours) => {
+  const daySlots = getTimeSlots();
+  let temporary = []; //array that stores busy hours in one hour format(ex: event from 12-14 => 12-13, 13-14)
+  for (let person of busyHours) {
+    for (
+      let i = parseInt(person.hours.split("-")[0]);
+      i < parseInt(person.hours.split("-")[1]);
+      i++
+    ) {
+      let minutes = "00";
+      if (i == parseInt(person.hours.split("-")[1]) - 1) {
+        minutes = person.minutes.split("-")[1];
+      }
+      const val = {
+        hours: `${i}-${i + 1}`,
+        minutes: `00-${minutes}`,
+      };
+      if (!temporary.includes(val)) {
+        temporary.push(val);
+      }
+    }
+  }
+  let periodTime = [];
+  for (let i = 0; i < daySlots.length; i++) {
+    let temp = temporary.find((el) => el.hours == daySlots[i].hours);
+    if (typeof temp == "undefined") {
+      periodTime.push(daySlots[i]);
+    } else if (i !== daySlots.length - 1) {
+      let endTime = temp.minutes.split("-")[1];
+      let startTime = daySlots[i + 1].minutes.split("-")[0];
+      if (endTime != startTime) {
+        daySlots[i + 1].minutes = `${endTime}-${
+          daySlots[i + 1].minutes.split("-")[1]
+        }`;
+        periodTime.push(daySlots[i + 1]);
+        i++;
+      }
+    }
+  }
+  return periodTime;
+};
+
+const getTimeSlots = () => {
+  const slots = [];
+  for (let i = 0; i < 23; i++) {
+    slots.push({
+      hours: `${i}-${i + 1}`,
+      minutes: "00-00",
+    });
+  }
+  return slots;
+};
+
+const seeBusyHours = (eventDate, events) => {
+  let busyHours = [];
+  if (eventDate != "") {
+    let dateEvent = new Date(eventDate);
+    for (let i = 0; i < events.length; i++) {
+      let arr = events[i].dateEvent.split("-");
+      let date = new Date(
+        parseInt(arr[2]),
+        parseInt(arr[1]) - 1,
+        parseInt(arr[0])
+      );
+      if (
+        date.getDate() == dateEvent.getDate() &&
+        date.getMonth() == dateEvent.getMonth() &&
+        date.getFullYear() == dateEvent.getFullYear()
+      ) {
+        busyHours.push({
+          hours: `${eventsUser[i].startEvent.split(":")[0]}-${
+            eventsUser[i].endEvent.split(":")[0]
+          }`,
+          minutes: `${eventsUser[i].startEvent.split(":")[1]}-${
+            eventsUser[i].endEvent.split(":")[1]
+          }`,
+        });
+      }
+    }
+  }
+  return busyHours;
+};
+
+function downloadXML() {
+  const serializer = new XMLSerializer();
+  const xmlString = serializer.serializeToString(
+    document.getElementById("download")
+  );
+
+  const blob = new Blob([xmlString], { type: "octet-stream" });
+
+  const href = URL.createObjectURL(blob);
+
+  const a = Object.assign(document.createElement("a"), {
+    href,
+    style: "display:none",
+    download: "suggestions.xml",
+  });
+  document.body.appendChild(a);
+  a.click();
+  URL.revokeObjectURL(href);
+  a.remove();
+}
+
+function downloadPDF() {
+  const pdfContent = document.getElementById("download").innerHTML;
+
+  const printWindow = window.open("", "", "height=400,width=800");
+  printWindow.document.write("<html><head><title>Suggestions</title>");
+  printWindow.document.write("</head><body >");
+  printWindow.document.write(pdfContent);
+  printWindow.document.write("</body></html>");
+  printWindow.document.close();
+  printWindow.print();
 }
