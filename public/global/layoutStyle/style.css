@@ -160,6 +160,8 @@ body {
 
 /*FOOTER*/
 .footer {
+  position: absolute;
+  bottom: 0;
   background-color: #6f9fd7d0;
   width: 100%;
   -ms-flex-negative: 0;

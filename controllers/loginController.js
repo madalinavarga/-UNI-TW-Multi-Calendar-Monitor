@@ -20,7 +20,10 @@ async function loginUser(req, res) {
     req.on("end", async function () {
       try {
         const data = JSON.parse(body);
-        const user = await userModel.findOne({ email: data.email }, 'firstName lastName password email role');
+        const user = await userModel.findOne(
+          { email: data.email },
+          "firstName lastName password email role"
+        );
         if (user != null) {
           if (await bcrypt.compare(data.password, user.password)) {
             const token = jwt.sign({ user }, "student");
@@ -55,7 +58,7 @@ async function loginUserWithGoogle(req, res) {
     client_id:
       "1098497934240-41hpe6qpi67seng5ln8ees5e8re6abs4.apps.googleusercontent.com",
     client_secret: "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",
-    redirect_uri: "https://my-calendar-tw.herokuapp.com/login/google",
+    redirect_uri: "http://localhost:4000/login/google",
     grant_type: "authorization_code",
   };
 

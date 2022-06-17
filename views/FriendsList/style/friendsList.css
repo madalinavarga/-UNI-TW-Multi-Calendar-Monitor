@@ -150,4 +150,130 @@
     margin: 0;
   }
 }
+
+.popup-container {
+  display: none;
+  background-color: #95dde0;
+  height: 300px;
+  padding: 50px;
+  border-radius: 20px;
+  z-index: 2;
+  position: absolute;
+  width: 300px;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.popup-container i {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: #f04646;
+}
+
+.popup-container .popup-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.popup-container input {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.popup-container .color-picker {
+  text-align: start;
+}
+
+.popup-container .color-picker label {
+  color: black;
+}
+
+.popup-container .color-picker #color-picker-input {
+  padding: 0;
+}
+
+.popup-container #suggestions-btn {
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.suggestions-popup {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  height: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  z-index: 2;
+  width: 400px;
+  top: 80px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.suggestions-popup i {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: #f04646;
+}
+
+.suggestions-popup h2 {
+  text-align: center;
+}
+
+.suggestions-popup h3 {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.suggestions-popup .suggestions {
+  height: 350px;
+}
+
+.suggestions-popup .suggestions .suggestion {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.suggestions-popup .suggestions .suggestion .time {
+  text-align: center;
+}
+
+.suggestions-popup .suggestions .suggestion .location {
+  margin-left: 15px;
+  text-align: center;
+}
+
+.suggestions-popup .download-btn {
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.suggestions-popup #download-xml {
+  margin-left: 77px;
+}
 /*# sourceMappingURL=friendsList.css.map */

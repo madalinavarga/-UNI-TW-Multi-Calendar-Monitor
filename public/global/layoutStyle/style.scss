@@ -130,6 +130,8 @@ body {
 /*FOOTER*/
 
 .footer {
+  position: absolute;
+  bottom: 0;
   background-color: $color-footer;
   width: 100%;
   flex-shrink: 0;

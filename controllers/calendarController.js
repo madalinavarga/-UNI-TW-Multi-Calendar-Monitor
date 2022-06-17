@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { eventModel } = require("../model/event");
 const { userModel } = require("../model/user");
+// const googleCal = require("./googleCalendar");
 
 function getViewHTML(req, res) {
   res.write(fs.readFileSync("./views/Calendar/calendar.html"));
@@ -50,9 +51,32 @@ async function getEvents(req, res) {
       "dateEvent startEvent endEvent color title"
     );
     if (events != null) {
-      res.writeHead(200);
+      res.writeHead(201);
       res.write(JSON.stringify(events));
       return;
+    }
+  }
+
+  res.writeHead(400);
+}
+
+async function getEventsByFriendId(req, res) {
+  const email = req.email;
+  const user = await userModel.findOne({ email: email });
+  if (user != null) {
+    const friend = await userModel.findOne({
+      _id: user.friends[req.url.split("/")[2]],
+    });
+    if (friend != null) {
+      const events = await eventModel.find(
+        { _id: { $in: friend.events } },
+        "dateEvent startEvent endEvent color title"
+      );
+      if (events != null) {
+        res.writeHead(201);
+        res.write(JSON.stringify(events));
+        return;
+      }
     }
   }
 
@@ -63,4 +87,5 @@ module.exports = {
   getViewHTML,
   createEvent,
   getEvents,
+  getEventsByFriendId,
 };

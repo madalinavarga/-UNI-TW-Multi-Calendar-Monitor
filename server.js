@@ -7,7 +7,11 @@ const { initDB } = require("./model");
 const { login } = require("./routes/loginRoutes");
 const { loginWithGoogle } = require("./routes/loginWithGoogleRoutes");
 const { register } = require("./routes/registerRoutes");
-const { friendsList } = require("./routes/friendsListRoutes");
+const {
+  friendsList,
+  getFriends,
+  friendsCalendar,
+} = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes, eventsRoutes } = require("./routes/calendarRoutes");
@@ -53,6 +57,14 @@ http
         friendsList(req, res);
         break;
 
+      case "/getFriends":
+        await getFriends(req, res);
+        break;
+
+      case `/getFriendEvent/${req.url.split("/")[2]}`:
+        await friendsCalendar(req, res);
+        break;
+
       case "/userProfile":
         userProfile(req, res);
         break;
@@ -76,7 +88,6 @@ http
       case "/usersList":
         await usersListRoutes(req, res);
         break;
-  
 
       default:
         try {
