@@ -1,7 +1,6 @@
 pageLoading();
 
 function pageLoading() {
-  console.log("Loading...")
   const cookies = document.cookie.split(";");
   let twitterId = cookies.find((cookie) => cookie.includes("twitterId"));
   if (twitterId) {
@@ -22,7 +21,6 @@ function pageLoading() {
       return response.json();
     })
     .then((user) => {
-      console.log(user);
       let length = user.length;
       for (let i = 0; i < length; i++) {
         createFriendContrainer(i, user);
@@ -76,7 +74,6 @@ function createFriendContrainer(i, user) {
 
 function loginTwitter() {
     window.location.href = "/login/twitter";
-   // getTwitterFriends();
 }
 
 async function getTwitterFriends(){
@@ -90,6 +87,7 @@ async function getTwitterFriends(){
     return response.json();
   })
   .then((friends) => {
+    console.log(friends)
     // let length = friends.length;
     // for (let i = 0; i < length; i++) {
     //   displayUserCard(i, user);

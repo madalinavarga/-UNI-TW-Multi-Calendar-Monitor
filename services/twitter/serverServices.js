@@ -3,12 +3,9 @@ const http = require("http");
 const fs = require("fs");
 
 const { getFriends } = require("./routes/friendsRoutes");
+const { initDB } = require("../../model");
 
-function getContentTypeForFile(filename) {
-  if (filename.endsWith(".svg")) {
-    return "image/svg+xml";
-  }
-}
+initDB();
 
 http
   .createServer(async (req, res) => {
@@ -19,18 +16,12 @@ http
       case "/friends/twitter":
         await getFriends(req, res);
         break;
-        
+
       default:
-        try {
-          const contentType = getContentTypeForFile(req.url);
-          if (contentType) res.setHeader("Content-Type", contentType);
-          res.write(fs.readFileSync(`.${req.url}`));
-        } catch {
-          res.write("page not found!");
-        }
+        res.write("page not found!");
     }
     res.end();
   })
   .listen(PORT, () => {
-    console.log("Server listens ");
+    console.log(`Server listens on port ${PORT}`);
   });

@@ -20,17 +20,27 @@ async function getFriendsList(req, res) {
   res.writeHead(400);
 }
 
-async function getTwitterFriends(req,res){
-  const response = await fetch("http://localhost:5000/friends/twitter", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+async function getTwitterFriends(req, res) {
+  const cookie = req.headers.cookie;
+  const twitterId = cookie
+    .split(";")
+    .find((cookie) => cookie.includes("twitterId"))
+    .split("=")[1];
 
-  if(response != null){
+  const response = await fetch(
+    `http://localhost:5000/friends/twitter?twitterId=${twitterId}&email=${req.email}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (response != null) {
+    const data = await response.json();
     res.writeHead(200);
-    res.write(JSON.stringify(response));
+    res.write(JSON.stringify(data));
     return;
   }
 
@@ -40,5 +50,5 @@ async function getTwitterFriends(req,res){
 module.exports = {
   getViewHTML,
   getFriendsList,
-  getTwitterFriends
+  getTwitterFriends,
 };
