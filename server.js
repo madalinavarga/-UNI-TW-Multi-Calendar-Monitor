@@ -63,7 +63,6 @@ http
         break;
 
       case "/getFriends":
-        console.log("friends");
         await getFriends(req, res);
         break;
   

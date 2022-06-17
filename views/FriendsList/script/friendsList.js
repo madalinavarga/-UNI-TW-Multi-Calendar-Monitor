@@ -1,6 +1,6 @@
 pageLoading();
 
-async function pageLoading() {
+function pageLoading() {
   console.log("Loading...")
   const cookies = document.cookie.split(";");
   let twitterId = cookies.find((cookie) => cookie.includes("twitterId"));
@@ -12,7 +12,7 @@ async function pageLoading() {
   }
 
   // fac request la getfriends din app 
-  await fetch("/getFriends", {
+  fetch("/getFriends", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -79,7 +79,7 @@ function loginTwitter() {
    // getTwitterFriends();
 }
 
-function getTwitterFriends(){
+async function getTwitterFriends(){
   await fetch("/friendsTwitter", {
     method: "GET",
     headers: {
