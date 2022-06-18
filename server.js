@@ -11,6 +11,7 @@ const {
   friendsList,
   getFriends,
   friendsCalendar,
+  twitterFriends,
 } = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
@@ -18,7 +19,6 @@ const { calendarRoutes, eventsRoutes, googleCalendarRoutes } = require("./routes
 const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
-//const { deteleUserRoutes } = require("./routes/deteleUserRoutes");
 const { logout } = require("./controllers/logoutController");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 
@@ -59,6 +59,10 @@ http
 
       case "/login/google":
         await loginWithGoogle(req, res);
+        break;
+
+      case "/friendsTwitter":
+        await twitterFriends(req, res);
         break;
 
       case "/register":
