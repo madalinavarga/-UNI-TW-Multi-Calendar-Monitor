@@ -2,6 +2,7 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const { userModel } = require("../model/user");
 const bcrypt = require("bcrypt");
+const crypto = require('crypto');
 
 //GET
 function getViewHTML(req, res) {
@@ -78,13 +79,18 @@ async function loginUserWithGoogle(req, res) {
     });
     return;
   }
-  /*
+
+  const googleAccessToken = data.access_token;
+  const googleRefreshToken = data.refresh_token;
   const token = jwt.sign({ user }, "student");
   res.writeHead(302, {
     Location: `/`,
-    "Set-Cookie": `token=${token}; HttpOnly; path=/`,
+    "Set-Cookie": [
+      `token=${token}; HttpOnly; path=/`,
+      `googleAccessToken=${googleAccessToken}; HttpOnly; path=/`,
+      `googleRefreshToken=${googleRefreshToken}; HttpOnly; path=/`,
+    ]
   });
-  */
 }
 
 async function loginUserWithTwitter(req, res) {
@@ -98,8 +104,8 @@ async function loginUserWithTwitter(req, res) {
     );
     const data = await response.text();
     const params = new URLSearchParams(data);
-    const twittername=params.get("screen_name");
-    const user = await userModel.findOneAndUpdate({ email: req.email },{twitterName:twittername});
+    const twittername = params.get("screen_name");
+    const user = await userModel.findOneAndUpdate({ email: req.email }, { twitterName: twittername });
 
     res.writeHead(302, {
       Location: `/friendsList`,
