@@ -25,7 +25,7 @@ const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
 const createEvent = document.getElementById("create-event-btn");
 const loader = document.getElementById("loader");
-
+let currentDateArray = [];
 function displayLoading() {
   loader.classList.add("display");
   // // to stop loading after some time
@@ -38,7 +38,23 @@ function hideLoading() {
   loader.classList.remove("display");
 }
 
+async function syncWithGoogle() {
+  displayLoading();
+  await fetch("/google/calendar", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      console.log(res);
+    });
+  getEvents(currentDateArray);
+}
+
 //functia ce imi ia toate evenimentele
+
 const getEvents = (dateArray) => {
   displayLoading();
   fetch("/calendar-events", {
@@ -50,13 +66,26 @@ const getEvents = (dateArray) => {
     .then((response) => response.json())
     .then((res) => {
       hideLoading();
+
       for (let i = 0; i < res.length; i++) {
         let arr = res[i].dateEvent.split("-");
-        let date = new Date(
-          parseInt(arr[2]),
-          parseInt(arr[1]) - 1,
-          parseInt(arr[0])
-        );
+        let date;
+        console.log(res[i].google);
+        if (typeof res[i].google != "undefined") {
+          date = new Date(
+            parseInt(arr[0]),
+            parseInt(arr[1]) - 1,
+            parseInt(arr[2])
+          );
+        } else {
+          date = new Date(
+            parseInt(arr[2]),
+            parseInt(arr[1]) - 1,
+            parseInt(arr[0])
+          );
+        }
+
+        console.log(res[i].dateEvent);
         if (
           dateArray.find(
             (el) =>
@@ -65,6 +94,7 @@ const getEvents = (dateArray) => {
               date.getFullYear() == el.getFullYear()
           )
         ) {
+          //add event= functia pt afisare in calendar
           addEvent(
             date,
             res[i].startEvent,
@@ -291,6 +321,7 @@ const getWeek = () => {
     }
     secondMonth = month;
   }
+  currentDateArray = dateArray;
   getEvents(dateArray);
 };
 
@@ -360,6 +391,7 @@ const getNextWeek = () => {
   } else {
     shownWeek.innerHTML = monthNames[month] + " " + year;
   }
+  currentDateArray = dateArray;
   getEvents(dateArray);
 };
 
@@ -437,6 +469,7 @@ const getPreviousWeek = () => {
   } else {
     shownWeek.innerHTML = monthNames[month] + " " + year;
   }
+  currentDateArray = dateArray;
   getEvents(dateArray);
 };
 

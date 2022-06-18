@@ -99,21 +99,23 @@ async function getTwitterFriends() {
     });
 }
 
-function displayUserCard(i,user) {
+function displayUserCard(i, user) {
   let newDiv = document.createElement("div");
   newDiv.id = "friend-twitter-" + i;
   newDiv.className = "friend-container";
 
   let divUserDetails = document.createElement("div");
-  //poza 
+  //poza
   let userImg = document.createElement("img");
   userImg.alt = "avatar";
   userImg.className = "avatar";
-  userImg.src =user.twitterData.profile_image_url;
+  userImg.src = user.twitterData.profile_image_url;
 
-  //username 
+  //username
   let userName = document.createElement("h4");
-  let newContent = document.createTextNode( user.firstName +" " + user.lastName);
+  let newContent = document.createTextNode(
+    user.firstName + " " + user.lastName
+  );
   userName.appendChild(newContent);
 
   divUserDetails.appendChild(userName);
@@ -121,7 +123,7 @@ function displayUserCard(i,user) {
 
   newDiv.appendChild(divUserDetails);
 
-  //append 
+  //append
   document.getElementById("twitter-friends").appendChild(newDiv);
 }
 
@@ -305,7 +307,7 @@ const getFreeEventTime = (busyHours) => {
 
 const getTimeSlots = () => {
   const slots = [];
-  for (let i = 0; i < 23; i++) {
+  for (let i = 0; i < 24; i++) {
     slots.push({
       hours: `${i}-${i + 1}`,
       minutes: "00-00",

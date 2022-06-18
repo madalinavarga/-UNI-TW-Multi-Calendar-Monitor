@@ -21,6 +21,10 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  google: {
+    type: String,
+    required: false,
+  },
 });
 const eventModel = mongoose.model("events", eventSchema, "events");
 

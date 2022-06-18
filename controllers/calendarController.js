@@ -22,7 +22,7 @@ async function createEvent(req, res) {
         const data = JSON.parse(body);
         await eventModel.create({ ...data }).then((response) => {
           updateUserEvents = {
-            $push: { events: response._id },
+            $set: { events: response._id },
           };
         });
         await userModel.findOneAndUpdate({ email: email }, updateUserEvents);
@@ -38,11 +38,6 @@ async function createEvent(req, res) {
 }
 
 async function getEvents(req, res) {
-  // un user are o lista de evenimente => lista de id-uri de events  ? sau un event o lista de useri (mmm)
-  // returneaza o lista de evenimente
-  // const email = req.email;// user email
-  // const user = await userModel.findOne({ email: email });
-  // const eventsId= user.events;// lista
   const email = req.email;
   const user = await userModel.findOne({ email: email });
   if (user != null) {
@@ -50,6 +45,7 @@ async function getEvents(req, res) {
       { _id: { $in: user.events } },
       "dateEvent startEvent endEvent color title"
     );
+    // console.log(events);
     if (events != null) {
       res.writeHead(201);
       res.write(JSON.stringify(events));
