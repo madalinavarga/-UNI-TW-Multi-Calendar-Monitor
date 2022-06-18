@@ -1,8 +1,34 @@
-.user-container {
-  margin: 40px;
+body {
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar  */
 }
 
+.user-container {
+  margin: 5rem;
+  background-color: rgba(111, 159, 215, 0.8156862745);
+  border-radius: 25px;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  padding: 3rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+.user-container .user-details {
+  text-align: center;
+}
+.user-container .user-statistics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-container .user-buttons {
+  width: 15rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
 .user-container .profile-btn {
   font-size: 13.3px;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

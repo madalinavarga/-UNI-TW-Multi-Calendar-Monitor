@@ -18,7 +18,9 @@ const { calendarRoutes, eventsRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
+//const { deteleUserRoutes } = require("./routes/deteleUserRoutes");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
+
 
 //init db
 initDB();
@@ -97,6 +99,16 @@ http
       case "/usersList":
         await usersListRoutes(req, res);
         break;
+
+      case "/deleteUser":
+        await adminRoutes(req,res);
+        break;
+
+      case "/setAsAdmin":
+        await adminRoutes(req,res);
+        break;
+  
+
 
       default:
         try {
