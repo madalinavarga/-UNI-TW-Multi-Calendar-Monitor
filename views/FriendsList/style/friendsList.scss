@@ -23,7 +23,7 @@ $color-nav: grey;
     grid-template-columns: 2.5fr 1fr;
     #friends-container {
       width: 50%;
-      margin-top:1rem;
+      margin-top: 1rem;
       margin-bottom: 1rem;
       margin-left: auto;
       margin-right: auto;
@@ -98,5 +98,111 @@ $color-nav: grey;
         margin: 0;
       }
     }
+  }
+}
+
+.popup-container {
+  display: none;
+  // position: relative;
+  background-color: rgb(149, 221, 224);
+  height: 300px;
+  padding: 50px;
+  border-radius: 20px;
+  z-index: 2;
+  position: absolute;
+  width: 300px;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  i {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: rgb(240, 70, 70);
+  }
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid white;
+    padding: 10px;
+  }
+  .color-picker {
+    text-align: start;
+    label {
+      color: black;
+    }
+    #color-picker-input {
+      padding: 0;
+    }
+  }
+  #suggestions-btn {
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+}
+
+.suggestions-popup {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  height: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  z-index: 2;
+  width: 400px;
+  top: 80px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  i {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: rgb(240, 70, 70);
+  }
+  h2 {
+    text-align: center;
+  }
+  h3 {
+    padding-top: 10px;
+    text-align: center;
+  }
+
+  .suggestions {
+    height: 350px;
+    .suggestion {
+      display: flex;
+      margin-top: 30px;
+      border: 1px solid black;
+      border-radius: 20px;
+      padding: 10px;
+      .time {
+        text-align: center;
+      }
+      .location {
+        margin-left: 15px;
+        text-align: center;
+      }
+    }
+  }
+
+  .download-btn {
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  #download-xml {
+    margin-left: 77px;
   }
 }

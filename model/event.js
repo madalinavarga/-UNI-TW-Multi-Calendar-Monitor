@@ -13,10 +13,14 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  //   users:[{
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: 'users'
-  //   }]
+  color: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: false,
+  },
 });
 const eventModel = mongoose.model("events", eventSchema, "events");
 

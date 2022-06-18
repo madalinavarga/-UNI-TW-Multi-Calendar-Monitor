@@ -22,14 +22,26 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  twitterName: {
+    type: String,
+    required: false,
+  },
   photo: {
     type: String,
-    required: false
+    required: false,
   },
-  friends:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'users'
-  }]
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
+  events: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "events",
+    },
+  ],
 });
 const userModel = mongoose.model("users", userSchema, "users");
 

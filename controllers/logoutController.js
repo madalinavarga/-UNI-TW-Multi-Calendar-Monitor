@@ -6,5 +6,5 @@ function logout(req, res) {
 }
 
 module.exports = {
-  logout: logout,
+  logout
 };

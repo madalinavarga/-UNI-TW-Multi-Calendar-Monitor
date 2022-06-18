@@ -7,14 +7,20 @@ const { initDB } = require("./model");
 const { login } = require("./routes/loginRoutes");
 const { loginWithGoogle } = require("./routes/loginWithGoogleRoutes");
 const { register } = require("./routes/registerRoutes");
-const { friendsList } = require("./routes/friendsListRoutes");
+const {
+  friendsList,
+  getFriends,
+  friendsCalendar,
+  twitterFriends } = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
-const { calendarRoutes } = require("./routes/calendarRoutes");
+const { calendarRoutes, eventsRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
 //const { deteleUserRoutes } = require("./routes/deteleUserRoutes");
+const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
+
 
 //init db
 initDB();
@@ -45,13 +51,29 @@ http
       case "/login/google":
         await loginWithGoogle(req, res);
         break;
+        
+      case "/login/twitter":
+        await loginWithTwitter(req, res);
+        break;
+
+      case "/friendsTwitter":
+        await twitterFriends(req,res);
+        break;
 
       case "/register":
         await register(req, res);
         break;
 
       case "/friendsList":
-        friendsList(req, res);
+        await friendsList(req, res);
+        break;
+
+      case "/getFriends":
+        await getFriends(req, res);
+        break;
+
+      case `/getFriendEvent/${req.url.split("/")[2]}`:
+        await friendsCalendar(req, res);
         break;
 
       case "/userProfile":
@@ -65,6 +87,11 @@ http
       case "/calendar":
         await calendarRoutes(req, res);
         break;
+
+      case "/calendar-events":
+        await eventsRoutes(req, res);
+        break;
+
       case "/admin":
         await adminRoutes(req, res);
         break;
@@ -81,6 +108,7 @@ http
         await adminRoutes(req,res);
         break;
   
+
 
       default:
         try {

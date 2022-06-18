@@ -32,7 +32,9 @@
       <div class="nav-friends">
         <li><a href="#">Friend Requests</a></li>
         <li>
-          <a class="subliniere" href="../FriendsList/friendsList.html">Your Friends List</a>
+          <a class="subliniere" href="../FriendsList/friendsList.html"
+            >Your Friends List</a
+          >
         </li>
         <div class="search-container">
           <form action="#">
@@ -42,28 +44,74 @@
         </div>
       </div>
       <div class="friends-page-components">
-        <div id="friends-container">
-        </div>
+        <div id="friends-container"></div>
         <div class="social-media">
           <div class="fromTwitter">
             <p>twitter</p>
-            <button id="btn-twitter">login twitter</button>
-            <div class="twiter-container">
-                <img
-              class="avatar"
-              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png"
-              alt="avatar"
-            />
-            <div class="add-friend">
-                <h3>Nume prieten</h3>
-                <button class="btn-add btn">Add friend</button>
-            </div>
+            <button id="btn-twitter" onclick="loginTwitter()">login twitter</button>
+            <div id="twitter-friends">
+              <!-- dinamic -->
             </div>
           </div>
           <div class="from2">
             <p>social 2</p>
-            <button>login ceva</button></div>
+            <button>login ceva</button>
+          </div>
         </div>
+      </div>
+      <div class="popup-container">
+        <i
+          class="fa fa fa-times fa-2x"
+          aria-hidden="true"
+          onclick="exitOptions()"
+        ></i>
+        <div class="popup-content">
+          <input id="event-title" type="text" placeholder="Add title" />
+          <input type="date" id="day-event" placeholder="dd-mm-yyyy" />
+          <div class="color-picker">
+            <label for="color-picker-input">Pick a color:</label>
+            <input type="color" id="color-picker-input" value="#b65476" />
+          </div>
+          <button id="suggestions-btn" onClick="seeSuggestions()">
+            Get Sugestions
+          </button>
+        </div>
+      </div>
+      <div class="suggestions-popup">
+        <i
+          class="fa fa fa-times fa-2x"
+          aria-hidden="true"
+          onclick="exitSuggestions()"
+        ></i>
+        <div id="download">
+          <h2 id="title-suggestion"></h2>
+          <h3 id="description-suggestion"></h3>
+          <div class="suggestions">
+            <div class="suggestion first">
+              <div class="time">time period</div>
+              <div class="location">location</div>
+            </div>
+            <div class="suggestion second">
+              <div class="time">time period</div>
+              <div class="location">location</div>
+            </div>
+            <div class="suggestion third">
+              <div class="time">time period</div>
+              <div class="location">location</div>
+            </div>
+            <div class="suggestion forth">
+              <div class="time">time period</div>
+              <div class="location">location</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="download-btn" id="download-pdf" onclick="downloadPDF()">
+          Download PDF
+        </button>
+        <button class="download-btn" id="download-xml" onclick="downloadXML()">
+          Download XML
+        </button>
       </div>
     </div>
     <div class="footer">
