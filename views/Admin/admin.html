@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
-    <link rel="stylesheet" href="./style/style.css" />
-    <title>MyTime</title>
+    <link rel="stylesheet" href="views/Admin/style/style.css" />
+     <title>MyTime</title>
   </head>
 
   <body>
     <div class="navbar">
       <img src="../../images/logo.svg" alt="Menu logo" />
       <div class="navbar-items-container">
-        <a class="navbar-items" href="../Home/home.html">Home</a>
+        <a class="navbar-items active-navbar-item" href="/home">Home</a>
         <a class="navbar-items" href="../UserProfile/userProfile.html"
           >Profile</a
         >
       </div>
     </div>
-    <div class="container">
+    <div is="container">
       <div id="users-list-container">
         <!--
         <div class="user-container">
@@ -75,6 +75,7 @@
           </div>
         </div>
       --></div>
+      <div id="statistics-container"></div>
     </div>
     <div class="footer">
       <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
@@ -91,5 +92,6 @@
       </div>
     </div>
     <script src="views/Admin/script/admin.js"></script>
+    <link rel="stylesheet" href="style/style.css" />
   </body>
 </html>
