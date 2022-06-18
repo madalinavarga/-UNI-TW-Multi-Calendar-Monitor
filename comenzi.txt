@@ -1,2 +1,22 @@
-npm install
-npm start  // pornire serevr
+done:
+- uninstall -> googleapis, oracledb
+- redirect after login cu google
+- salvat cookie-uri extra ptr google calendar
+- Create New Account fix
+- adaugat google calendar api
+- reparat logout
+- adaugat metoda de refresh token la google (expira intr-o ora) - de testat cand expira
+
+todo:
+- refactor la twitter friends -> e putin prea api?
+- reparat twitter url api -> nah doar dati refresh inainte sa prezentati
+ 
+
+ {
+  access_token: 'ya29.a0ARrdaM9Ey-bI9glPEXGBeckBkcmucWtUS6obKrVzF0_98BqclO3dvrkT2PnRjj8GXy46VIoSI9bm9rPlacl1POd6x9R7-u7b-z43dgWGn27XSKJRwcCdjmy-CvmvUjGCj-Eo_ETP-UQQsJ9DkHeAm1R1vmnK',
+  expires_in: 3599,
+  refresh_token: '1//09PjHmWf_bwQMCgYIARAAGAkSNwF-L9IryU5NGMBSMpEwkKR6LmM-KrQbv7aQwTIVPzB1t9OxRsKEXvVgoBnS2krlBdod485E0MM',
+  scope: 'https://www.googleapis.com/auth/calendar openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/userinfo.email',
+  token_type: 'Bearer',
+  id_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjU4MGFkYjBjMzJhMTc1ZDk1MGExYzE5MDFjMTgyZmMxNzM0MWRkYzQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDk4NDk3OTM0MjQwLTQxaHBlNnFwaTY3c2VuZzVsbjhlZXM1ZThyZTZhYnM0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTA5ODQ5NzkzNDI0MC00MWhwZTZxcGk2N3Nlbmc1bG44ZWVzNWU4cmU2YWJzNC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMzE0MzkxNDU4MTY0MTA4MTYxNCIsImVtYWlsIjoiY29zbWluLmFmdGFuYXNlMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IjYyMUt3aXRkb3hHcF9KbUpZcDdNSXciLCJuYW1lIjoiQ29zbWluIEV1IiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdqZG1SNERwQVF6cE1Qdm10Y2sxWHc1VHEwYzc2UTQyeGJvWllRVHN3PXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkNvc21pbiIsImZhbWlseV9uYW1lIjoiRXUiLCJsb2NhbGUiOiJybyIsImlhdCI6MTY1NTU0MzAyMywiZXhwIjoxNjU1NTQ2NjIzfQ.5Dk9KngtrMbL-2Dwpm-Q3Z1Ix2o1AHznAXX0IIGY8ew26cvExxCKV930GuqX9g9KuCSpgghHZiRDlN7CqkH5JKFseySjb2fNWa0Ke8KNmWn3jYzjRb5j_b13YpxJbThyJZv7k-Pw8Fpi6iHCPuwY8W47U9PeSXRytjs6DtwfhIFTEtzVV9zJwK7hEDayMgHJAhMAtLCvMYzdd51sFJycoqT3JfBWAqF3ujox_0y_IDdRin94Q2O33BqGw1I1Jjl72vYDfqTWg9LcucCv5w70N7kQVlc1vTogKo6VdKX6ajHtA85078be64S00AyzHIlhiMuRIqVSW6vdaeJuvc9GZg'
+}

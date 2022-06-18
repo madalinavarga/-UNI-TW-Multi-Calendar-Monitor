@@ -11,14 +11,15 @@ const {
   friendsList,
   getFriends,
   friendsCalendar,
-  twitterFriends } = require("./routes/friendsListRoutes");
+} = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
-const { calendarRoutes, eventsRoutes } = require("./routes/calendarRoutes");
+const { calendarRoutes, eventsRoutes, googleCalendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
 //const { deteleUserRoutes } = require("./routes/deteleUserRoutes");
+const { logout } = require("./controllers/logoutController");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 
 
@@ -48,16 +49,16 @@ http
         await login(req, res);
         break;
 
-      case "/login/google":
-        await loginWithGoogle(req, res);
-        break;
-        
-      case "/login/twitter":
-        await loginWithTwitter(req, res);
+      case "/logout":
+        await logout(req, res);
         break;
 
-      case "/friendsTwitter":
-        await twitterFriends(req,res);
+      case "/login/twitter":
+        await loginWithTwitter(req, res)
+        break;
+
+      case "/login/google":
+        await loginWithGoogle(req, res);
         break;
 
       case "/register":
@@ -101,14 +102,16 @@ http
         break;
 
       case "/deleteUser":
-        await adminRoutes(req,res);
+        await adminRoutes(req, res);
         break;
 
       case "/setAsAdmin":
-        await adminRoutes(req,res);
+        await adminRoutes(req, res);
         break;
-  
 
+      case "/google/calendar":
+        await googleCalendarRoutes(req, res)
+        break;
 
       default:
         try {
