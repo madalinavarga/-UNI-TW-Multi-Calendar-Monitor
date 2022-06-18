@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script
+    src="https://kit.fontawesome.com/a076d05399.js"
+    crossorigin="anonymous"
+  ></script>
+
     <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
     <link rel="stylesheet" href="views/Admin/style/style.css" />
      <title>MyTime</title>
@@ -14,67 +20,14 @@
       <img src="../../images/logo.svg" alt="Menu logo" />
       <div class="navbar-items-container">
         <a class="navbar-items active-navbar-item" href="/home">Home</a>
-        <a class="navbar-items" href="../UserProfile/userProfile.html"
-          >Profile</a
+        <a class="navbar-items" href="/adminProfile">Profile</a
         >
       </div>
+      <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
-    <div is="container">
+    <div class="container">
       <div id="users-list-container">
-        <!--
-        <div class="user-container">
-          <div class="user-details">
-            <img
-              class="avatar"
-              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png"
-              alt="avatar"
-            />
-            <p>Nume utilizator</p>
-          </div>
-          <div class="user-buttons">
-            <a
-              class="btn-primary btn profile-btn"
-              href="../UserProfile/userProfile.html"
-              >See profile</a
-            >
-            <label for="events-selector">Events:</label>
-            <select name="events-selector">
-              <option value="Event 1">Event 1</option>
-              <option value="Event 2">Event 2</option>
-              <option value="Event 3">Event 3</option>
-              <option value="Event 4">Event 4</option>
-            </select>
-            <button class="btn-danger btn">Delete event</button>
-            <button class="btn-danger btn">Delete user</button>
-          </div>
-        </div>
-        <div class="user-container">
-          <div class="user-details">
-            <img
-              class="avatar"
-              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png"
-              alt="avatar"
-            />
-            <p>Nume utilizator</p>
-          </div>
-          <div class="user-buttons">
-            <a
-              class="btn-primary btn profile-btn"
-              href="../UserProfile/userProfile.html"
-              >See profile</a
-            >
-            <label for="events-selector">Events:</label>
-            <select name="events-selector">
-              <option value="Event 1">Event 1</option>
-              <option value="Event 2">Event 2</option>
-              <option value="Event 3">Event 3</option>
-              <option value="Event 4">Event 4</option>
-            </select>
-            <button class="btn-danger btn">Delete event</button>
-            <button class="btn-danger btn">Delete user</button>
-          </div>
-        </div>
-      --></div>
+      </div>
       <div id="statistics-container"></div>
     </div>
     <div class="footer">
@@ -92,6 +45,7 @@
       </div>
     </div>
     <script src="views/Admin/script/admin.js"></script>
-    <link rel="stylesheet" href="style/style.css" />
+    <script src="../../public/script/script.js"></script>
+    <!--<link rel="stylesheet" href="style/style.css" />-->
   </body>
 </html>

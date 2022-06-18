@@ -42,6 +42,12 @@ const userSchema = new mongoose.Schema({
       ref: "events",
     },
   ],
+  latitude: {
+    type: String,
+  },
+  longitude: {
+    type: String,
+  }
 });
 const userModel = mongoose.model("users", userSchema, "users");
 
