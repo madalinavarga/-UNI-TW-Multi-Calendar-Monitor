@@ -107,6 +107,13 @@ http
       case "/setAsAdmin":
         await adminRoutes(req,res);
         break;
+      
+      case "/adminProfile":
+        await adminRoutes(req,res);
+        break;
+        
+
+        
   
 
 

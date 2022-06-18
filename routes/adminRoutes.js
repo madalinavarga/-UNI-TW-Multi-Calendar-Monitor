@@ -1,4 +1,4 @@
-const { getViewHTML } = require('../controllers/adminController')
+const { getAdminProfile } = require('../controllers/adminController')
 const { deleteUser } = require('../controllers/adminController')
 const { addAdmin } = require('../controllers/adminController')
 const { middleware } = require("../middleware/middleware");
@@ -6,8 +6,8 @@ const { middleware } = require("../middleware/middleware");
 async function adminRoutes(req, res) {
     switch (req.method) {
         case "GET":
-            //getViewHTML(req, res);
-            middleware(req, res, getViewHTML);
+            getAdminProfile(req, res);
+            //middleware(req, res, getAdminProfile);
             break;
         case "DELETE":
             await  middleware(req, res, deleteUser)

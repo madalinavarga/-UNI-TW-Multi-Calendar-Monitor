@@ -3,12 +3,18 @@ const { request } = require("http");
 const { userModel } = require("../model/user");
 
 //GET
-function getViewHTML(req, res) {
+/*
+function getAdminProfile(req, res) {
   if (req.headers.cookie) {
-    res.write(fs.readFileSync("./views/Admin/admin.html"));
+    res.write(fs.readFileSync("./views/AdminProfile/adminProfile.html"));
   } else {
-    res.write(fs.readFileSync("./views/Home/home.html"));
+    res.write(fs.readFileSync("./views/Admin/admin.html"));
   }
+}
+*/
+
+function getAdminProfile(req, res) {
+  res.write(fs.readFileSync("./views/AdminProfile/adminProfile.html"));
 }
 
 async function deleteUser(req,res){
@@ -41,7 +47,7 @@ async function deleteUser(req,res){
               }
             )
         }
-        await userModel.deleteOne({_id: user.id})
+        //await userModel.deleteOne({_id: user.id})
       
         res.writeHead(200);
       } catch (err) {
@@ -98,5 +104,5 @@ async function addAdmin(req,res){
 
 
 module.exports = {
-  getViewHTML,deleteUser, addAdmin
+  getAdminProfile,deleteUser, addAdmin
 };

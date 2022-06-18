@@ -15,27 +15,11 @@ function pageLoading() {
       return response.json();
     })
     .then((users) => {
-      //populateList(users);
 
       for (i = 0; i < users.length; i++) {
           createUserContainer(i, users);
       }
 
-      /*
-      let container=document.getElementsById("container");
-      container.style.display="grid";
-      container.style.gridTemplateColumns = "2.5fr 1fr";
-      container.style.backgroundColor="red";
-      */
-
-      //let statisticsContainer = document.getElementById("statistics-container");
-      //let statisticsContainer = document.createElement("div");
-      //statisticsContainer.style.backgroundColor = "red";
-
-      //let newContent = document.createTextNode("helloooooooooo");
-      //let paragraph = document.createElement("p");
-      //paragraph.appendChild(newContent);
-      //statisticsContainer.appendChild(paragraph);
     });
 }
 
@@ -45,16 +29,6 @@ function populateList(users) {
 
 function createUserContainer(i, users) {
   let userContainerDiv = document.createElement("div");
-
-  /*
-  userContainerDiv.style.margin = "5rem";
-  userContainerDiv.style.backgroundColor = "#6f9fd7d0";
-  userContainerDiv.style.borderRadius = "25px";
-
-  userContainerDiv.style.display = "grid";
-  userContainerDiv.style.gridTemplateColumns = "3fr 3fr 3fr";
-  userContainerDiv.style.padding = "5rem";
-  */
 
   userContainerDiv.id = users[i].email;
   userContainerDiv.className = "user-container";
@@ -167,7 +141,8 @@ function createUserContainer(i, users) {
   });
   
 
-  let buttonAddAdmin = document.createElement("button");
+  if(users[i].role==0){
+    let buttonAddAdmin = document.createElement("button");
   buttonAddAdmin.className = "btn-primary btn";
   newContent = document.createTextNode("Add Admin");
   buttonAddAdmin.appendChild(newContent);
@@ -202,8 +177,10 @@ function createUserContainer(i, users) {
 
 
   }
-
   )
+}
+
+
   
   userContainerDiv.appendChild(userButtonsDiv);
 
