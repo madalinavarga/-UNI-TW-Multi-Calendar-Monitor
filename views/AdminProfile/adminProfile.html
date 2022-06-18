@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
+    <link rel="stylesheet" href="views/AdminProfile/style/adminProfile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- <link rel="stylesheet" href="../public/userProfile.css" /> -->
+    <title>MyTime</title>
+  </head>
+
+  <body>
+    <div class="navbar">
+        <img src="../../images/logo.svg" alt="Menu logo" />
+        <div class="navbar-items-container">
+          <a class="navbar-items" href="/home">Home</a>
+          <a class="navbar-items active-navbar-item" href="/adminProfile">Profile</a
+          >
+        </div>
+        <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
+      </div>
+    <div class="container">
+      <div class="user-profile-container">
+        <div class="user-photo center">
+          <label for="image">
+            <input type="file" name="image" id="image" style="display: none" disabled/>
+            <img
+              class="avatar"
+              id="userPhoto"
+              src="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png" alt="avatar"
+            />
+          </label>
+        </div>
+        <div class="user-info">
+          <hr/>
+          <h2> User info<i class="far fa-edit edit" onclick="toggleEdit()"></i> </h2>
+          <div>
+            <b>First name:</b>
+            <div id="firstName"></div>
+          </div>
+          <div>
+            <b>Last name:</b>
+            <div id="lastName"></div>
+          </div>
+          <div>
+            <b>Email:</b>
+            <div id="email"></div>
+          </div>
+          <div>
+            <button id="save" class="btn-primary btn" onclick="save()">
+              Save
+            </button>
+            <button id="cancel" class="btn-danger btn" onclick="cancelEdit()">
+              Cancel
+            </button>
+          </div>
+          <b class="logout" onclick="logout()">Log out</b>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
+      <div class="icons-container">
+        <a href="https://www.google.com/">
+          <img src="../../images/facebook-icon.png" alt="facebook-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../../images/instagram-icon.png" alt="instagram-icon" />
+        </a>
+        <a href="https://www.google.com/">
+          <img src="../../images/twitter-icon.png" alt="instagram-icon" />
+        </a>
+      </div>
+    </div>
+    <script src="views/UserProfile/script/userProfile.js"></script>
+    <script src="../../public/script/script.js"></script>
+  </body>
+</html>
