@@ -26,7 +26,7 @@ async function twitterFriends(req, res) {
       const users = await userModel.find();
 
       // iau prietneii userului current
-      const userFriendsIds = users.find((user) => user.email === email).friends;
+      const userFriendsIds =  users.find((user) => user.email === email).friends || [];
 
       // filtrez prietenii
       const newFriends = users.filter(

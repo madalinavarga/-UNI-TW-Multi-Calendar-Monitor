@@ -102,9 +102,10 @@ async function getTwitterFriends() {
 function displayUserCard(i,user) {
   let newDiv = document.createElement("div");
   newDiv.id = "friend-twitter-" + i;
-  newDiv.className = "friend-container";
+  newDiv.className = "friend-twitter-container";
 
   let divUserDetails = document.createElement("div");
+  let divPhoto = document.createElement("div");
   //poza 
   let userImg = document.createElement("img");
   userImg.alt = "avatar";
@@ -116,13 +117,33 @@ function displayUserCard(i,user) {
   let newContent = document.createTextNode( user.firstName +" " + user.lastName);
   userName.appendChild(newContent);
 
-  divUserDetails.appendChild(userName);
-  divUserDetails.appendChild(userImg);
+  //button
+  let button = document.createElement("button");
+  button.className = `btn-add btn options`;
+  newContent = document.createTextNode("Add friend");
+  button.appendChild(newContent);
+  button.addEventListener("click", function () {
+    addFriend(user._id);
+  });
 
+  divPhoto.appendChild(userImg);
+  divUserDetails.appendChild(userName);
+  divUserDetails.appendChild(button);
+  divUserDetails.className="user-details";
+  newDiv.appendChild(divPhoto);
   newDiv.appendChild(divUserDetails);
 
   //append 
   document.getElementById("twitter-friends").appendChild(newDiv);
+}
+
+function addFriend(userId){
+  fetch(`/friends?userId=${userId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
 }
 
 let currentFriend;

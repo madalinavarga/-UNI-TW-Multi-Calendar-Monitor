@@ -47,8 +47,25 @@ async function getTwitterFriends(req, res) {
   res.writeHead(400);
 }
 
+async function sendFriendRequest(req, res) {
+  const idUser = new URLSearchParams(req.params).get("userId");
+  const receiver = await userModel.findOne({ _id: idUser });
+  const sender = await userModel.findOne({ email: req.email });
+  if (!receiver.friendsRequests.includes(sender._id)) {
+    await userModel.findOneAndUpdate(
+      { _id: idUser },
+      { $push: { friendsRequests: sender._id } }
+    );
+    res.writeHead(200);
+    return;
+  }
+  res.writeHead(400);
+}
+
+
 module.exports = {
   getViewHTML,
   getFriendsList,
   getTwitterFriends,
+  sendFriendRequest,
 };

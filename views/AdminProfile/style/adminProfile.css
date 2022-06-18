@@ -2,39 +2,61 @@
   width: 30rem;
   height: 30rem;
   padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
   background-color: rgba(149, 221, 224, 0.705);
   border-radius: 0.2rem;
 }
+
 .user-profile-container .user-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-top: 2rem;
   gap: 1rem;
 }
+
 .user-profile-container .user-info .btn {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 }
+
 .user-profile-container .user-info > div, .user-profile-container .user-info h2, .user-profile-container .user-info .logout {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 0.5rem;
   width: 75%;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .user-profile-container .user-info .logout {
   cursor: pointer;
 }
+
 .user-profile-container .user-info .edit {
   width: 1rem;
   cursor: pointer;
 }
+
 .user-profile-container .user-info #save, .user-profile-container .user-info #cancel {
   width: 25%;
   margin: 0;
@@ -45,4 +67,5 @@
   .user-profile-container {
     width: 90%;
   }
-}/*# sourceMappingURL=adminProfile.css.map */
+}
+/*# sourceMappingURL=adminProfile.css.map */

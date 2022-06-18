@@ -46,7 +46,25 @@ $color-nav: grey;
     }
     .social-media {
       .fromTwitter {
-        border: 1px solid black;
+        padding: 1rem;
+        background-color: rgba(207, 206, 206, 0.285);
+
+        .title-social-media {
+          text-align: center;
+          margin-bottom: 1rem;
+        }
+
+        .friend-twitter-container {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          .user-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+        }
       }
     }
   }

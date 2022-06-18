@@ -3,6 +3,8 @@ const {
   getViewHTML,
   getFriendsList,
   getTwitterFriends,
+  sendFriendRequest,
+  getRequests,
 } = require("../controllers/friendsListController");
 const { getEventsByFriendId } = require("../controllers/calendarController");
 const { middleware } = require("../middleware/middleware");
@@ -47,9 +49,20 @@ async function twitterFriends(req, res) {
   }
 }
 
+async function addFriend(req,res){
+  switch (req.method) {
+    case "POST":
+      await middleware(req, res, sendFriendRequest);
+      break;
+    default:
+      res.write("method not allowed");
+  }
+}
+
 module.exports = {
   friendsList,
   getFriends,
   friendsCalendar,
   twitterFriends,
+  addFriend
 };

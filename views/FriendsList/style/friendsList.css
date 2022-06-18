@@ -77,7 +77,34 @@
 }
 
 .container-friends .friends-page-components .social-media .fromTwitter {
-  border: 1px solid black;
+  padding: 1rem;
+  background-color: rgba(207, 206, 206, 0.285);
+}
+
+.container-friends .friends-page-components .social-media .fromTwitter .title-social-media {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.container-friends .friends-page-components .social-media .fromTwitter .friend-twitter-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.container-friends .friends-page-components .social-media .fromTwitter .friend-twitter-container .user-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
 }
 
 .container-friends .friend-details {

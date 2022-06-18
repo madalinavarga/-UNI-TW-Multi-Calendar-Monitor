@@ -47,7 +47,13 @@ const userSchema = new mongoose.Schema({
   },
   longitude: {
     type: String,
-  }
+  },
+  friendsRequests: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ]
 });
 const userModel = mongoose.model("users", userSchema, "users");
 

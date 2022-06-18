@@ -19,7 +19,7 @@ async function registerUser(req, res) {
       try {
         const data = JSON.parse(body);
         const encryptedPassword = await bcrypt.hash(data.password, 10);
-        await userModel.create({ ...data,password:encryptedPassword, role: 0 });
+        await userModel.create({ ...data,password:encryptedPassword, role: 0, friends: [], events: []});
         res.writeHead(201);
       } catch (err) {
         console.log(err);
