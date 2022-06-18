@@ -11,7 +11,8 @@ const {
   friendsList,
   getFriends,
   friendsCalendar,
-  twitterFriends } = require("./routes/friendsListRoutes");
+  twitterFriends,
+} = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes, eventsRoutes } = require("./routes/calendarRoutes");
@@ -19,6 +20,7 @@ const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
+const { loginWithReddit } = require("./routes/loginWithRedditRoutes");
 
 //init db
 initDB();
@@ -49,13 +51,17 @@ http
       case "/login/google":
         await loginWithGoogle(req, res);
         break;
-        
+
       case "/login/twitter":
         await loginWithTwitter(req, res);
         break;
 
       case "/friendsTwitter":
-        await twitterFriends(req,res);
+        await twitterFriends(req, res);
+        break;
+
+      case "/login/reddit":
+        await loginWithReddit(req, res);
         break;
 
       case "/register":

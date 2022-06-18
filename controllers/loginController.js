@@ -98,8 +98,11 @@ async function loginUserWithTwitter(req, res) {
     );
     const data = await response.text();
     const params = new URLSearchParams(data);
-    const twittername=params.get("screen_name");
-    const user = await userModel.findOneAndUpdate({ email: req.email },{twitterName:twittername});
+    const twittername = params.get("screen_name");
+    const user = await userModel.findOneAndUpdate(
+      { email: req.email },
+      { twitterName: twittername }
+    );
 
     res.writeHead(302, {
       Location: `/friendsList`,
@@ -118,9 +121,71 @@ async function loginUserWithTwitter(req, res) {
   }
 }
 
+async function loginUserWithReddit(req, res) {
+  if (req.params) {
+    //get the access token for user
+    const code = new URLSearchParams(req.params).get("code");
+    const encodedHeader = Buffer.from(
+      "cOHrhdlitvRtDiNlVNhwcA:1qvAAVSVtbP-_iyDCHqM65M6dTjdxQ"
+    ).toString("base64");
+    let response = await fetch("https://www.reddit.com/api/v1/access_token", {
+      method: "POST",
+      body: `grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:4000/login/reddit`,
+      headers: {
+        authorization: `Basic ${encodedHeader}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    let body = await response.json();
+    console.log(body);
+    //get user information
+    response = await fetch(`https://oauth.reddit.com/api/v1/me/friends`, {
+      method: "GET",
+      headers: { authorization: `bearer ${body.access_token}` },
+    });
+    let user = await response.json();
+    console.log(user);
+  } else {
+    const rootUrl = "https://www.reddit.com/api/v1/authorize";
+    const queryParams = {
+      client_id: "cOHrhdlitvRtDiNlVNhwcA",
+      response_type: "code",
+      state: "hello",
+      redirect_uri: "http://localhost:4000/login/reddit",
+      duration: "permanent",
+      scope: `identity,mysubreddits,read,rss support, friends\\`,
+    };
+    res.writeHead(302, {
+      Location: `${rootUrl}?${new URLSearchParams(queryParams)}`,
+    });
+  }
+
+  // if (req.params) {
+  //
+  //   await fetch("https://www.reddit.com/api/v1/acces_token", {
+  //     method: "POST",
+  //     body: `grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:4000/login/reddit`,
+  //     headers: {
+  //       authorization: `Basic ${encodedHeader}`,
+  //       "Content-Type": "application/x-www-form-urlencoded",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => console.log(data));
+  // console.log(body);
+  // response = await fetch("https://oauth.reddit.com/api/v1/me", {
+  //   method: "GET",
+  //   header : {authorization: `bearer ${body.access_token}`}
+  // });
+  // }
+}
+
 module.exports = {
   getViewHTML,
   loginUser,
   loginUserWithGoogle,
   loginUserWithTwitter,
+  loginUserWithReddit,
 };

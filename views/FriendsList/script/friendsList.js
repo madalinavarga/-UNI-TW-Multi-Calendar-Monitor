@@ -81,6 +81,20 @@ function loginTwitter() {
   window.location.href = "/login/twitter";
 }
 
+function loginReddit() {
+  const rootUrl = "https://reddit.com/api/v1/authorize";
+  const queryParams = {
+    client_id: "cOHrhdlitvRtDiNlVNhwcA",
+    response_type: "code",
+    state: "hello",
+    redirect_uri: "http://localhost:4000/login/reddit",
+    duration: "permanent",
+    scope: "identity,mysubreddits",
+  };
+
+  window.location.href = "/login/reddit";
+}
+
 async function getTwitterFriends() {
   await fetch("/friendsTwitter", {
     method: "GET",
@@ -99,21 +113,23 @@ async function getTwitterFriends() {
     });
 }
 
-function displayUserCard(i,user) {
+function displayUserCard(i, user) {
   let newDiv = document.createElement("div");
   newDiv.id = "friend-twitter-" + i;
   newDiv.className = "friend-container";
 
   let divUserDetails = document.createElement("div");
-  //poza 
+  //poza
   let userImg = document.createElement("img");
   userImg.alt = "avatar";
   userImg.className = "avatar";
-  userImg.src =user.twitterData.profile_image_url;
+  userImg.src = user.twitterData.profile_image_url;
 
-  //username 
+  //username
   let userName = document.createElement("h4");
-  let newContent = document.createTextNode( user.firstName +" " + user.lastName);
+  let newContent = document.createTextNode(
+    user.firstName + " " + user.lastName
+  );
   userName.appendChild(newContent);
 
   divUserDetails.appendChild(userName);
@@ -121,7 +137,7 @@ function displayUserCard(i,user) {
 
   newDiv.appendChild(divUserDetails);
 
-  //append 
+  //append
   document.getElementById("twitter-friends").appendChild(newDiv);
 }
 
@@ -131,7 +147,8 @@ let eventsUser;
 let eventsFriend;
 async function seeOptions(user, friendId) {
   popUp.style.display = "block";
-  currentFriend = [...user];
+  console.log(user);
+  currentFriend = { ...user };
   currentI = friendId;
   await fetch("/calendar-events", {
     method: "GET",
@@ -191,10 +208,9 @@ const getSuggestions = (user, i) => {
   const eventDate = document.getElementById("day-event").value;
 
   if (eventTitle != "") {
-    h2.innerHTML =
-      eventTitle + " with " + user[i].firstName + " " + user[i].lastName;
+    h2.innerHTML = eventTitle + " with " + user.firstName + " " + user.lastName;
   } else {
-    h2.innerHTML = "Event with " + user[i].firstName + " " + user[i].lastName;
+    h2.innerHTML = "Event with " + user.firstName + " " + user.lastName;
   }
 
   if (eventDate != "") {
