@@ -131,7 +131,7 @@ let eventsUser;
 let eventsFriend;
 async function seeOptions(user, friendId) {
   popUp.style.display = "block";
-  currentFriend = [...user];
+  currentFriend = {...user};
   currentI = friendId;
   await fetch("/calendar-events", {
     method: "GET",
@@ -192,9 +192,9 @@ const getSuggestions = (user, i) => {
 
   if (eventTitle != "") {
     h2.innerHTML =
-      eventTitle + " with " + user[i].firstName + " " + user[i].lastName;
+      eventTitle + " with " + user.firstName + " " + user.lastName;
   } else {
-    h2.innerHTML = "Event with " + user[i].firstName + " " + user[i].lastName;
+    h2.innerHTML = "Event with " + user.firstName + " " + user.lastName;
   }
 
   if (eventDate != "") {
