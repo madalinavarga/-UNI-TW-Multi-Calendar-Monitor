@@ -16,6 +16,12 @@
   margin-left: 10px;
 }
 
+.container .button-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .container #create-event-btn {
   cursor: pointer;
   border-radius: 5px;
@@ -25,6 +31,7 @@
   font-size: 14px;
   padding: 5px;
   margin-top: 10px;
+  margin-left: 20px;
 }
 
 .container .calendar-container {

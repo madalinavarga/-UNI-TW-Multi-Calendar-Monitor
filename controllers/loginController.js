@@ -2,7 +2,7 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const { userModel } = require("../model/user");
 const bcrypt = require("bcrypt");
-const crypto = require('crypto');
+const crypto = require("crypto");
 
 //GET
 function getViewHTML(req, res) {
@@ -89,7 +89,7 @@ async function loginUserWithGoogle(req, res) {
       `token=${token}; HttpOnly; path=/`,
       `googleAccessToken=${googleAccessToken}; HttpOnly; path=/`,
       `googleRefreshToken=${googleRefreshToken}; HttpOnly; path=/`,
-    ]
+    ],
   });
 }
 
@@ -105,7 +105,10 @@ async function loginUserWithTwitter(req, res) {
     const data = await response.text();
     const params = new URLSearchParams(data);
     const twittername = params.get("screen_name");
-    const user = await userModel.findOneAndUpdate({ email: req.email }, { twitterName: twittername });
+    const user = await userModel.findOneAndUpdate(
+      { email: req.email },
+      { twitterName: twittername }
+    );
 
     res.writeHead(302, {
       Location: `/friendsList`,
