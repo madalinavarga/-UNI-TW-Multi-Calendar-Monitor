@@ -4,6 +4,7 @@ const {
   createEvent,
   getViewHTML,
 } = require("../controllers/calendarController");
+const { getGoogleCalendarEvents } = require("../controllers/googleCalendarController");
 const { middleware } = require("../middleware/middleware");
 
 async function calendarRoutes(req, res) {
@@ -29,7 +30,23 @@ async function eventsRoutes(req, res) {
   }
 }
 
+async function googleCalendarRoutes(req, res) {
+  switch (req.method) {
+    case "GET":
+      try {
+        await middleware(req, res, getGoogleCalendarEvents);
+      } catch {
+
+      }
+      break;
+    default:
+      res.write("method not allowed");
+  }
+}
+
+
 module.exports = {
   calendarRoutes,
   eventsRoutes,
+  googleCalendarRoutes
 };

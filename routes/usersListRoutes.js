@@ -6,7 +6,6 @@ const { getUser } = require('../controllers/usersController');
 async function usersListRoutes(req, res) {
   switch (req.method) {
     case "GET":
-      console.log("sunt in middleware");
       await middleware(req, res, getUsersList);
       break;
     default:
