@@ -32,14 +32,14 @@
       <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
     </div>
     <div class="container">
-      <!-- <div class="select">
-        <p>Select calendar week:</p>
-        <input type="date" id="date-picker" />
-      </div> -->
-      <button id="create-event-btn" onclick="handleCreateEvent()">
-        + New Event
-      </button>
-
+      <div class="button-div">
+        <button id="create-event-btn" onclick="handleCreateEvent()">
+          + New Event
+        </button>
+        <button id="create-event-btn" onclick="syncWithGoogle()">
+          Sync With Google
+        </button>
+      </div>
       <div class="calendar-container">
         <div class="calendar-header">
           <div class="calendar-header-chunk">
