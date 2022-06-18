@@ -7,11 +7,12 @@ function pageLoading() {
   let twitterId = cookies.find((cookie) => cookie.includes("twitterId"));
   if (twitterId) {
     document.getElementById("btn-twitter").style.display = "none";
+    getTwitterFriends(); // display
   } else {
     document.getElementById("btn-twitter").style.display = "block";
   }
 
-  // fac request la getfriends
+  // fac request la getfriends din app
   fetch("/getFriends", {
     method: "GET",
     headers: {
@@ -22,10 +23,9 @@ function pageLoading() {
       return response.json();
     })
     .then((user) => {
-      console.log(user);
       let length = user.length;
       for (let i = 0; i < length; i++) {
-        createFriendContrainer(i, user);
+        createFriendContrainer(i, user[i]);
       }
     });
   // fac request get twitter friends
@@ -37,7 +37,6 @@ function createFriendContrainer(i, user) {
   newDiv.className = "friend-container";
 
   let divUserDetails = document.createElement("div");
-
   let userImg = document.createElement("img");
   userImg.alt = "avatar";
   userImg.className = "avatar";
@@ -48,7 +47,7 @@ function createFriendContrainer(i, user) {
 
   let userName = document.createElement("h4");
   let newContent = document.createTextNode(
-    user[i].firstName + " " + user[i].lastName
+    user.firstName + " " + user.lastName
   );
   userName.appendChild(newContent);
   divUserDetails.appendChild(userName);
@@ -78,13 +77,52 @@ function createFriendContrainer(i, user) {
   document.getElementById("friends-container").appendChild(newDiv);
 }
 
-function twitterFriends() {
-  const cookies = document.cookie.split(";");
-  let twitterId = cookies.find((cookie) => cookie.includes("twitterId"));
-  if (!twitterId) {
-    window.location.href = "/login/twitter";
-  }
-  // de facut get friends and afisare
+function loginTwitter() {
+  window.location.href = "/login/twitter";
+}
+
+async function getTwitterFriends() {
+  await fetch("/friendsTwitter", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((friends) => {
+      length = friends.length;
+      for (let i = 0; i < length; i++) {
+        displayUserCard(i, friends[i]);
+      }
+    });
+}
+
+function displayUserCard(i,user) {
+  let newDiv = document.createElement("div");
+  newDiv.id = "friend-twitter-" + i;
+  newDiv.className = "friend-container";
+
+  let divUserDetails = document.createElement("div");
+  //poza 
+  let userImg = document.createElement("img");
+  userImg.alt = "avatar";
+  userImg.className = "avatar";
+  userImg.src =user.twitterData.profile_image_url;
+
+  //username 
+  let userName = document.createElement("h4");
+  let newContent = document.createTextNode( user.firstName +" " + user.lastName);
+  userName.appendChild(newContent);
+
+  divUserDetails.appendChild(userName);
+  divUserDetails.appendChild(userImg);
+
+  newDiv.appendChild(divUserDetails);
+
+  //append 
+  document.getElementById("twitter-friends").appendChild(newDiv);
 }
 
 let currentFriend;

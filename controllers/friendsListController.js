@@ -20,7 +20,35 @@ async function getFriendsList(req, res) {
   res.writeHead(400);
 }
 
+async function getTwitterFriends(req, res) {
+  const cookie = req.headers.cookie;
+  const twitterId = cookie
+    .split(";")
+    .find((cookie) => cookie.includes("twitterId"))
+    .split("=")[1];
+
+  const response = await fetch(
+    `http://localhost:5000/friends/twitter?twitterId=${twitterId}&email=${req.email}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (response != null) {
+    const data = await response.json();
+    res.writeHead(200);
+    res.write(JSON.stringify(data));
+    return;
+  }
+
+  res.writeHead(400);
+}
+
 module.exports = {
   getViewHTML,
   getFriendsList,
+  getTwitterFriends,
 };
