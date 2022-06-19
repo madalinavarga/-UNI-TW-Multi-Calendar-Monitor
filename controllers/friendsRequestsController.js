@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { userModel } = require("../model/user");
 const { request } = require("http");
 
 async function getRequests(req, res) {
@@ -6,12 +7,10 @@ async function getRequests(req, res) {
     const friendsIds = user.friendsRequests;
   
     const users = await userModel.find({ _id: { $in: friendsIds } }, "firstName lastName");
-    console.log("controooler" + users);
   
     if (users != null) {
-      const data = await response.json();
       res.writeHead(200);
-      res.write(JSON.stringify(data));
+      res.write(JSON.stringify(users));
       return;
     }
   

@@ -1,6 +1,6 @@
 const { middleware } = require("../middleware/middleware");
 const fs = require("fs");
-const { getViewHTML } = require("../controllers/friendsRequestsController");
+const { getViewHTML, getRequests } = require("../controllers/friendsRequestsController");
 
 async function requestsList(req, res) {
   switch (req.method) {
