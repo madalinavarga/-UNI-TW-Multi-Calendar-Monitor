@@ -33,10 +33,10 @@
     </div>
     <div class="container">
       <div class="button-div">
-        <button id="create-event-btn" onclick="handleCreateEvent()">
+        <button class="create-event-btn" onclick="handleCreateEvent()">
           + New Event
         </button>
-        <button id="create-event-btn" onclick="syncWithGoogle()">
+        <button class="create-event-btn" onclick="syncWithGoogle()">
           Sync With Google
         </button>
       </div>
@@ -70,11 +70,11 @@
           <input id="event-title" type="text" placeholder="Add title" />
           <textarea
             id="event-description"
-            type="text"
+            
             placeholder="Add description"
             rows="5"
           ></textarea>
-          <input type="date" id="day-event" placeholder="dd-mm-yyyy" />
+          <input type="date" id="day-event" />
           <div class="date-time-container">
             <input type="time" id="start-time" />
             <input type="time" id="end-time" />
@@ -92,7 +92,7 @@
     </div>
 
     <div class="footer">
-      <p>Copyright &copy 2022 Multi-Calendar. All rights reserved.</p>
+      <p>Copyright &amp;copy 2022 Multi-Calendar. All rights reserved.</p>
       <div class="icons-container">
         <a href="https://www.google.com/">
           <img src="../../images/facebook-icon.png" alt="facebook-icon" />
