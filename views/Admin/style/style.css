@@ -2,7 +2,6 @@ html {
   position: relative;
   min-height: 100%;
 }
-
 html body {
   overflow-x: hidden;
   /* Hide horizontal scrollbar  */
@@ -11,58 +10,42 @@ html body {
   height: 100%;
   margin: 0 auto -120px;
 }
-
+html body .navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
 html body .footer {
   height: 5rem;
   margin-bottom: -120px;
 }
-
 html body .user-container {
   margin: 5rem;
-  background-color: #6f9fd7d0;
+  background-color: rgba(111, 159, 215, 0.8156862745);
   border-radius: 25px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 3fr 3fr 2fr;
-      grid-template-columns: 3fr 3fr 2fr;
+  grid-template-columns: 3fr 3fr 2fr;
   padding: 3rem;
   margin-left: 10rem;
   margin-right: 10rem;
 }
-
 html body .user-container .user-details {
   text-align: center;
 }
-
 html body .user-container .user-statistics {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 html body .user-container .user-buttons {
   width: 15rem;
   padding-top: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   row-gap: 2rem;
 }
-
 html body .user-container .profile-btn {
   font-size: 13.3px;
 }
@@ -79,18 +62,12 @@ html body .user-container .profile-btn {
     width: 100%;
   }
   body .container .user-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     padding-left: 10rem;
     padding-right: 10rem;
   }
 }
-
 @media (max-width: 650px) {
   body {
     position: absolute;
@@ -106,5 +83,4 @@ html body .user-container .profile-btn {
     padding-left: 0rem;
     padding-right: 0rem;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
