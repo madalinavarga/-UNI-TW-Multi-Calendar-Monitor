@@ -28,6 +28,10 @@
   text-decoration: none;
 }
 
+.container-friends .nav-friends .subliniere {
+  text-decoration: underline;
+}
+
 .container-friends .friends-page-components {
   display: -ms-grid;
   display: grid;
@@ -148,10 +152,6 @@
             flex-direction: column;
     gap: 0.5rem;
   }
-}
-
-.subliniere {
-  text-decoration: underline;
 }
 
 @media (max-width: 600px) {

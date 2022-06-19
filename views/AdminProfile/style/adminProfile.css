@@ -11,9 +11,11 @@
           flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
   background-color: rgba(149, 221, 224, 0.705);
   border-radius: 0.2rem;
+  -webkit-box-shadow: 10px 10px 5px 0px #756e75;
+          box-shadow: 10px 10px 5px 0px #756e75;
 }
 
 .user-profile-container .user-info {

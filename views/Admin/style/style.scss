@@ -18,14 +18,14 @@ html {
         margin-bottom: -120px;
       }
       .user-container {
-        margin: 5rem;
-        background-color:#6f9fd7d0;
+        margin-bottom: 5rem;
+        background-color:rgba(163, 123, 115, 0.567);
         border-radius: 25px;
         display:grid;
         grid-template-columns: 3fr 3fr 2fr;
         padding: 3rem;
-        margin-left: 10rem;
-        margin-right: 10rem;
+        width: 50rem;
+        box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
       
         .user-details{
           text-align: center;

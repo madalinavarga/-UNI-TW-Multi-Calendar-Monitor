@@ -14,6 +14,10 @@ $color-nav: grey;
       color: white;
       text-decoration: none;
     }
+
+    .subliniere {
+      text-decoration: underline;
+    }
   }
   /* FRIENDS -> 1 container : details + buttons*/
   .friends-page-components {
@@ -93,10 +97,6 @@ $color-nav: grey;
       }
     }
   }
-}
-
-.subliniere {
-  text-decoration: underline;
 }
 
 @media (max-width: 600px) {

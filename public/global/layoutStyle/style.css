@@ -218,6 +218,13 @@ body {
   transition: all 0.2s;
 }
 
+.btn:hover {
+  -webkit-box-shadow: 8px 8px #696b6f;
+          box-shadow: 8px 8px #696b6f;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
 .btn-danger {
   background-color: red;
 }
