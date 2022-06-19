@@ -23,7 +23,7 @@ const popUp = document.querySelector(".popup-container");
 const colorPicker = document.getElementById("color-picker-input");
 const shownWeek = document.getElementById("shown-week");
 const hour = document.getElementById("hour-cells");
-const createEvent = document.getElementById("create-event-btn");
+const createEvent = document.getElementsByClassName("create-event-btn");
 const loader = document.getElementById("loader");
 let currentDateArray = [];
 function displayLoading() {

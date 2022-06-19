@@ -144,9 +144,6 @@ function createUserContainer(i, user) {
           console.log("Admin added successfully");
           let val = document.getElementById("is-admin-" + user._id);
           val.innerHTML = "is admin: 1";
-          console.log(val.innerHTML);
-        } else {
-          //alert("Error at add admin");
         }
       });
     });
