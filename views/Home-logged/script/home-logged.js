@@ -12,8 +12,32 @@ const monthNames = [
     "November",
     "December",
   ];
+
+  pageLoading();
+
+  function pageLoading(){
+    fetch("/userDetails", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((user) => {
+        //populateUserDetails(user);
+        //console.log(user);
+        greeding(user);
+        tasks(user);
+      });
+  }
   
+
+  function greeding(user){
+
   var today = new Date();
+  console.log("today: "+today);
   let day = today.getDay();
   console.log(day);
   var greedingEl = document.getElementById("home-page-greeting");
@@ -58,5 +82,79 @@ const monthNames = [
     greedingEl.textContent += "Good evening, ";
   }
   
-  greedingEl.textContent += "username";
+  greedingEl.textContent += user.firstName;
+  }
+
+  function tasks(user){
+    console.log(user.events);
+    var today = new Date();
+    
+    //let day = today.getDay();
+    let day=today.getDate()+"-";
+    let month=today.getMonth()+1;
+    day+=month+"-";
+    day+=today.getFullYear();
+    console.log("today: "+day);
+
+    let nrEventsForToday=0;
+    //console.log(user.events.length);
+    /*
+    for(let i=0;i<user.events.length;i++){
+      const payload = {
+        id: user.events[i],
+      };
+
+      fetch("/isEventForToday", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload), // body data
+      })
+        .then((response) => {
+          return response.json();
+        })
+        
+    }
+    */
+
+    fetch("/eventsList", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((events) => {
+        //console.log("events retur: " + events[0]._id);
+        for(let i=0;i<user.events.length;i++){
+          for(let j=0;j<events.length;j++){
+            //console.log("din user: "+ user.events[i]);
+            //console.log("din events: " + events[j].id);
+            if(user.events[i]==events[j]._id){
+              console.log("acelasi id");
+              if(events[j].dateEvent==day){
+                nrEventsForToday++;
+              }
+            }
+          }
+        }
+        console.log("nrEventsForToday: " + nrEventsForToday);
+        
+        let enc=document.getElementById("nr-of-tasks");
+        if(nrEventsForToday==1){
+          enc.innerHTML="You have one task for today, don't forget about it!";
+        }else{
+          enc.innerHTML="You have " +  nrEventsForToday +" tasks for today, don't forget about them!";
+        }
+        
+  
+      });
+
+
+  }
+
+  
   
