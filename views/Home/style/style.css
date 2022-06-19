@@ -1,23 +1,47 @@
 body {
   width: 100%;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
 }
-
-.container .description {
+body .navbar {
+  overflow: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  /* Set the navbar to fixed position */
+  top: 0;
+  /* Position the navbar at the top of the page */
+  width: 100%;
+  /* Full width */
+}
+body .container {
+  background-image: url("../../../images/home-img2.jpg");
+  background-attachment: fixed;
+  padding-bottom: 20rem;
+  height: 100vh;
+  padding-top: 2rem;
+  padding-left: 5rem;
+  display: inline-block;
+}
+body .container .description {
   text-align: left;
-  padding-left: 1.5rem;
+  width: 70vw;
+  margin-left: 0rem;
 }
-
-.container .description p {
+body .container .description p {
   padding-bottom: 1rem;
 }
-
-.container .description h2 {
+body .container .description h2 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
-
-.container .description iframe {
+body .container .description iframe {
   padding-top: 1.5rem;
+}
+body .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 @media (max-width: 900px) {
@@ -37,11 +61,9 @@ body {
     padding-top: 1.5rem;
   }
 }
-
 @media (max-width: 600px) {
   .container .description iframe {
     padding-top: 1.5rem;
     width: 100%;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

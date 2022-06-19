@@ -12,21 +12,17 @@ const {
   getFriends,
   friendsCalendar,
   twitterFriends,
-  addFriend,
 } = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
-const {
-  calendarRoutes,
-  eventsRoutes,
-  googleCalendarRoutes,
-} = require("./routes/calendarRoutes");
+const { calendarRoutes, eventsRoutes, googleCalendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
 const { adminRoutes } = require("./routes/adminRoutes");
 const { usersListRoutes } = require("./routes/usersListRoutes");
 const { logout } = require("./controllers/logoutController");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
-const { requestsList, getUserRequests } = require("./routes/friendsRequests");
+const { eventsList } = require("./routes/eventsListRoutes");
+
 
 //init db
 initDB();
@@ -59,7 +55,7 @@ http
         break;
 
       case "/login/twitter":
-        await loginWithTwitter(req, res);
+        await loginWithTwitter(req, res)
         break;
 
       case "/login/google":
@@ -77,10 +73,6 @@ http
       case "/friendsList":
         await friendsList(req, res);
         break;
-      
-        case "/friendsRequests":
-          await requestsList(req, res);
-          break;
 
       case "/getFriends":
         await getFriends(req, res);
@@ -90,20 +82,12 @@ http
         await friendsCalendar(req, res);
         break;
 
-      case "/friends":
-        await addFriend(req,res);
-        break;
-
       case "/userProfile":
         userProfile(req, res);
         break;
 
       case "/userDetails":
         await usersRoutes(req, res);
-        break;
-      
-      case "/userFriendsRequests":
-        await getUserRequests(req,res);
         break;
 
       case "/calendar":
@@ -135,7 +119,11 @@ http
         break;
 
       case "/google/calendar":
-        await googleCalendarRoutes(req, res);
+        await googleCalendarRoutes(req, res)
+        break;
+
+      case "/eventsList":
+        await eventsList(req, res)
         break;
 
       default:

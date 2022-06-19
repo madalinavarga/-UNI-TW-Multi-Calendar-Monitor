@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
-    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="views/Home-logged/style/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -27,10 +27,16 @@
     </div>
 
     <div class="container">
-      <h5 id="home-page-date"></h5>
+      <h3 id="home-page-date"></h3>
       <h2 id="home-page-greeting"></h2>
 
+      <div class="encouragement">
+          <h2>"If you wait for just the right time to do something, well, that time may never come. In fact, that time may be right now"</h2>
+          <p id="nr-of-tasks"></p>
+      </div>
+
       <div class="achievements">
+        <!--
         <div class="tasks-completed">
           <img src="../../images/check-mark.svg" />
           <p>&nbsp 0</p>
@@ -41,6 +47,7 @@
           <p>&nbsp 0</p>
           <p>&nbsp collaborators</p>
         </div>
+      -->
       </div>
     </div>
     <div class="footer">
@@ -57,11 +64,7 @@
         </a>
       </div>
     </div>
-    <script
-      language="javascript"
-      type="text/javascript"
-      src="./script/home-logged.js"
-    ></script>
+    <script language="javascript" type="text/javascript" src="./views/Home-logged/script/home-logged.js"></script>
     <script src="../../public/script/script.js"></script>
   </body>
 </html>

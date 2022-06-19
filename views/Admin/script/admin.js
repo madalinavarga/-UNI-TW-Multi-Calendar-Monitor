@@ -75,18 +75,18 @@ function createUserContainer(i, users) {
   let userStatistics=document.createElement("div");
   userStatistics.className="user-statistics";
 
-  newContent = document.createTextNode("nr of friends: "+users[i].friends.length);
+  newContent = document.createTextNode("Number of friends: "+users[i].friends.length);
   let nrFriendsStatistics=document.createElement("p");
   nrFriendsStatistics.appendChild(newContent);
   userStatistics.appendChild(nrFriendsStatistics);
 
-  newContent = document.createTextNode("nr of events: ");
+  console.log(users[i].events);
+  newContent = document.createTextNode("Number of events: " + users[i].events.length);
   let nrEventsStatistics=document.createElement("p");
   nrEventsStatistics.appendChild(newContent);
   userStatistics.appendChild(nrEventsStatistics);
-
-
-  newContent = document.createTextNode("is admin: "+users[i].role);
+  
+  newContent = document.createTextNode("Is admin: "+users[i].role);
   let isAdminStatistics=document.createElement("p");
   isAdminStatistics.id="is-admin-"+users[i]._id;
   console.log(isAdminStatistics._id);

@@ -1,22 +1,51 @@
 body{
     width: 100%;
-}
-.container {
-    .description{
-        text-align:left;
-        padding-left: 1.5rem;
-        p{
-            padding-bottom: 1rem;
-        }
-        h2{
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-        iframe{
-            padding-top: 1.5rem;
-        }
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    
+    .navbar {
+        overflow: hidden;
+        position: sticky; /* Set the navbar to fixed position */
+        top: 0; /* Position the navbar at the top of the page */
+        width: 100%; /* Full width */
+      }
+
+    .container {
+         background-image: url("../../../images/home-img2.jpg");
+         background-attachment: fixed;
+         padding-bottom: 20rem;
+         height: 100vh;
+         padding-top: 2rem;
+         padding-left: 5rem;
+         //margin-top: 2rem;
+         display:inline-block;
+         //text-align:left;
+         .description{
+             text-align:left;
+             //padding-left: 1rem;
+             width: 70vw;
+             margin-left: 0rem;
+             p{
+                 padding-bottom: 1rem;
+             }
+             h2{
+                 padding-top: 1.5rem;
+                 padding-bottom: 1.5rem;
+             }
+             iframe{
+                 padding-top: 1.5rem;
+             }
+         }
+     }
+
+    .footer{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
 }
+
 
 
 @media (max-width: 900px) {
