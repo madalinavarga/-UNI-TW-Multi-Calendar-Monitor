@@ -82,13 +82,13 @@ function createFriendContrainer(i, user) {
   document.getElementById("friends-container").appendChild(newDiv);
 }
 
-function deleteFriend(userId){
+function deleteFriend(userId) {
   fetch(`/friend?userId=${userId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(()=>{
+  }).then(() => {
     window.location.reload();
   })
 }
@@ -147,7 +147,7 @@ function displayUserCard(i, user) {
   divPhoto.appendChild(userImg);
   divUserDetails.appendChild(userName);
   divUserDetails.appendChild(button);
-  divUserDetails.className="user-details";
+  divUserDetails.className = "user-details";
   newDiv.appendChild(divPhoto);
   newDiv.appendChild(divUserDetails);
 
@@ -155,7 +155,7 @@ function displayUserCard(i, user) {
   document.getElementById("twitter-friends").appendChild(newDiv);
 }
 
-function addFriend(userId){
+function addFriend(userId) {
   fetch(`/friends?userId=${userId}`, {
     method: "POST",
     headers: {
@@ -170,7 +170,7 @@ let eventsUser;
 let eventsFriend;
 async function seeOptions(user, friendId) {
   popUp.style.display = "block";
-  currentFriend = {...user};
+  currentFriend = { ...user };
   currentI = friendId;
   await fetch("/calendar-events", {
     method: "GET",
@@ -228,6 +228,7 @@ const getSuggestions = (user, i) => {
   const h3 = document.getElementById("description-suggestion");
   const eventTitle = document.getElementById("event-title").value;
   const eventDate = document.getElementById("day-event").value;
+  const locationType = document.getElementById("type-dropwdown").value;
 
   if (eventTitle != "") {
     h2.innerHTML =
@@ -238,14 +239,43 @@ const getSuggestions = (user, i) => {
 
   if (eventDate != "") {
     h3.innerHTML = "Suggested time and location for " + eventDate;
-    makeSuggestions(eventDate);
+    makeTimeSuggestions(eventDate);
   } else {
     h3.innerHTML = "Suggested time and location for today";
-    makeSuggestions(new Date());
+    makeTimeSuggestions(new Date());
   }
+
+  makeLocationSuggestions(user.email, locationType);
 };
 
-const makeSuggestions = (eventDate) => {
+const makeLocationSuggestions = async (friendEmail, locationType) => {
+  // get locations
+  const response = await fetch(`/match/location?email=${friendEmail}&type=${locationType}`, {
+    "method": "GET"
+  })
+  const data = await response.json()
+  const locations = data.map(x => {
+    if (x.ratings) {
+      return `${x.name} (${x.ratings}/5) - location: ${x.location}`
+    }
+    return `${x.name} - location: ${x.location}`
+  })
+
+  // choose selectors
+  const places = [
+    document.querySelector(".first").querySelector(".location"),
+    document.querySelector(".second").querySelector(".location"),
+    document.querySelector(".third").querySelector(".location"),
+    document.querySelector(".forth").querySelector(".location"),
+  ]
+
+  // set locations randomly
+  for (let place of places) {
+    place.innerHTML = locations[Math.floor(Math.random() * locations.length)]
+  }
+}
+
+const makeTimeSuggestions = (eventDate) => {
   let busyHours = seeBusyHours(eventDate, eventsUser).concat(
     seeBusyHours(eventDate, eventsFriend)
   );
@@ -293,11 +323,9 @@ const makeSuggestions = (eventDate) => {
 };
 
 const suggestionString = (i, periodTime) => {
-  return `${periodTime[i].hours.split("-")[0]}:${
-    periodTime[i].minutes.split("-")[0]
-  } - ${periodTime[i].hours.split("-")[1]}:${
-    periodTime[i].minutes.split("-")[1]
-  }`;
+  return `${periodTime[i].hours.split("-")[0]}:${periodTime[i].minutes.split("-")[0]
+    } - ${periodTime[i].hours.split("-")[1]}:${periodTime[i].minutes.split("-")[1]
+    }`;
 };
 
 const getFreeEventTime = (busyHours) => {
@@ -331,9 +359,8 @@ const getFreeEventTime = (busyHours) => {
       let endTime = temp.minutes.split("-")[1];
       let startTime = daySlots[i + 1].minutes.split("-")[0];
       if (endTime != startTime) {
-        daySlots[i + 1].minutes = `${endTime}-${
-          daySlots[i + 1].minutes.split("-")[1]
-        }`;
+        daySlots[i + 1].minutes = `${endTime}-${daySlots[i + 1].minutes.split("-")[1]
+          }`;
         periodTime.push(daySlots[i + 1]);
         i++;
       }
@@ -370,12 +397,10 @@ const seeBusyHours = (eventDate, events) => {
         date.getFullYear() == dateEvent.getFullYear()
       ) {
         busyHours.push({
-          hours: `${eventsUser[i].startEvent.split(":")[0]}-${
-            eventsUser[i].endEvent.split(":")[0]
-          }`,
-          minutes: `${eventsUser[i].startEvent.split(":")[1]}-${
-            eventsUser[i].endEvent.split(":")[1]
-          }`,
+          hours: `${eventsUser[i].startEvent.split(":")[0]}-${eventsUser[i].endEvent.split(":")[0]
+            }`,
+          minutes: `${eventsUser[i].startEvent.split(":")[1]}-${eventsUser[i].endEvent.split(":")[1]
+            }`,
         });
       }
     }

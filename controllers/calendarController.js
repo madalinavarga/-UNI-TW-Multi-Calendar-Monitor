@@ -38,22 +38,8 @@ async function createEvent(req, res) {
 }
 
 async function getEvents(req, res) {
-  const email = req.email;
-  const user = await userModel.findOne({ email: email });
-  if (user != null) {
-    const events = await eventModel.find(
-      { _id: { $in: user.events } },
-      "dateEvent startEvent endEvent color title"
-    );
-    // console.log(events);
-    if (events != null) {
-      res.writeHead(201);
-      res.write(JSON.stringify(events));
-      return;
-    }
-  }
-
-  res.writeHead(400);
+  const events = await eventModel.find({ email: req.email });
+  res.write(JSON.stringify(events));
 }
 
 async function getEventsByFriendId(req, res) {

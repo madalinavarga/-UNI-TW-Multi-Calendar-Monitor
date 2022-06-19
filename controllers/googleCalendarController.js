@@ -1,6 +1,7 @@
 const { eventModel } = require("../model/event");
 const { userModel } = require("../model/user");
 const { getEventsByFriendId } = require("./calendarController");
+
 // calendar colors este un map de la colorId la un obiect { background: string, foreground: string }
 async function getUserCalendarColors(req, res) {
   const calendarColorsResponse = await fetch(
@@ -23,7 +24,7 @@ async function getUserEvents(req, res) {
 
   // ia event-uri din calendar
   const calendarEventsResponse = await fetch(
-    `https://www.googleapis.com/calendar/v3/calendars/${req.email}/events`,
+    `https://www.googleapis.com/calendar/v3/calendars/${req.email}/events?timeMin=2022-01-01T00:00:00.000Z`,
     {
       method: "GET",
       headers: {
@@ -34,34 +35,15 @@ async function getUserEvents(req, res) {
   const calendarEventsData = await calendarEventsResponse.json();
 
   // transforma datele in formatul nostru
-  // const arrayCalendar = [];
-  // for (item in calendarEventsData) {
-  //   if (typeof item.start == "undefined") {
-  //     arrayCalendar.push({
-  //       dateEvent: item.start?.date, //altfel imi afiseaza data la care au fost create evenimentele
-  //       startEvent: item.start?.dateTime,
-  //       endEvent: item.end?.dateTime,
-  //       color: item.colorId ? colorsMap[item.colorId].background : "#039be5",
-  //       title: item.summary,
-  //     });
-  //   } else {
-  //     arrayCalendar.push({
-  //       dateEvent: item.start?.dateTime, //altfel imi afiseaza data la care au fost create evenimentele
-  //       startEvent: item.start?.dateTime,
-  //       endEvent: item.end?.dateTime,
-  //       color: item.colorId ? colorsMap[item.colorId].background : "#039be5",
-  //       title: item.summary,
-  //     });
-  //   }
-  // }
-  // return arrayCalendar;
-  return calendarEventsData.items.map((item) => ({
-    dateEvent: item.created,
-    startEvent: item.start?.dateTime,
-    endEvent: item.end?.dateTime,
-    color: item.colorId ? colorsMap[item.colorId].background : "#039be5",
-    title: item.summary,
-  }));
+  return calendarEventsData.items
+    .filter(item => !!item.start?.dateTime && !!item.end?.dateTime)
+    .map(({ summary, start, end, colorId }) => ({
+      dateEvent: start.dateTime.split("T")[0],
+      startEvent: new Date(start.dateTime).getHours() + ":" + new Date(start.dateTime).getMinutes(),
+      endEvent: new Date(end.dateTime).getHours() + ":" + new Date(end.dateTime).getMinutes(),
+      color: colorId ? colorsMap[colorId].background : "#039be5",
+      title: summary,
+    }))
 }
 
 // tokenul expira dupa o ora si trebuie actualizat
@@ -95,77 +77,22 @@ async function getGoogleCalendarEvents(req, res) {
     //token actualizat daca a fost actualizat
     "Set-Cookie": `googleAccessToken=${req.googleAccessToken}; HttpOnly; path=/`,
   });
-  console.log(calendarInfo);
-  const user = await userModel.find({ email: req.email });
-  for (let i = 0; i < user.events; i++) {
-    await eventModel.deleteOne({ _id: user.events[i], google: req.email });
-  }
 
+  // sterge eventuri vechi
+  await eventModel.deleteMany({ google: req.email });
+
+  // creaza eventuri noi
+  let events = []
   for (let i = 0; i < calendarInfo.length; i++) {
-    calendarInfo[i].dateEvent = calendarInfo[i].dateEvent.split("T")[0];
-    if (
-      typeof calendarInfo[i].startEvent == "undefined" ||
-      typeof calendarInfo[i].endEvent == "undefined"
-    ) {
-      calendarInfo[i].startEvent = "00:00";
-      calendarInfo[i].endEvent = "24:00";
-    } else {
-      calendarInfo[i].startEvent = `${
-        calendarInfo[i].startEvent.split("T")[1].split(":")[0]
-      }:${calendarInfo[i].startEvent.split("T")[1].split(":")[1]}`;
-      calendarInfo[i].endEvent = `${
-        calendarInfo[i].endEvent.split("T")[1].split(":")[0]
-      }:${calendarInfo[i].endEvent.split("T")[1].split(":")[1]}`;
-      calendarInfo[i].google = req.email;
-    }
-    // let toBeAdded = 1;
-    // await eventModel.find({ google: req.email }).then((ev) => {
-    //   if (
-    //     ev.dateEvent == calendarInfo[i].dateEvent &&
-    //     ev.startEvent == calendarInfo[i].startEvent &&
-    //     ev.endEvent == calendarInfo[i].endEvent &&
-    //     ev.title == calendarInfo[i].title &&
-    //     ev.color == calendarInfo[i].color
-    //   ) {
-    //     toBeAdded = 0;
-    //   }
-    // });
-    // if (toBeAdded == 1) {
-    //   let updateUserEvents = [];
-    await eventModel.create({ ...calendarInfo[i] }).then((resp) => {
-      updateUserEvents = {
-        $push: { events: resp._id },
-      };
-    });
-    await userModel.findOneAndUpdate({ email: req.email }, updateUserEvents);
-    // }
+    calendarInfo[i].google = req.email;
+    const newEvent = eventModel.create({ ...calendarInfo[i] })
+    events.push(newEvent)
   }
+  events = await Promise.all(events)
+  events = events.map(event => event._id)
 
-  // eventModel.find({ google: req.email }).then((ev) => {
-  //   let toBeDeleted = 1;
-  //   for (let i = 0; i < calendarInfo.length; i++) {
-  //     if (
-  //       ev.dateEvent == calendarInfo[i].dateEvent &&
-  //       ev.startEvent == calendarInfo[i].startEvent &&
-  //       ev.endEvent == calendarInfo[i].endEvent &&
-  //       ev.title == calendarInfo[i].title &&
-  //       ev.color == calendarInfo[i].color
-  //     ) {
-  //       toBeDeleted = 0;
-  //       break;
-  //     }
-  //   }
-  //   if (toBeDeleted == 1) {
-  //     eventModel.deleteOne({
-  //       dateEvent: ev.dateEvent,
-  //       startEvent: ev.startEvent,
-  //       endEvent: ev.endEvent,
-  //       title: ev.title,
-  //       color: ev.color,
-  //       google: ev.google,
-  //     });
-  //   }
-  // });
+  // updateaza user events
+  await userModel.findOneAndUpdate({ email: req.email }, { events: events });
   res.write(JSON.stringify(calendarInfo));
 }
 

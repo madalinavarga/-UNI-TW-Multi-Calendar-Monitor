@@ -26,6 +26,8 @@ const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 const { eventsList } = require("./routes/eventsListRoutes");
 const { requestsList, getUserRequests, acceptFriendRequest } = require("./routes/friendsRequests");
 const { requestsMeetings } = require("./routes/requestsRoutes");
+const { coordinatesRoutes } = require("./routes/coordinatesRoutes");
+const { locationMatchRoutes } = require("./routes/locationMatchRoutes");
 
 
 //init db
@@ -81,9 +83,9 @@ http
       case "/getFriends":
         await getFriends(req, res);
         break;
-        
+
       case "/friend":
-        await deleteFriend(req,res);
+        await deleteFriend(req, res);
         break;
 
       case `/getFriendEvent/${req.url.split("/")[2]}`:
@@ -97,21 +99,21 @@ http
       case "/userDetails":
         await usersRoutes(req, res);
         break;
-      
+
       case "/friendsRequests":
-          await requestsList(req, res);
-          break;
+        await requestsList(req, res);
+        break;
 
       case "/userFriendsRequests":
-            await getUserRequests(req,res);
-            break;
+        await getUserRequests(req, res);
+        break;
 
       case "/friends":
-            await addFriend(req,res);
-            break;
-            
+        await addFriend(req, res);
+        break;
+
       case "/friendRequest":
-        await acceptFriendRequest(req,res);
+        await acceptFriendRequest(req, res);
         break;
 
       case "/calendar":
@@ -119,7 +121,7 @@ http
         break;
 
       case "/requests":
-        await requestsMeetings(req,res);
+        await requestsMeetings(req, res);
         break;
 
       case "/calendar-events":
@@ -141,9 +143,9 @@ http
       case "/setAsAdmin":
         await adminRoutes(req, res);
         break;
-      
+
       case "/adminProfile":
-        await adminRoutes(req,res);
+        await adminRoutes(req, res);
         break;
 
       case "/google/calendar":
@@ -152,6 +154,14 @@ http
 
       case "/eventsList":
         await eventsList(req, res)
+        break;
+
+      case "/coordinates":
+        await coordinatesRoutes(req, res);
+        break;
+
+      case "/match/location":
+        await locationMatchRoutes(req, res);
         break;
 
       default:

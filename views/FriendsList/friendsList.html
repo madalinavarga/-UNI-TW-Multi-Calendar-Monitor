@@ -1,134 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
-    <link rel="stylesheet" href="views/FriendsList/style/friendsList.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <title>MyTime</title>
-  </head>
 
-  <body>
-    <div class="navbar">
-      <img src="../../images/logo.svg" alt="Menu logo" />
-      <div class="navbar-items-container">
-        <a class="navbar-items" href="/home">Home</a>
-        <a class="navbar-items active-navbar-item" href="/friendsList"
-          >Friends</a
-        >
-        <a class="navbar-items" href="/calendar">Calendar</a>
-        <a class="navbar-items" href="/requests">Requests</a>
-        <a class="navbar-items" href="/userProfile">Profile</a>
-      </div>
-      <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../public/global/layoutStyle/style.css" />
+  <link rel="stylesheet" href="views/FriendsList/style/friendsList.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <title>MyTime</title>
+</head>
+
+<body>
+  <div class="navbar">
+    <img src="../../images/logo.svg" alt="Menu logo" />
+    <div class="navbar-items-container">
+      <a class="navbar-items" href="/home">Home</a>
+      <a class="navbar-items active-navbar-item" href="/friendsList">Friends</a>
+      <a class="navbar-items" href="/calendar">Calendar</a>
+      <a class="navbar-items" href="/requests">Requests</a>
+      <a class="navbar-items" href="/userProfile">Profile</a>
     </div>
+    <i class="fa fa-bars hamburger-menu fa-2x" onclick="showMobileMenu()"></i>
+  </div>
 
-    <div class="container-friends">
-      <div class="nav-friends">
-        <ul>
-        <li><a href="/friendsRequests">Friend Requests</a></li>
-        <li>
-          <a class="subliniere" href="/friendsList">Your Friends List</a>
-        </li>
-      </ul>
-        <div class="search-container">
-          <form action="#">
-            <input type="text" placeholder="Search..." name="search" />
-            <button type="submit" class="btn-primary btn">Search</button>
-          </form>
+  <div class="container-friends">
+    <div class="nav-friends">
+      <a href="/friendsRequests">Friend Requests</a>
+      <a class="subliniere" href="/friendsList">Your Friends List</a>
+      <div class="search-container">
+        <form action="#">
+          <input type="text" placeholder="Search..." name="search" />
+          <button type="submit" class="btn-primary btn">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="friends-page-components">
+      <div id="friends-container"></div>
+      <div class="social-media">
+        <div class="fromTwitter">
+          <h3 class="title-social-media">Twitter</h3>
+          <button id="btn-twitter" onclick="loginTwitter()">login twitter</button>
+          <div id="twitter-friends">
+            <!-- dinamic -->
+          </div>
+        </div>
+        <div class="from2">
+          <p>social 2</p>
+          <button>login ceva</button>
         </div>
       </div>
-      <div class="friends-page-components">
-        <div id="friends-container"></div>
-        <div class="social-media">
-          <div class="fromTwitter">
-            <h3 class="title-social-media">Twitter</h3>
-            <button id="btn-twitter" onclick="loginTwitter()">login twitter</button>
-            <div id="twitter-friends">
-              <!-- dinamic -->
-            </div>
-          </div>
-          <div class="from2">
-            <p>social 2</p>
-            <button>login ceva</button>
-          </div>
+    </div>
+    <div class="popup-container">
+      <i class="fa fa fa-times fa-2x" aria-hidden="true" onclick="exitOptions()"></i>
+      <div class="popup-content">
+        <input id="event-title" type="text" placeholder="Add title" />
+        <input type="date" id="day-event" />
+        <div class="color-picker">
+          <label for="color-picker-input">Pick a color:</label>
+          <input type="color" id="color-picker-input" value="#b65476" />
         </div>
-      </div>
-      <div class="popup-container">
-        <i
-          class="fa fa fa-times fa-2x"
-          aria-hidden="true"
-          onclick="exitOptions()"
-        ></i>
-        <div class="popup-content">
-          <input id="event-title" type="text" placeholder="Add title" />
-          <input type="date" id="day-event" />
-          <div class="color-picker">
-            <label for="color-picker-input">Pick a color:</label>
-            <input type="color" id="color-picker-input" value="#b65476" />
-          </div>
-          <button id="suggestions-btn" onClick="seeSuggestions()">
-            Get Sugestions
-          </button>
-        </div>
-      </div>
-      <div class="suggestions-popup">
-        <i
-          class="fa fa fa-times fa-2x"
-          aria-hidden="true"
-          onclick="exitSuggestions()"
-        ></i>
-        <div id="download">
-          <h2 id="title-suggestion"></h2>
-          <h3 id="description-suggestion"></h3>
-          <div class="suggestions">
-            <div class="suggestion first">
-              <div class="time">time period</div>
-              <div class="location">location</div>
-            </div>
-            <div class="suggestion second">
-              <div class="time">time period</div>
-              <div class="location">location</div>
-            </div>
-            <div class="suggestion third">
-              <div class="time">time period</div>
-              <div class="location">location</div>
-            </div>
-            <div class="suggestion forth">
-              <div class="time">time period</div>
-              <div class="location">location</div>
-            </div>
-          </div>
-        </div>
-
-        <button class="download-btn" id="download-pdf" onclick="downloadPDF()">
-          Download PDF
-        </button>
-        <button class="download-btn" id="download-xml" onclick="downloadXML()">
-          Download XML
+        <label for="type">Choose a place
+          <select name="type" id="type-dropwdown">
+            <option value="bar">bar</option>
+            <option value="cafe">cafe</option>
+            <option value="night_club">night club</option>
+            <option value="museum">museum</option>
+            <option value="movie_theater">movie theater</option>
+            <option value="shopping_mall">shopping</option>
+            <option value="restaurant">restaurant</option>
+            <option value="park">park</option>
+          </select>
+        </label>
+        <button id="suggestions-btn" onClick="seeSuggestions()">
+          Get Sugestions
         </button>
       </div>
     </div>
-    <div class="footer">
-      <p>Copyright &amp;copy 2022 Multi-Calendar. All rights reserved.</p>
-      <div class="icons-container">
-        <a href="https://www.google.com/">
-          <img src="../../images/facebook-icon.png" alt="facebook-icon" />
-        </a>
-        <a href="https://www.google.com/">
-          <img src="../../images/instagram-icon.png" alt="instagram-icon" />
-        </a>
-        <a href="https://www.google.com/">
-          <img src="../../images/twitter-icon.png" alt="instagram-icon" />
-        </a>
+    <div class="suggestions-popup">
+      <i class="fa fa fa-times fa-2x" aria-hidden="true" onclick="exitSuggestions()"></i>
+      <div id="download">
+        <h2 id="title-suggestion"></h2>
+        <h3 id="description-suggestion"></h3>
+        <div class="suggestions">
+          <div class="suggestion first">
+            <div class="time">time period</div>
+            <div class="location">location</div>
+          </div>
+          <div class="suggestion second">
+            <div class="time">time period</div>
+            <div class="location">location</div>
+          </div>
+          <div class="suggestion third">
+            <div class="time">time period</div>
+            <div class="location">location</div>
+          </div>
+          <div class="suggestion forth">
+            <div class="time">time period</div>
+            <div class="location">location</div>
+          </div>
+        </div>
       </div>
+
+      <button class="download-btn" id="download-pdf" onclick="downloadPDF()">
+        Download PDF
+      </button>
+      <button class="download-btn" id="download-xml" onclick="downloadXML()">
+        Download XML
+      </button>
     </div>
-    <script src="../../public/script/script.js"></script>
-    <script src="views/FriendsList/script/friendsList.js"></script>
-  </body>
+  </div>
+  <div class="footer">
+    <p>Copyright &amp;copy 2022 Multi-Calendar. All rights reserved.</p>
+    <div class="icons-container">
+      <a href="https://www.google.com/">
+        <img src="../../images/facebook-icon.png" alt="facebook-icon" />
+      </a>
+      <a href="https://www.google.com/">
+        <img src="../../images/instagram-icon.png" alt="instagram-icon" />
+      </a>
+      <a href="https://www.google.com/">
+        <img src="../../images/twitter-icon.png" alt="instagram-icon" />
+      </a>
+    </div>
+  </div>
+  <script src="../../public/script/script.js"></script>
+  <script src="views/FriendsList/script/friendsList.js"></script>
+</body>
+
 </html>

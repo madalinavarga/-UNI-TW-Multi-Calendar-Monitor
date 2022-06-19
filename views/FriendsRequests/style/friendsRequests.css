@@ -22,12 +22,9 @@
   padding-right: 5rem;
 }
 
-.container-friends .nav-friends li {
-  list-style-type: none;
-}
-
-.container-friends .nav-friends li a {
+.container-friends .nav-friends a {
   color: white;
+  text-decoration: none;
 }
 
 .subliniere {

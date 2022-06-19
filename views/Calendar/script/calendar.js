@@ -70,7 +70,6 @@ const getEvents = (dateArray) => {
       for (let i = 0; i < res.length; i++) {
         let arr = res[i].dateEvent.split("-");
         let date;
-        console.log(res[i].google);
         if (typeof res[i].google != "undefined") {
           date = new Date(
             parseInt(arr[0]),

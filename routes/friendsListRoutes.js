@@ -1,4 +1,3 @@
-const fs = require("fs");
 const {
   getViewHTML,
   getFriendsList,
@@ -50,7 +49,7 @@ async function twitterFriends(req, res) {
   }
 }
 
-async function addFriend(req,res){
+async function addFriend(req, res) {
   switch (req.method) {
     case "POST":
       await middleware(req, res, sendFriendRequest);
@@ -60,8 +59,8 @@ async function addFriend(req,res){
   }
 }
 
-async function deleteFriend(req,res){
-  await middleware(req,res,deleteExistingFriend);
+async function deleteFriend(req, res) {
+  await middleware(req, res, deleteExistingFriend);
 }
 
 module.exports = {
