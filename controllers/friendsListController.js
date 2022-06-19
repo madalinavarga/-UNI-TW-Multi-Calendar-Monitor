@@ -62,10 +62,31 @@ async function sendFriendRequest(req, res) {
   res.writeHead(400);
 }
 
+async function deleteExistingFriend(req,res){
+  const idUser = new URLSearchParams(req.params).get("userId");
+
+  const user = await userModel.findOne({ email: req.email });
+  const friend = await userModel.findOne({ _id: idUser });
+
+  user.friends = user.friends.filter(friendId => friendId.toString() != friend._id.toString())
+  friend.friends = friend.friends.filter(friendId => friendId.toString() != user._id.toString())
+  
+  await userModel.findOneAndUpdate(
+    { _id: user._id },
+    { ...user }
+  );
+
+  await userModel.findOneAndUpdate(
+    { _id: friend._id },
+    { ...friend }
+  );
+
+}
 
 module.exports = {
   getViewHTML,
   getFriendsList,
   getTwitterFriends,
   sendFriendRequest,
+  deleteExistingFriend
 };

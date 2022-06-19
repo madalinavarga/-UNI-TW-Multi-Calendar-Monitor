@@ -12,6 +12,8 @@ const {
   getFriends,
   friendsCalendar,
   twitterFriends,
+  addFriend,
+  deleteFriend,
 } = require("./routes/friendsListRoutes");
 const { userProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
@@ -22,6 +24,7 @@ const { usersListRoutes } = require("./routes/usersListRoutes");
 const { logout } = require("./controllers/logoutController");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 const { eventsList } = require("./routes/eventsListRoutes");
+const { requestsList, getUserRequests, acceptFriendRequest } = require("./routes/friendsRequests");
 
 
 //init db
@@ -77,6 +80,10 @@ http
       case "/getFriends":
         await getFriends(req, res);
         break;
+        
+      case "/friend":
+        await deleteFriend(req,res);
+        break;
 
       case `/getFriendEvent/${req.url.split("/")[2]}`:
         await friendsCalendar(req, res);
@@ -88,6 +95,22 @@ http
 
       case "/userDetails":
         await usersRoutes(req, res);
+        break;
+      
+      case "/friendsRequests":
+          await requestsList(req, res);
+          break;
+
+      case "/userFriendsRequests":
+            await getUserRequests(req,res);
+            break;
+
+      case "/friends":
+            await addFriend(req,res);
+            break;
+            
+      case "/friendRequest":
+        await acceptFriendRequest(req,res);
         break;
 
       case "/calendar":

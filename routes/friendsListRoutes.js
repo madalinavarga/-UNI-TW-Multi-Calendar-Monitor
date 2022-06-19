@@ -5,6 +5,7 @@ const {
   getTwitterFriends,
   sendFriendRequest,
   getRequests,
+  deleteExistingFriend,
 } = require("../controllers/friendsListController");
 const { getEventsByFriendId } = require("../controllers/calendarController");
 const { middleware } = require("../middleware/middleware");
@@ -59,10 +60,15 @@ async function addFriend(req,res){
   }
 }
 
+async function deleteFriend(req,res){
+  await middleware(req,res,deleteExistingFriend);
+}
+
 module.exports = {
   friendsList,
   getFriends,
   friendsCalendar,
   twitterFriends,
-  addFriend
+  addFriend,
+  deleteFriend
 };

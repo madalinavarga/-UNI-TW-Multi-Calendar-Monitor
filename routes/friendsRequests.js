@@ -1,6 +1,6 @@
 const { middleware } = require("../middleware/middleware");
 const fs = require("fs");
-const { getViewHTML, getRequests } = require("../controllers/friendsRequestsController");
+const { getViewHTML, getRequests, acceptRequest } = require("../controllers/friendsRequestsController");
 
 async function requestsList(req, res) {
   switch (req.method) {
@@ -22,8 +22,12 @@ async function getUserRequests(req,res){
     }
   }
   
+async function acceptFriendRequest(req,res){
+    await middleware(req,res,acceptRequest);
+}
 
 module.exports = {
   requestsList,
-  getUserRequests
+  getUserRequests,
+  acceptFriendRequest
 };

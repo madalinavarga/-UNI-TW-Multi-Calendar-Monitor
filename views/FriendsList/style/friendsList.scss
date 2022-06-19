@@ -37,6 +37,7 @@ $color-nav: grey;
         background: rgba(149, 221, 224, 0.705);
         padding: 2rem;
         border-radius: 0.5rem;
+        box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
         .friend-buttons {
           display: flex;
           align-items: center;
@@ -86,6 +87,7 @@ $color-nav: grey;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+        
         .friend-buttons {
           flex-direction: column;
           gap: 0.5rem;

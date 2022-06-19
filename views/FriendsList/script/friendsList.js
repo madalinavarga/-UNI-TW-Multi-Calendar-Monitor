@@ -32,6 +32,7 @@ function pageLoading() {
 }
 
 function createFriendContrainer(i, user) {
+  console.log("friend creates")
   let newDiv = document.createElement("div");
   newDiv.id = "friend-" + i;
   newDiv.className = "friend-container";
@@ -60,6 +61,10 @@ function createFriendContrainer(i, user) {
   newContent = document.createTextNode("Delete");
   buttonDelete.appendChild(newContent);
   buttons.appendChild(buttonDelete);
+  buttonDelete.addEventListener("click", function () {
+    deleteFriend(user._id);
+  });
+
 
   let button = document.createElement("button");
   button.className = `btn-primary btn options`;
@@ -75,6 +80,17 @@ function createFriendContrainer(i, user) {
   newDiv.appendChild(buttons);
 
   document.getElementById("friends-container").appendChild(newDiv);
+}
+
+function deleteFriend(userId){
+  fetch(`/friend?userId=${userId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(()=>{
+    window.location.reload();
+  })
 }
 
 function loginTwitter() {

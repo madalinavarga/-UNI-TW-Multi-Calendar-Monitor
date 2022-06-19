@@ -1,7 +1,6 @@
 onInit();
 
 function onInit() {
-  console.log("init");
   fetch("/userFriendsRequests", {
     method: "GET",
     headers: {
@@ -69,6 +68,24 @@ function createRequest(i, user) {
   parent.appendChild(newDiv);
 }
 
-function acceptFriendship(id) {}
+function acceptFriendship(userId) {
+  fetch(`/friendRequest?userId=${userId}&action=accept`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(()=>{
+    window.location.reload();
+  })
+}
 
-function deleteRequest(id) {}
+function deleteRequest(userId) {
+  fetch(`/friendRequest?userId=${userId}&action=reject`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(()=>{
+    window.location.reload();
+  })
+}
