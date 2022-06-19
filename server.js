@@ -25,6 +25,7 @@ const { logout } = require("./controllers/logoutController");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 const { eventsList } = require("./routes/eventsListRoutes");
 const { requestsList, getUserRequests, acceptFriendRequest } = require("./routes/friendsRequests");
+const { requestsMeetings } = require("./routes/requestsRoutes");
 
 
 //init db
@@ -115,6 +116,10 @@ http
 
       case "/calendar":
         await calendarRoutes(req, res);
+        break;
+
+      case "/requests":
+        await requestsMeetings(req,res);
         break;
 
       case "/calendar-events":
