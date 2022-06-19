@@ -1,7 +1,3 @@
-//const { dbObjectAsPojo } = require("oracledb");
-//var mongodb = require('mongodb');
-
-
 pageLoading();
 
 function pageLoading() {
@@ -15,89 +11,82 @@ function pageLoading() {
       return response.json();
     })
     .then((users) => {
-
       for (i = 0; i < users.length; i++) {
-          createUserContainer(i, users);
+        createUserContainer(i, users[i]);
       }
-
     });
 }
 
 function populateList(users) {
-  console.log(users[3].email);
 }
 
-function createUserContainer(i, users) {
+function createUserContainer(i, user) {
   let userContainerDiv = document.createElement("div");
 
-  userContainerDiv.id = users[i].email;
+  userContainerDiv.id = user.email;
   userContainerDiv.className = "user-container";
 
-  //user 
+  //user
   let userDetailsDiv = document.createElement("div");
-  userDetailsDiv.className="user-details";
+  userDetailsDiv.className = "user-details";
 
   let userImg = document.createElement("img");
   userImg.alt = "avatar";
   userImg.className = "avatar";
-  userImg.src ="https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png";
-  if(users[i].photo){
-    userImg.src=users[i].photo;
+  userImg.src =
+    "https://tleliteracy.com/wp-content/uploads/2017/02/default-avatar.png";
+  if (user.photo) {
+    userImg.src = user.photo;
   }
-  
+
   userDetailsDiv.appendChild(userImg);
 
   let firstName = document.createElement("h3");
-  let newContent = document.createTextNode("First name: "+
-    users[i].firstName
-  );
+  let newContent = document.createTextNode("First name: " + user.firstName);
   firstName.appendChild(newContent);
   userDetailsDiv.appendChild(firstName);
 
   let lastName = document.createElement("h3");
-  newContent = document.createTextNode("Last name: "+
-    users[i].lastName
-  );
+  newContent = document.createTextNode("Last name: " + user.lastName);
   lastName.appendChild(newContent);
   userDetailsDiv.appendChild(lastName);
 
   let userEmail = document.createElement("h4");
-  newContent = document.createTextNode("Email: "+users[i].email);
+  newContent = document.createTextNode("Email: " + user.email);
 
   userEmail.appendChild(newContent);
   userDetailsDiv.appendChild(userEmail);
 
   userContainerDiv.appendChild(userDetailsDiv);
 
-
   //user statistics
-  
-  let userStatistics=document.createElement("div");
-  userStatistics.className="user-statistics";
 
-  newContent = document.createTextNode("Number of friends: "+users[i].friends.length);
-  let nrFriendsStatistics=document.createElement("p");
+  let userStatistics = document.createElement("div");
+  userStatistics.className = "user-statistics";
+
+  newContent = document.createTextNode(
+    "Number of friends: " + user.friends.length
+  );
+  let nrFriendsStatistics = document.createElement("p");
   nrFriendsStatistics.appendChild(newContent);
   userStatistics.appendChild(nrFriendsStatistics);
 
-  console.log(users[i].events);
-  newContent = document.createTextNode("Number of events: " + users[i].events.length);
-  let nrEventsStatistics=document.createElement("p");
+  newContent = document.createTextNode(
+    "Number of events: " + user.events.length
+  );
+  let nrEventsStatistics = document.createElement("p");
   nrEventsStatistics.appendChild(newContent);
   userStatistics.appendChild(nrEventsStatistics);
-  
-  newContent = document.createTextNode("Is admin: "+users[i].role);
-  let isAdminStatistics=document.createElement("p");
-  isAdminStatistics.id="is-admin-"+users[i]._id;
+
+  newContent = document.createTextNode("Is admin: " + user.role);
+  let isAdminStatistics = document.createElement("p");
+  isAdminStatistics.id = "is-admin-" + user._id;
   console.log(isAdminStatistics._id);
   //isAdminStatistics.className="is-admin";
   isAdminStatistics.appendChild(newContent);
   userStatistics.appendChild(isAdminStatistics);
 
-
-
   userContainerDiv.appendChild(userStatistics);
-  
 
   document.getElementById("users-list-container").appendChild(userContainerDiv);
 
@@ -112,77 +101,56 @@ function createUserContainer(i, users) {
   userButtonsDiv.appendChild(buttonDelete);
 
   buttonDelete.addEventListener("click", function () {
-    const element = document.getElementById(users[i].email);
-    console.log(users[i]._id);
+    const element = document.getElementById(user.email);
+    console.log(user._id);
 
-    
-    const payload = {
-      id: users[i]._id,
-
-    };
-
-    fetch("/deleteUser", {
-      method: "DELETE", // *GET, POST, PUT, DELETE
+    fetch(`/deleteUser?userId=${user._id}`, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload), // body data
     }).then((response) => {
       if (response.status == 200) {
         console.log("Deleted successfully");
-      } else {
-        //alert("Error at delete user from db");
       }
     });
-    
 
-    
     element.remove();
   });
-  
 
-  if(users[i].role==0){
+  if (user.role == 0) {
     let buttonAddAdmin = document.createElement("button");
-  buttonAddAdmin.className = "btn-primary btn";
-  newContent = document.createTextNode("Add Admin");
-  buttonAddAdmin.appendChild(newContent);
-  userButtonsDiv.appendChild(buttonAddAdmin);
+    buttonAddAdmin.className = "btn-primary btn";
+    newContent = document.createTextNode("Add Admin");
+    buttonAddAdmin.appendChild(newContent);
+    userButtonsDiv.appendChild(buttonAddAdmin);
 
-  buttonAddAdmin.addEventListener("click",function(){
-    const element = document.getElementById(users[i].email);
-    console.log(users[i]._id);
+    buttonAddAdmin.addEventListener("click", function () {
+      const element = document.getElementById(user.email);
+      console.log(user._id);
 
-    
-    const payload = {
-      id: users[i]._id,
+      const payload = {
+        id: user._id,
+      };
 
-    };
-
-    fetch("/setAsAdmin", {
-      method: "PUT", // *GET, POST, PUT, DELETE
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload), // body data
-    }).then((response) => {
-      if (response.status == 200) {
-        console.log("Admin added successfully");
-        let val=document.getElementById("is-admin-"+users[i]._id);
-        val.innerHTML="is admin: 1";
-        console.log(val.innerHTML);
-      } else {
-        //alert("Error at add admin");
-      }
+      fetch("/setAsAdmin", {
+        method: "PUT", // *GET, POST, PUT, DELETE
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload), // body data
+      }).then((response) => {
+        if (response.status == 200) {
+          console.log("Admin added successfully");
+          let val = document.getElementById("is-admin-" + user._id);
+          val.innerHTML = "is admin: 1";
+          console.log(val.innerHTML);
+        } else {
+          //alert("Error at add admin");
+        }
+      });
     });
-
-
   }
-  )
-}
 
-
-  
   userContainerDiv.appendChild(userButtonsDiv);
-
-
 }
