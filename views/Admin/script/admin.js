@@ -80,7 +80,7 @@ function createUserContainer(i, users) {
   nrFriendsStatistics.appendChild(newContent);
   userStatistics.appendChild(nrFriendsStatistics);
 
-  console.log(users[i].events);
+  //console.log(users[i].events);
   newContent = document.createTextNode("Number of events: " + users[i].events.length);
   let nrEventsStatistics=document.createElement("p");
   nrEventsStatistics.appendChild(newContent);
@@ -89,7 +89,7 @@ function createUserContainer(i, users) {
   newContent = document.createTextNode("Is admin: "+users[i].role);
   let isAdminStatistics=document.createElement("p");
   isAdminStatistics.id="is-admin-"+users[i]._id;
-  console.log(isAdminStatistics._id);
+  //console.log(isAdminStatistics._id);
   //isAdminStatistics.className="is-admin";
   isAdminStatistics.appendChild(newContent);
   userStatistics.appendChild(isAdminStatistics);
@@ -150,7 +150,7 @@ function createUserContainer(i, users) {
 
   buttonAddAdmin.addEventListener("click",function(){
     const element = document.getElementById(users[i].email);
-    console.log(users[i]._id);
+    //console.log(users[i]._id);
 
     
     const payload = {
@@ -166,10 +166,10 @@ function createUserContainer(i, users) {
       body: JSON.stringify(payload), // body data
     }).then((response) => {
       if (response.status == 200) {
-        console.log("Admin added successfully");
+        //console.log("Admin added successfully");
         let val=document.getElementById("is-admin-"+users[i]._id);
         val.innerHTML="is admin: 1";
-        console.log(val.innerHTML);
+        //console.log(val.innerHTML);
       } else {
         //alert("Error at add admin");
       }

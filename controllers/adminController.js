@@ -36,18 +36,16 @@ async function deleteUser(req,res){
         console.log("user friends:" +user.friends.length);
         for(let i=0;i<user.friends.length; i++){
           console.log("am ajuns la prietenul: " + user.friends[i]);
-            await userModel.updateMany(
-              {
-                _id: user.friends[i],
-              },
-              {
-                $pull: {
-                  friends: user.id,
-                }
-              }
-            )
+           await userModel.findOneAndUpdate({
+            _id:user.friends[i],
+           },
+           {
+            $pull: {
+              friends: user.id,
+            },
+           })
         }
-        //await userModel.deleteOne({_id: user.id})
+        await userModel.deleteOne({_id: user.id})
       
         res.writeHead(200);
       } catch (err) {
