@@ -1,5 +1,10 @@
 body{
     overflow-x: hidden;
+    .navbar{
+        position: sticky;
+        top: 0;
+        width: 100%;
+    }
     .container{
         background-image: url("../../../images/home-img2.jpg");
              background-attachment: fixed;

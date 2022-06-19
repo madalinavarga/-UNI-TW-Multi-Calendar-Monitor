@@ -8,6 +8,11 @@ html {
       height: auto !important;
       height: 100%;
       margin: 0 auto -120px;
+      .navbar{
+        position: sticky;
+        top: 0;
+        width: 100%;
+    }
       .footer{
         height: 5rem;
         margin-bottom: -120px;
