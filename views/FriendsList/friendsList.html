@@ -65,9 +65,6 @@
         <button id="suggestions-btn" onClick="seeSuggestions()">
           Get Sugestions
         </button>
-        <button id="send-request-btn" onClick="sendRequest()">
-          Send Request
-        </button>
       </div>
     </div>
     <div class="suggestions-popup">
@@ -76,31 +73,36 @@
         <h2 id="title-suggestion"></h2>
         <h3 id="description-suggestion"></h3>
         <div class="suggestions">
-          <div class="suggestion first">
+          <div class="suggestion first" onclick="getDetailsMeet('first')">
             <div class="time">time period</div>
             <div class="location">location</div>
           </div>
-          <div class="suggestion second">
+          <div class="suggestion second" onclick="getDetailsMeet('second')">
             <div class="time">time period</div>
             <div class="location">location</div>
           </div>
-          <div class="suggestion third">
+          <div class="suggestion third" onclick="getDetailsMeet('third')">
             <div class="time">time period</div>
             <div class="location">location</div>
           </div>
-          <div class="suggestion forth">
+          <div class="suggestion forth" onclick="getDetailsMeet('forth')">
             <div class="time">time period</div>
             <div class="location">location</div>
           </div>
         </div>
       </div>
 
+      <div class="buttons-pop">
       <button class="download-btn" id="download-pdf" onclick="downloadPDF()">
         Download PDF
       </button>
       <button class="download-btn" id="download-xml" onclick="downloadXML()">
         Download XML
       </button>
+      <button id="send-request-btn" class="download-btn" onClick="sendRequest()">
+        Send Request
+      </button>
+      </div>
     </div>
   </div>
   <div class="footer">

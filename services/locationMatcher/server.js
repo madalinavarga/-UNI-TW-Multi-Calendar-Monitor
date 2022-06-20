@@ -30,7 +30,7 @@ http
         location: x.vicinity,
         ratings: x.rating
     }))
-
+    console.log("intersectie",intersection);
     res.write(JSON.stringify(intersection))
     res.end()
   })

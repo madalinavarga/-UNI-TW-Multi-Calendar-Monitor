@@ -9,6 +9,7 @@ async function getUserPlaces(email, radius, type) {
     radius: radius,
     type: type,
   });
+  console.log(params);
   const response = await fetch(
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?${params}`
   );

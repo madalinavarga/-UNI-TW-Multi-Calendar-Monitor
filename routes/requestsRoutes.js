@@ -1,5 +1,6 @@
 const fs = require('fs');
-const { getViewHTML } = require('../controllers/requestsController');
+const { getViewHTML, responseRequest } = require('../controllers/requestsController');
+const { middleware } = require('../middleware/middleware');
 
 
 async function requestsMeetings(req, res) {
@@ -12,6 +13,11 @@ async function requestsMeetings(req, res) {
     }
 }
 
+async function responseRequestMeet(req,res){
+   await middleware(req,res,responseRequest)
+}
+
 module.exports = {
-    requestsMeetings
+    requestsMeetings,
+    responseRequestMeet
 }

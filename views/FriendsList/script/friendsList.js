@@ -1,4 +1,17 @@
 // const { DB_TYPE_INTERVAL_YM } = require("oracledb");
+let startData;
+let endData;
+let locationEvent;
+
+function getDetailsMeet(str){
+  const detailsSugestion=document.getElementsByClassName(str)[0];
+  const hoursInterval =detailsSugestion.children[0].innerHTML;
+  startData=hoursInterval.split(" - ")[0];
+  endData=hoursInterval.split(" - ")[1];
+  locationEvent =detailsSugestion.children[1].innerHTML;
+  console.log(startData, endData);
+}
+
 
 pageLoading();
 
@@ -20,6 +33,7 @@ function pageLoading() {
     },
   })
     .then((response) => {
+      console.log("apel friends")
       return response.json();
     })
     .then((user) => {
@@ -32,7 +46,7 @@ function pageLoading() {
 }
 
 function createFriendContrainer(i, user) {
-  console.log("friend creates")
+  console.log("friend creates");
   let newDiv = document.createElement("div");
   newDiv.id = "friend-" + i;
   newDiv.className = "friend-container";
@@ -65,7 +79,6 @@ function createFriendContrainer(i, user) {
     deleteFriend(user._id);
   });
 
-
   let button = document.createElement("button");
   button.className = `btn-primary btn options`;
   button.id = i;
@@ -90,7 +103,7 @@ function deleteFriend(userId) {
     },
   }).then(() => {
     window.location.reload();
-  })
+  });
 }
 
 function loginTwitter() {
@@ -161,7 +174,7 @@ function addFriend(userId) {
     headers: {
       "Content-Type": "application/json",
     },
-  })
+  });
 }
 
 let currentFriend;
@@ -219,8 +232,8 @@ const exitSuggestions = () => {
 
 function seeSuggestions() {
   exitOptions();
-  console.log("currentFriend: "+currentFriend._id);
-  console.log("currentI "+currentI);
+  console.log("currentFriend: " + currentFriend._id);
+  console.log("currentI " + currentI);
   getSuggestions(currentFriend, currentI);
   suggestionsPopUp.style.display = "block";
 }
@@ -234,8 +247,7 @@ const getSuggestions = (user, i) => {
   const locationType = document.getElementById("type-dropwdown").value;
 
   if (eventTitle != "") {
-    h2.innerHTML =
-      eventTitle + " with " + user.firstName + " " + user.lastName;
+    h2.innerHTML = eventTitle + " with " + user.firstName + " " + user.lastName;
   } else {
     h2.innerHTML = "Event with " + user.firstName + " " + user.lastName;
   }
@@ -253,16 +265,19 @@ const getSuggestions = (user, i) => {
 
 const makeLocationSuggestions = async (friendEmail, locationType) => {
   // get locations
-  const response = await fetch(`/match/location?email=${friendEmail}&type=${locationType}`, {
-    "method": "GET"
-  })
-  const data = await response.json()
-  const locations = data.map(x => {
-    if (x.ratings) {
-      return `${x.name} (${x.ratings}/5) - location: ${x.location}`
+  const response = await fetch(
+    `/match/location?email=${friendEmail}&type=${locationType}`,
+    {
+      method: "GET",
     }
-    return `${x.name} - location: ${x.location}`
-  })
+  );
+  const data = await response.json();
+  const locations = data.map((x) => {
+    if (x.ratings) {
+      return `${x.name} (${x.ratings}/5) - location: ${x.location}`;
+    }
+    return `${x.name} - location: ${x.location}`;
+  });
 
   // choose selectors
   const places = [
@@ -270,13 +285,13 @@ const makeLocationSuggestions = async (friendEmail, locationType) => {
     document.querySelector(".second").querySelector(".location"),
     document.querySelector(".third").querySelector(".location"),
     document.querySelector(".forth").querySelector(".location"),
-  ]
+  ];
 
   // set locations randomly
   for (let place of places) {
-    place.innerHTML = locations[Math.floor(Math.random() * locations.length)]
+    place.innerHTML = locations[Math.floor(Math.random() * locations.length)];
   }
-}
+};
 
 const makeTimeSuggestions = (eventDate) => {
   let busyHours = seeBusyHours(eventDate, eventsUser).concat(
@@ -326,9 +341,11 @@ const makeTimeSuggestions = (eventDate) => {
 };
 
 const suggestionString = (i, periodTime) => {
-  return `${periodTime[i].hours.split("-")[0]}:${periodTime[i].minutes.split("-")[0]
-    } - ${periodTime[i].hours.split("-")[1]}:${periodTime[i].minutes.split("-")[1]
-    }`;
+  return `${periodTime[i].hours.split("-")[0]}:${
+    periodTime[i].minutes.split("-")[0]
+  } - ${periodTime[i].hours.split("-")[1]}:${
+    periodTime[i].minutes.split("-")[1]
+  }`;
 };
 
 const getFreeEventTime = (busyHours) => {
@@ -362,8 +379,9 @@ const getFreeEventTime = (busyHours) => {
       let endTime = temp.minutes.split("-")[1];
       let startTime = daySlots[i + 1].minutes.split("-")[0];
       if (endTime != startTime) {
-        daySlots[i + 1].minutes = `${endTime}-${daySlots[i + 1].minutes.split("-")[1]
-          }`;
+        daySlots[i + 1].minutes = `${endTime}-${
+          daySlots[i + 1].minutes.split("-")[1]
+        }`;
         periodTime.push(daySlots[i + 1]);
         i++;
       }
@@ -400,10 +418,12 @@ const seeBusyHours = (eventDate, events) => {
         date.getFullYear() == dateEvent.getFullYear()
       ) {
         busyHours.push({
-          hours: `${eventsUser[i].startEvent.split(":")[0]}-${eventsUser[i].endEvent.split(":")[0]
-            }`,
-          minutes: `${eventsUser[i].startEvent.split(":")[1]}-${eventsUser[i].endEvent.split(":")[1]
-            }`,
+          hours: `${eventsUser[i].startEvent.split(":")[0]}-${
+            eventsUser[i].endEvent.split(":")[0]
+          }`,
+          minutes: `${eventsUser[i].startEvent.split(":")[1]}-${
+            eventsUser[i].endEvent.split(":")[1]
+          }`,
         });
       }
     }
@@ -444,11 +464,7 @@ function downloadPDF() {
   printWindow.print();
 }
 
-
-
-function sendRequest(){
-  
-
+function sendRequest() {
   fetch("/userDetails", {
     method: "GET",
     headers: {
@@ -463,23 +479,28 @@ function sendRequest(){
     });
 }
 
-function populateEventRequest(user){
-  console.log("currentFriend: "+currentFriend._id);
+function populateEventRequest(user) {
+  console.log("currentFriend: " + currentFriend._id);
   const title = document.getElementById("event-title").value;
   const dateRequest = document.getElementById("day-event").value;
-  const location = document.getElementById("type-dropwdown").value;
-  const toWhom =  currentFriend._id;
-  const fromWhom=user._id;
+  const toWhom = currentFriend._id;
+  const fromWhom = user._id;
 
-  if(!title || !dateRequest || !location){
+  if (!title || !dateRequest) {
     alert("All fields are required!");
     return;
   }
 
+  if (!locationEvent || !startData) {
+    alert("Select one option");
+    return;
+  }
   const payload = {
     title: title,
     dateRequest: dateRequest,
-    location: location,
+    location: locationEvent,
+    startEvent: startData,
+    endEvent: endData,
     fromWhom: fromWhom,
     toWhom: toWhom,
   };
@@ -498,9 +519,6 @@ function populateEventRequest(user){
     }
   });
 }
-
-
-
 
 /*
 fetch("/postEventRequest", {
@@ -543,5 +561,3 @@ fetch("/userDetails", {
     
   }
 */
-
-

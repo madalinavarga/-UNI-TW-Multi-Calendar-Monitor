@@ -25,7 +25,7 @@ const { logout } = require("./controllers/logoutController");
 const { loginWithTwitter } = require("./routes/loginWithTwitterRoutes");
 const { eventsList } = require("./routes/eventsListRoutes");
 const { requestsList, getUserRequests, acceptFriendRequest } = require("./routes/friendsRequests");
-const { requestsMeetings } = require("./routes/requestsRoutes");
+const { requestsMeetings, responseRequestMeet } = require("./routes/requestsRoutes");
 const { coordinatesRoutes } = require("./routes/coordinatesRoutes");
 const { locationMatchRoutes } = require("./routes/locationMatchRoutes");
 const { eventRequestRoutes } = require("./routes/eventRequestRoutes");
@@ -157,6 +157,10 @@ http
 
       case "/eventsList":
         await eventsList(req, res)
+        break;
+
+      case "/meetRequest":
+        await responseRequestMeet(req,res);
         break;
 
       case "/coordinates":

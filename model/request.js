@@ -3,15 +3,27 @@ const mongoose = require("mongoose");
 const requestSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: false,
+    required: true,
   },
   dateRequest: {
+    type: String,
+    required: true,
+  },
+  startEvent: {
+    type: String,
+    required: true,
+  },
+  endEvent: {
     type: String,
     required: true,
   },
   location: {
     type: String,
     required: false,
+  },
+  color: {
+    type: String,
+    required: true,
   },
   fromWhom:{
     type: mongoose.Schema.Types.ObjectId,

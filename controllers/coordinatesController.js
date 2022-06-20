@@ -18,7 +18,7 @@ async function getLocationMatch(req, res) {
     email1: req.email,
     email2: inputParams.get("email"),
     type: inputParams.get("type"),
-    radius: 1000,
+    radius: 5000,
   })
 
   const response = await fetch(

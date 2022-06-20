@@ -27,7 +27,6 @@ async function twitterFriends(req, res) {
 
       // iau prietneii userului current
       const userFriendsIds =  users.find((user) => user.email === email).friends || [];
-      console.log("friends",usersNamesTwitter,userFriendsIds);
 
       // filtrez prietenii
       const newFriends = users.filter(
@@ -36,7 +35,7 @@ async function twitterFriends(req, res) {
           !userFriendsIds.includes(user._id) // nu este in lista de prieteni pe site
       ).map(user => ({
         ...user._doc, 
-        twitterData: data.find(user => user.twitterName === data.username)
+        twitterData: data.find(twitterUser => user.twitterName === twitterUser.username)
       }))
 
 

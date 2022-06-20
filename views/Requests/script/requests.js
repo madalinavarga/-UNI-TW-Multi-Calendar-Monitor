@@ -118,21 +118,17 @@ function createRequestContainer(user,i,request){
           deleteButton.className="btn-danger btn";
           deleteButton.innerHTML+="Delete request";
 
-          /*
-          buttonDelete.addEventListener("click",function(){
-            
-          })
-          */
+          deleteButton.addEventListener("click", function () {
+            deleteRequestMeet(user._id,request._id);
+          });
 
           let acceptButton=document.createElement("button");
           acceptButton.className="btn-add btn";
           acceptButton.innerHTML+="Accept request";
 
-          /*
-          acceptButton.addEventListener("click",function(){
-            
-          })
-          */
+          acceptButton.addEventListener("click", function () {
+            acceptRequestMeet(user._id,request._id);
+          });
           
 
           //append
@@ -155,4 +151,26 @@ function createRequestContainer(user,i,request){
 
 
 
+}
+
+function deleteRequestMeet(userId,requestId){
+  fetch(`/meetRequest?userId=${userId}&requestId=${requestId}&action=reject`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(()=>{
+    window.location.reload();
+  })
+}
+
+function acceptRequestMeet(userId,requestId){
+  fetch(`/meetRequest?userId=${userId}&requestId=${requestId}&action=accept`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(()=>{
+    window.location.reload();
+  })
 }
