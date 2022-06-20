@@ -15,7 +15,7 @@ const {
   addFriend,
   deleteFriend,
 } = require("./routes/friendsListRoutes");
-const { userProfile } = require("./routes/userProfileRoutes");
+const { userProfile, editUserProfile } = require("./routes/userProfileRoutes");
 const { usersRoutes } = require("./routes/usersRoutes");
 const { calendarRoutes, eventsRoutes, googleCalendarRoutes } = require("./routes/calendarRoutes");
 const { homeRoutes } = require("./routes/homeRoutes");
@@ -97,6 +97,10 @@ http
 
       case "/userProfile":
         userProfile(req, res);
+        break;
+      
+      case "/userProfile/edit":
+        editUserProfile(req, res);
         break;
 
       case "/userDetails":

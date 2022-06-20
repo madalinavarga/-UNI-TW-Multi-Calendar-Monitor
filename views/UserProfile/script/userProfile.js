@@ -89,9 +89,7 @@ async function save() {
     },
     body: JSON.stringify(payload),
   });
-  const data = await response.json();
-  userData = data;
-  cancelEdit();
+  window.location.reload();
 }
 
 function logout() {
