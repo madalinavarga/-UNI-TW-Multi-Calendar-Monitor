@@ -28,6 +28,9 @@ const { requestsList, getUserRequests, acceptFriendRequest } = require("./routes
 const { requestsMeetings } = require("./routes/requestsRoutes");
 const { coordinatesRoutes } = require("./routes/coordinatesRoutes");
 const { locationMatchRoutes } = require("./routes/locationMatchRoutes");
+const { eventRequestRoutes } = require("./routes/eventRequestRoutes");
+const { requestEvent } = require("./routes/eventRequestRoutes");
+const { friendUser } = require("./routes/usersRoutes");
 
 
 //init db
@@ -162,6 +165,17 @@ http
 
       case "/match/location":
         await locationMatchRoutes(req, res);
+        break;
+
+      case "/eventRequestRoutes":
+        await eventRequestRoutes(req, res);
+        break;
+      case `/getRequestEvent/${req.url.split("/")[2]}`:
+        await requestEvent(req, res);
+        break;
+
+      case `/getFriend/${req.url.split("/")[2]}`:
+        await friendUser(req, res);
         break;
 
       default:

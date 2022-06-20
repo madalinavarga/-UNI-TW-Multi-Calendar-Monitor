@@ -219,11 +219,14 @@ const exitSuggestions = () => {
 
 function seeSuggestions() {
   exitOptions();
+  console.log("currentFriend: "+currentFriend._id);
+  console.log("currentI "+currentI);
   getSuggestions(currentFriend, currentI);
   suggestionsPopUp.style.display = "block";
 }
 
 const getSuggestions = (user, i) => {
+  //console.log(user._id);
   const h2 = document.getElementById("title-suggestion");
   const h3 = document.getElementById("description-suggestion");
   const eventTitle = document.getElementById("event-title").value;
@@ -440,3 +443,105 @@ function downloadPDF() {
   printWindow.document.close();
   printWindow.print();
 }
+
+
+
+function sendRequest(){
+  
+
+  fetch("/userDetails", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((user) => {
+      populateEventRequest(user);
+    });
+}
+
+function populateEventRequest(user){
+  console.log("currentFriend: "+currentFriend._id);
+  const title = document.getElementById("event-title").value;
+  const dateRequest = document.getElementById("day-event").value;
+  const location = document.getElementById("type-dropwdown").value;
+  const toWhom =  currentFriend._id;
+  const fromWhom=user._id;
+
+  if(!title || !dateRequest || !location){
+    alert("All fields are required!");
+    return;
+  }
+
+  const payload = {
+    title: title,
+    dateRequest: dateRequest,
+    location: location,
+    fromWhom: fromWhom,
+    toWhom: toWhom,
+  };
+
+  fetch("/eventRequestRoutes", {
+    method: "POST", // *GET, POST, PUT, DELETE
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload), // body data
+  }).then((response) => {
+    if (response.status == 201) {
+      alert("request sent successfully");
+    } else {
+      alert("Error at sent event request!");
+    }
+  });
+}
+
+
+
+
+/*
+fetch("/postEventRequest", {
+  method: "POST", // *GET, POST, PUT, DELETE
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(payload), // body data
+}).then((response) => {
+  if (response.status == 201) {
+    //window.location.href = "/login";
+    console.log("request sent successfully");
+  } else {
+    alert("Error at sent event request!");
+  }
+});
+
+
+fetch("/userDetails", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => {
+    return response.json();
+  })
+  .then((user) => {
+    //console.log(user._id);
+    const fromWhom=user._id;
+    
+    const payload = {
+      title: title,
+      dateRequest: dateRequest,
+      location: location,
+      fromWhom: fromWhom,
+      toWhom: toWhom,
+    };
+
+    
+  }
+*/
+
+
