@@ -74,18 +74,26 @@ const getEvents = (dateArray) => {
       for (let i = 0; i < res.length; i++) {
         let arr = res[i].dateEvent.split("-");
         let date;
-        if (typeof res[i].google != "undefined") {
-          date = new Date(
-            parseInt(arr[0]),
-            parseInt(arr[1]) - 1,
-            parseInt(arr[2])
-          );
-        } else {
+        if (arr[2].length == 4) {
           date = new Date(
             parseInt(arr[2]),
             parseInt(arr[1]) - 1,
             parseInt(arr[0])
           );
+        } else {
+          if (parseInt(arr[1]) > 12) {
+            date = new Date(
+              parseInt(arr[0]),
+              parseInt(arr[2]) - 1,
+              parseInt(arr[1])
+            );
+          } else {
+            date = new Date(
+              parseInt(arr[0]),
+              parseInt(arr[1]) - 1,
+              parseInt(arr[2])
+            );
+          }
         }
 
         if (
