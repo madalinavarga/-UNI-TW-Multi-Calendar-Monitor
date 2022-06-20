@@ -23,7 +23,7 @@ const requestSchema = new mongoose.Schema({
   },
   color: {
     type: String,
-    required: true,
+    required: false,
   },
   fromWhom:{
     type: mongoose.Schema.Types.ObjectId,
