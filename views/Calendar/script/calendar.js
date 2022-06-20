@@ -82,9 +82,9 @@ const getEvents = (dateArray) => {
           );
         } else {
           date = new Date(
-            parseInt(arr[2]),
+            parseInt(arr[0]),
             parseInt(arr[1]) - 1,
-            parseInt(arr[0])
+            parseInt(arr[2])
           );
         }
 

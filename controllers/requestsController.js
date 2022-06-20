@@ -17,8 +17,7 @@ async function responseRequest(req,res){
   if (action == "accept") {
     
     const request= await requestModel.findOne({_id:idRequest});
-    const newEvent =await  eventModel.create({ dateEvent:request.dateRequest, startEvent:request.startEvent, endEvent:request.endEvent,color:'blue', title:request.title, });
-    console.log(newEvent);
+    const newEvent =await  eventModel.create({ dateEvent:request.dateRequest, startEvent:request.startEvent, endEvent:request.endEvent,color:'#00FFFF', title:request.title, });
     receiver.events.push(newEvent._id); 
     sender.events.push(newEvent._id);
   }
