@@ -69,6 +69,7 @@ const getEvents = (dateArray) => {
     .then((response) => response.json())
     .then((res) => {
       hideLoading();
+      console.log(res);
 
       for (let i = 0; i < res.length; i++) {
         let arr = res[i].dateEvent.split("-");

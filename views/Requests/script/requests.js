@@ -32,7 +32,7 @@ function getRequestInformation(user,i){
           return response.json();
         })
         .then((request) => {
-          //console.log("request: " + request.title);
+          if(request!=null)
           createRequestContainer(user,i,request);
         });
 
@@ -42,8 +42,7 @@ function getRequestInformation(user,i){
 function createRequestContainer(user,i,request){
     let newDiv = document.createElement("div");
     newDiv.className="request";
-    newDiv.id=request._id;
-    console.log("request: " + request._id);
+    newDiv.id=i;
 
     let detailsDiv=document.createElement("div");
     detailsDiv.className="details";
@@ -51,29 +50,26 @@ function createRequestContainer(user,i,request){
     let title=document.createElement("p");
     title.className="title";
     title.innerHTML="Titlu: ";
+
     title.innerHTML+=request.title;
-    console.log(title.innerHTML);
 
     //date
     let date=document.createElement("p");
     date.className="dateRequest";
     date.innerHTML="Date: ";
     date.innerHTML+=request.dateRequest;
-    console.log(date.innerHTML);
 
     //location
     let location=document.createElement("p");
     location.className="location";
     location.innerHTML="Location: ";
     location.innerHTML+=request.location;
-    console.log(location.innerHTML);
 
     
     detailsDiv.appendChild(title);
     detailsDiv.appendChild(location);
     detailsDiv.appendChild(date);
 
-    console.log(request.fromWhom);
     let friendId=request.fromWhom;
 
     fetch(`/getFriend/${friendId}`, {

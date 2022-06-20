@@ -9,7 +9,6 @@ function getDetailsMeet(str){
   startData=hoursInterval.split(" - ")[0];
   endData=hoursInterval.split(" - ")[1];
   locationEvent =detailsSugestion.children[1].innerHTML;
-  console.log(startData, endData);
 }
 
 
@@ -482,7 +481,7 @@ function sendRequest() {
 function populateEventRequest(user) {
   console.log("currentFriend: " + currentFriend._id);
   const title = document.getElementById("event-title").value;
-  const dateRequest = document.getElementById("day-event").value;
+  let dateRequest = document.getElementById("day-event").value;
   const toWhom = currentFriend._id;
   const fromWhom = user._id;
 
@@ -495,6 +494,7 @@ function populateEventRequest(user) {
     alert("Select one option");
     return;
   }
+
   const payload = {
     title: title,
     dateRequest: dateRequest,
