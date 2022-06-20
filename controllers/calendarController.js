@@ -16,16 +16,14 @@ async function createEvent(req, res) {
     req.on("data", function (data) {
       body += data;
     });
-    let updateUserEvents;
     req.on("end", async function () {
       try {
         const data = JSON.parse(body);
-        await eventModel.create({ ...data }).then((response) => {
-          updateUserEvents = {
-            $set: { events: response._id },
-          };
-        });
-        await userModel.findOneAndUpdate({ email: email }, updateUserEvents);
+        const user= await userModel.findOne({email:email});
+        const events=user.events;
+        const newEvent=await eventModel.create({ ...data });
+        events.push(newEvent._id);
+        await userModel.findOneAndUpdate({ email: email }, {events:events});
         res.writeHead(201);
       } catch (err) {
         console.log(err);
