@@ -36,14 +36,20 @@ async function getUserEvents(req, res) {
 
   // transforma datele in formatul nostru
   return calendarEventsData.items
-    .filter(item => !!item.start?.dateTime && !!item.end?.dateTime)
+    .filter((item) => !!item.start?.dateTime && !!item.end?.dateTime)
     .map(({ summary, start, end, colorId }) => ({
       dateEvent: start.dateTime.split("T")[0],
-      startEvent: new Date(start.dateTime).getHours() + ":" + new Date(start.dateTime).getMinutes(),
-      endEvent: new Date(end.dateTime).getHours() + ":" + new Date(end.dateTime).getMinutes(),
+      startEvent:
+        new Date(start.dateTime).getHours() +
+        ":" +
+        new Date(start.dateTime).getMinutes(),
+      endEvent:
+        new Date(end.dateTime).getHours() +
+        ":" +
+        new Date(end.dateTime).getMinutes(),
       color: colorId ? colorsMap[colorId].background : "#039be5",
       title: summary,
-    }))
+    }));
 }
 
 // tokenul expira dupa o ora si trebuie actualizat
@@ -64,36 +70,42 @@ async function refreshGoogleToken(req, res) {
 }
 
 async function getGoogleCalendarEvents(req, res) {
-  let calendarInfo = [];
+  const cookie = req.headers.cookie;
 
-  try {
-    calendarInfo = await getUserEvents(req, res);
-  } catch (err) {
-    // daca tokenul expira, il actualizez si fac din nou requestul
-    req.googleAccessToken = await refreshGoogleToken(req, res);
-    calendarInfo = await getUserEvents(req, res);
+  if (cookie.includes("google")) {
+    let calendarInfo = [];
+
+    try {
+      calendarInfo = await getUserEvents(req, res);
+    } catch (err) {
+      // daca tokenul expira, il actualizez si fac din nou requestul
+      req.googleAccessToken = await refreshGoogleToken(req, res);
+      calendarInfo = await getUserEvents(req, res);
+    }
+    res.writeHead(200, {
+      //token actualizat daca a fost actualizat
+      "Set-Cookie": `googleAccessToken=${req.googleAccessToken}; HttpOnly; path=/`,
+    });
+
+    // sterge eventuri vechi
+    await eventModel.deleteMany({ google: req.email });
+
+    // creaza eventuri noi
+    let events = [];
+    for (let i = 0; i < calendarInfo.length; i++) {
+      calendarInfo[i].google = req.email;
+      const newEvent = eventModel.create({ ...calendarInfo[i] });
+      events.push(newEvent);
+    }
+    events = await Promise.all(events);
+    events = events.map((event) => event._id);
+
+    // updateaza user events
+    await userModel.findOneAndUpdate({ email: req.email }, { events: events });
+    res.write(JSON.stringify(calendarInfo));
+  } else {
+    res.writeHead(405);
   }
-  res.writeHead(200, {
-    //token actualizat daca a fost actualizat
-    "Set-Cookie": `googleAccessToken=${req.googleAccessToken}; HttpOnly; path=/`,
-  });
-
-  // sterge eventuri vechi
-  await eventModel.deleteMany({ google: req.email });
-
-  // creaza eventuri noi
-  let events = []
-  for (let i = 0; i < calendarInfo.length; i++) {
-    calendarInfo[i].google = req.email;
-    const newEvent = eventModel.create({ ...calendarInfo[i] })
-    events.push(newEvent)
-  }
-  events = await Promise.all(events)
-  events = events.map(event => event._id)
-
-  // updateaza user events
-  await userModel.findOneAndUpdate({ email: req.email }, { events: events });
-  res.write(JSON.stringify(calendarInfo));
 }
 
 module.exports = {

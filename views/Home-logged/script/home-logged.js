@@ -37,9 +37,7 @@ const monthNames = [
   function greeding(user){
 
   var today = new Date();
-  console.log("today: "+today);
   let day = today.getDay();
-  console.log(day);
   var greedingEl = document.getElementById("home-page-greeting");
   var dateEl = document.getElementById("home-page-date");
   
@@ -73,7 +71,6 @@ const monthNames = [
   dateEl.textContent += " ";
   dateEl.textContent += dayDigits;
   
-  console.log(hour);
   if (hour < 12) {
     greedingEl.textContent += "Good morning, ";
   } else if (hour < 19) {
@@ -86,7 +83,6 @@ const monthNames = [
   }
 
   function tasks(user){
-    console.log(user.events);
     var today = new Date();
     
     //let day = today.getDay();
@@ -94,7 +90,6 @@ const monthNames = [
     let month=today.getMonth()+1;
     day+=month+"-";
     day+=today.getFullYear();
-    console.log("today: "+day);
 
     let nrEventsForToday=0;
     //console.log(user.events.length);
@@ -128,20 +123,15 @@ const monthNames = [
         return response.json();
       })
       .then((events) => {
-        //console.log("events retur: " + events[0]._id);
         for(let i=0;i<user.events.length;i++){
           for(let j=0;j<events.length;j++){
-            //console.log("din user: "+ user.events[i]);
-            //console.log("din events: " + events[j].id);
             if(user.events[i]==events[j]._id){
-              console.log("acelasi id");
               if(events[j].dateEvent==day){
                 nrEventsForToday++;
               }
             }
           }
         }
-        console.log("nrEventsForToday: " + nrEventsForToday);
         
         let enc=document.getElementById("nr-of-tasks");
         if(nrEventsForToday==1){

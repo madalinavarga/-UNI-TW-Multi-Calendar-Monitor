@@ -37,7 +37,9 @@ async function googleCalendarRoutes(req, res) {
     case "GET":
       try {
         await middleware(req, res, getGoogleCalendarEvents);
-      } catch {}
+      } catch {
+        console.log("err");
+      }
       break;
     default:
       res.write("method not allowed");

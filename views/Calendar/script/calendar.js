@@ -39,18 +39,21 @@ function hideLoading() {
 }
 
 async function syncWithGoogle() {
-  displayLoading();
   await fetch("/google/calendar", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then((response) => response.json())
-    .then((res) => {
-      console.log(res);
-    });
-  getEvents(currentDateArray);
+  }).then((response) => {
+    if (response.status == 405) {
+      alert(
+        "You don't have a connection to google calendar. Please provide it and try again"
+      );
+    } else {
+      response.json();
+      getEvents(currentDateArray);
+    }
+  });
 }
 
 //functia ce imi ia toate evenimentele
@@ -84,7 +87,6 @@ const getEvents = (dateArray) => {
           );
         }
 
-        console.log(res[i].dateEvent);
         if (
           dateArray.find(
             (el) =>

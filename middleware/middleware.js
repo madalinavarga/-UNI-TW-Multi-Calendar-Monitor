@@ -19,7 +19,6 @@ async function middleware(req, res, next) {
       res.write("not allowed");
     }
   } catch (err) {
-    console.log(err);
     res.writeHead(500);
     res.write("not allowed");
   }
